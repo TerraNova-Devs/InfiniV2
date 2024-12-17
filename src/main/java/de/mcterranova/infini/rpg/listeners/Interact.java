@@ -115,7 +115,7 @@ public class Interact implements Listener {
                     .setRune(Rune.STRENGTH)
                     .setRune(Rune.MAGIC)
                     .setRune(Rune.SWIFTNESS)
-                    //ab
+                    //abasdasd
                     .setGlowing()
                     .build()
             );
