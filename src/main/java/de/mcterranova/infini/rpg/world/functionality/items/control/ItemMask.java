@@ -6,7 +6,6 @@ import de.mcterranova.infini.rpg.world.functionality.items.components.ItemCatego
 import de.mcterranova.infini.rpg.world.functionality.items.components.ItemClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ItemTier;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnchantment;
-import de.mcterranova.infini.rpg.world.functionality.items.runecrafting.Rune;
 
 import java.util.HashMap;
 import java.util.List;
