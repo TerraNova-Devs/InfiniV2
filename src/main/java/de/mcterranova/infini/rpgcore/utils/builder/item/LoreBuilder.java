@@ -1,7 +1,6 @@
 package de.mcterranova.infini.rpgcore.utils.builder.item;
 
 import de.mcterranova.infini.Infini;
-import de.mcterranova.infini.rpg.utils.enumplaceholders.Slot;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomItemTemplate;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ItemCategory;
@@ -9,7 +8,7 @@ import de.mcterranova.infini.rpg.world.functionality.items.components.ItemClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ItemTier;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnchantment;
-import de.mcterranova.infini.rpg.world.functionality.items.reforging.Rune;
+import de.mcterranova.infini.rpg.world.functionality.items.runecrafting.Rune;
 
 import java.util.ArrayList;
 import java.util.Collections;

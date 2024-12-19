@@ -52,7 +52,7 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar{
-    destinationDirectory = file("C:\\Users\\louis\\Desktop\\DEV server 1.21\\plugins")
+    destinationDirectory = file("C:\\Users\\papri\\Desktop\\DEV server 1.21\\plugins")
 }
 
 processResources {

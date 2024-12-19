@@ -1,13 +1,12 @@
 package de.mcterranova.infini.rpg.world.functionality.items.control;
 
-import de.mcterranova.infini.rpg.utils.enumplaceholders.Slot;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import de.mcterranova.infini.rpgcore.utils.builder.item.ItemBuilder;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ItemTier;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnchantment;
-import de.mcterranova.infini.rpg.world.functionality.items.reforging.Rune;
+import de.mcterranova.infini.rpg.world.functionality.items.runecrafting.Rune;
 
 import java.util.HashMap;
 

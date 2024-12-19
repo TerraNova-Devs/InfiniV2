@@ -9,9 +9,7 @@ public enum Attribute
     INTELLIGENCE("Intelligenz" ),
     CRITICAL_CHANCE("Krit. Chance" ),
     CRITICAL_DAMAGE("Krit. Schaden" ),
-    STRENGTH( "Stärke" ),
-    MULTIPLICATIVE( "" ),
-    ADDITIVE( "" );
+    STRENGTH( "Stärke" );
 
     private final String translation;
 

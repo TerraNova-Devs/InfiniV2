@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public class Saving {
 
-    private final String pathStart = "plugins/Infinitum/PlayerControl/Players/";
+    private final String pathStart = "plugins/Infini/PlayerControl/Players/";
 
     public boolean loadFromConfig( UUID uuid )
     {
