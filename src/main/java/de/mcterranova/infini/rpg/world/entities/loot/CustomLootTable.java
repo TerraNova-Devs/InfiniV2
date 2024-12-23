@@ -1,6 +1,6 @@
 package de.mcterranova.infini.rpg.world.entities.loot;
 
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomItemTemplate;
+import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
 
 import java.util.HashMap;
 import java.util.Map;

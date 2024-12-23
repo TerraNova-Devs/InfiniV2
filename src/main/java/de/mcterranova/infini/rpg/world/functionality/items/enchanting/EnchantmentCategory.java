@@ -2,8 +2,8 @@ package de.mcterranova.infini.rpg.world.functionality.items.enchanting;
 
 import org.bukkit.inventory.ItemStack;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
-import de.mcterranova.infini.rpg.world.functionality.items.components.ItemCategory;
-import de.mcterranova.infini.rpg.world.functionality.items.components.ItemType;
+import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemCategory;
+import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemType;
 
 public enum EnchantmentCategory {
     ARMOR {

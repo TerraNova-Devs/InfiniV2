@@ -6,8 +6,6 @@ import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnch
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
 import org.bukkit.NamespacedKey;
 
-import java.util.UUID;
-
 public class RuneManager {
     private static NamespacedKey key(String key ) { return new NamespacedKey( Infini.getInstance(), key ); }
 
@@ -15,9 +13,9 @@ public class RuneManager {
         CustomEnchantment.registerEnchantment( key( id ), customEnchantment );
     }
 
-    public static CustomEnchantment register( String id, CustomEnchantment customEnchantment ) {
-        CustomEnchantment.registerEnchantment( key( id ), customEnchantment );
-        return customEnchantment;
+    public static UpgradeRune register( String id, UpgradeRune upgradeRune ) {
+        UpgradeRune.registerRune( key( id ), upgradeRune );
+        return upgradeRune;
     }
 
     public int getAttributeValues( ItemMask itemMask )

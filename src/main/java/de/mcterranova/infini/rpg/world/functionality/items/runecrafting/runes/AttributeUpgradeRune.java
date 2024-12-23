@@ -1,16 +1,13 @@
 package de.mcterranova.infini.rpg.world.functionality.items.runecrafting.runes;
 
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
-import de.mcterranova.infini.rpg.world.functionality.items.runecrafting.Rune;
+import de.mcterranova.infini.rpg.world.functionality.items.runecrafting.UpgradeRune;
 
-import static de.mcterranova.infini.rpg.world.functionality.items.components.ItemAttributes.NONE;
-import static de.mcterranova.infini.rpg.world.functionality.spells.Element.UNDEAD;
-
-public class AttributeRune extends Rune {
+public class AttributeUpgradeRune extends UpgradeRune {
 
     private final Attribute attribute;
 
-    public AttributeRune(Attribute attribute) {
+    public AttributeUpgradeRune(Attribute attribute) {
         this.attribute = attribute;
     }
 

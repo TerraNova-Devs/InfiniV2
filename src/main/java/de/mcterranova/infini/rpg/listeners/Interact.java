@@ -27,7 +27,7 @@ import de.mcterranova.infini.rpg.world.entities.mob.control.EntityManipulator;
 import de.mcterranova.infini.rpg.world.entities.loot.CustomLootTable;
 import de.mcterranova.infini.rpg.world.functionality.crafting.Crafting;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.Primer;
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomItemTemplate;
+import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
 
 public class Interact implements Listener {

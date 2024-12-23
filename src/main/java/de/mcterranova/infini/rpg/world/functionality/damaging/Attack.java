@@ -145,7 +145,6 @@ public class Attack {
                     criticalDamage += itemMask.getAttributes().get( Attribute.CRITICAL_DAMAGE );
                 if ( itemMask.getAttributes().get( Attribute.CRITICAL_CHANCE ) != 0 )
                     criticalChance += itemMask.getAttributes().get( Attribute.CRITICAL_CHANCE );
-                damager.getEntity().getServer().broadcastMessage("mmmmm22222");
             }
         }
 

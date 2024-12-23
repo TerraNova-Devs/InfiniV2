@@ -4,7 +4,7 @@ import de.mcterranova.infini.Infini;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.Primer;
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomItemTemplate;
+import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
 
 import java.io.File;
 import java.util.ArrayList;

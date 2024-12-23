@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import de.mcterranova.infini.rpgcore.utils.builder.item.ItemBuilder;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
-import de.mcterranova.infini.rpg.world.functionality.items.components.ItemTier;
+import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemTier;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnchantment;
 
 import java.util.HashMap;

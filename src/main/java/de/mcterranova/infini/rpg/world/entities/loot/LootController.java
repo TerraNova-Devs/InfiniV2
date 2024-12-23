@@ -4,7 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpgcore.utils.builder.item.ItemBuilder;
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomItemTemplate;
+import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
 
 import java.util.Map;
 

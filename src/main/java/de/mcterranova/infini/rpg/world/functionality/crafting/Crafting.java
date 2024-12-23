@@ -6,7 +6,7 @@ import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.Primer;
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomItemTemplate;
+import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
 import de.mcterranova.infini.rpgcore.utils.builder.item.ItemBuilder;
 import de.mcterranova.infini.rpg.utils.Loc;
 

@@ -7,9 +7,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
-import de.mcterranova.infini.rpg.world.functionality.items.components.ItemCategory;
-import de.mcterranova.infini.rpg.world.functionality.items.components.ItemTier;
-import de.mcterranova.infini.rpg.world.functionality.items.components.ItemType;
+import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemCategory;
+import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemTier;
+import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemType;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnchantment;
 
 import java.util.HashMap;
