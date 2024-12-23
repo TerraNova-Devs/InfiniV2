@@ -15,7 +15,7 @@ public class AttributeUpgradeRune extends UpgradeRune {
     public int getValue() {
         int v = 0;
         switch (attribute) {
-            case STRENGTH -> {v = 1 * level}
+            case STRENGTH -> { v = 1 * 9}
         }
 
         return 0;
