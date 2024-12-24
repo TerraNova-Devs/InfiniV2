@@ -4,7 +4,6 @@ import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
-import de.mcterranova.infini.rpg.world.functionality.items.enchanting.EnchantmentCategory;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
@@ -31,7 +30,7 @@ public class AdvancedAttributeComponent extends CustomComponent {
     @Override
     public void run( UUID uuid )
     {
-        Player p = Infini.getInstance().getServer().getPlayer("sakubami");
+        Player p = Infini.getInstance().getServer().getPlayer(uuid);
         World world = p.getWorld();
         Location location = p.getLocation();
         world.spawnEntity(location, EntityType.LIGHTNING_BOLT);

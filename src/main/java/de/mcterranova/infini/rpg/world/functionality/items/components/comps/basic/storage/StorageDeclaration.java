@@ -2,5 +2,6 @@ package de.mcterranova.infini.rpg.world.functionality.items.components.comps.bas
 
 public enum StorageDeclaration {
     UUID,
-    RUNE_SLOTS
+    RUNE_SLOTS,
+    ITEM_CLASS
 }

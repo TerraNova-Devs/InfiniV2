@@ -2,7 +2,7 @@ package de.mcterranova.infini.rpg.world.functionality.items.enchanting.enchants.
 
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnchantment;
-import de.mcterranova.infini.rpg.world.functionality.items.enchanting.EnchantmentCategory;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
 
 public class ProtectionEnchantment extends CustomEnchantment {

@@ -1,5 +1,8 @@
 package de.mcterranova.infini.rpg.world.functionality.items.componentsold;
 
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item.ItemCategory;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item.ItemClass;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item.ItemTier;
 import org.bukkit.Material;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
 

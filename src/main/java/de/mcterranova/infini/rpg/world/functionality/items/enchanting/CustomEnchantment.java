@@ -1,5 +1,6 @@
 package de.mcterranova.infini.rpg.world.functionality.items.enchanting;
 
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -12,7 +13,7 @@ import java.util.UUID;
 
 public abstract class CustomEnchantment {
 
-    private final ArrayList< EnchantmentCategory > categories = new ArrayList<>();
+    private final ArrayList<EnchantmentCategory> categories = new ArrayList<>();
 
     private static final HashMap< NamespacedKey, CustomEnchantment > enchants = new HashMap<>();
 

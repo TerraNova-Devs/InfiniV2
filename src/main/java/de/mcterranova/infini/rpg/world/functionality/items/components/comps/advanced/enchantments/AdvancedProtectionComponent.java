@@ -1,31 +1,27 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments;
 
+import de.mcterranova.infini.rpg.world.functionality.Attribute;
+import de.mcterranova.infini.rpg.world.functionality.items.components.Component;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
 
-public class AdvancedDamageComponent extends CustomComponent {
+public class AdvancedProtectionComponent extends CustomComponent {
 
     private final Element element;
 
-    public AdvancedDamageComponent(Element element, EnchantmentCategory... categories) {
+    public AdvancedProtectionComponent(Element element, EnchantmentCategory... categories) {
         super(ComponentType.ENCHANTMENT, categories);
         this.element = element;
     }
 
     @Override
-    public int getAdditiveBonus(int level, Element targetelement) {
+    public int getAttributeBonus( int level, Attribute attribute ) {
         int value = 0;
-        switch ( targetelement )
+        switch ( element )
         {
-            case NONE -> {
-                if (element.equals(targetelement))
-                    value = level * 10;
-            }
-            case UNDEAD, ARACHNID, CUBOID -> {
-                if (element.equals(targetelement))
-                    value = level * 15;
-            }
+            case NONE -> value = level * 15;
+            case UNDEAD, ARACHNID -> value = level * 20;
         }
         return value;
     }
@@ -36,10 +32,9 @@ public class AdvancedDamageComponent extends CustomComponent {
         String v = "NULL";
         switch ( element )
         {
-            case NONE -> v = "Schärfe";
-            case UNDEAD -> v = "Bann";
-            case ARACHNID -> v = "Nemesis$der$Spinnen";
-            case CUBOID -> v = "Cuboid";
+            case NONE -> v = "Schutz";
+            case UNDEAD -> v = "Schutz$der$Untoten";
+            case ARACHNID -> v = "Schutz$der$Spinnen";
         }
         return v;
     }

@@ -3,9 +3,9 @@ package de.mcterranova.infini.rpgcore.utils.builder.item;
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
-import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemCategory;
-import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemClass;
-import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemTier;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item.ItemCategory;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item.ItemClass;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item.ItemTier;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnchantment;
 

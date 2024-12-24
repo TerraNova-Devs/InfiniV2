@@ -2,9 +2,9 @@ package de.mcterranova.infini.rpg.world.functionality.items.control;
 
 import org.bukkit.inventory.ItemStack;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
-import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemCategory;
-import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemClass;
-import de.mcterranova.infini.rpg.world.functionality.items.componentsold.ItemTier;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item.ItemCategory;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item.ItemClass;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item.ItemTier;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnchantment;
 
 import java.util.HashMap;

@@ -6,11 +6,10 @@ import de.mcterranova.infini.rpg.world.functionality.items.components.comps.adva
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.BasicAttributeComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.StorageComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.StorageDeclaration;
-import de.mcterranova.infini.rpg.world.functionality.items.enchanting.EnchantmentCategory;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
 
 public class Component {
-
     // public static final CustomComponent AAAAA;
     public static final CustomComponent BASE_DAMAGE;
     public static final CustomComponent BASE_STRENGTH;
@@ -22,6 +21,10 @@ public class Component {
 
     public static final CustomComponent UUID;
     public static final CustomComponent RUNE_SLOTS;
+    public static final CustomComponent ITEM_CLASS;
+    public static final CustomComponent ITEM_TIER;
+    public static final CustomComponent ITEM_TYPE;
+    public static final CustomComponent ITEM_CATEGORY;
 
     public static final CustomComponent DAMAGE_ARACHNID;
     public static final CustomComponent DAMAGE_CUBOID;
@@ -41,11 +44,16 @@ public class Component {
 
         UUID = ComponentManager.register("UUID", new StorageComponent(StorageDeclaration.UUID));
         RUNE_SLOTS = ComponentManager.register("RUNE_SLOTS", new StorageComponent(StorageDeclaration.RUNE_SLOTS));
+        ITEM_CLASS = ComponentManager.register("ITEM_CLASS", new StorageComponent(StorageDeclaration.ITEM_CLASS));
+        ITEM_TIER = ComponentManager.register("ITEM_TIER", new StorageComponent(StorageDeclaration.ITEM_TIER));
+        ITEM_TYPE = ComponentManager.register("ITEM_TYPE", new StorageComponent(StorageDeclaration.ITEM_TYPE));
+        ITEM_CATEGORY = ComponentManager.register("ITEM_CATEGORY", new StorageComponent(StorageDeclaration.ITEM_CATEGORY));
 
-        DAMAGE_ARACHNID = ComponentManager.register("DAMAGE_ARACHNID", new AdvancedDamageComponent(Element.ARACHNID));
-        DAMAGE_CUBOID = ComponentManager.register("DAMAGE_CUBOID", new AdvancedDamageComponent(Element.CUBOID) );
-        DAMAGE_ALL = ComponentManager.register("DAMAGE_ALL", new AdvancedDamageComponent(Element.NONE) );
-        DAMAGE_UNDEAD = ComponentManager.register("DAMAGE_UNDEAD", new AdvancedDamageComponent(Element.UNDEAD) );
+
+        DAMAGE_ARACHNID = ComponentManager.register("DAMAGE_ARACHNID", new AdvancedDamageComponent(Element.ARACHNID, EnchantmentCategory.WEAPON));
+        DAMAGE_CUBOID = ComponentManager.register("DAMAGE_CUBOID", new AdvancedDamageComponent(Element.CUBOID, EnchantmentCategory.WEAPON) );
+        DAMAGE_ALL = ComponentManager.register("DAMAGE_ALL", new AdvancedDamageComponent(Element.NONE, EnchantmentCategory.WEAPON) );
+        DAMAGE_UNDEAD = ComponentManager.register("DAMAGE_UNDEAD", new AdvancedDamageComponent(Element.UNDEAD, EnchantmentCategory.WEAPON) );
         ATTRIBUTE_STRENGTH = ComponentManager.register("ATTRIBUTE_STRENGTH", new AdvancedAttributeComponent(Attribute.STRENGTH, EnchantmentCategory.WEAPON));
     }
 }

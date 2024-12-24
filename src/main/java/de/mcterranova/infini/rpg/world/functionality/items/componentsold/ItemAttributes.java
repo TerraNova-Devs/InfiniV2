@@ -1,6 +1,7 @@
 package de.mcterranova.infini.rpg.world.functionality.items.componentsold;
 
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item.ItemClass;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package de.mcterranova.infini.rpg.world.functionality.items.componentsold;
+package de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item;
 
 public enum ItemClass
 {
