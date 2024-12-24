@@ -32,11 +32,11 @@ public abstract class CustomComponent {
 
     public Attribute getAttribute() { return Attribute.NONE; }
 
-    public Object getStored() { return null; }
-
     public ComponentType getType() { return this.type; }
 
     public String getDisplayName() { return "NULL"; }
+
+    public Object getData() { return null; }
 
     public void run( UUID uuid ) {}
 
