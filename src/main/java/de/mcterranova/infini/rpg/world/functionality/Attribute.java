@@ -11,7 +11,8 @@ public enum Attribute
     CRITICAL_DAMAGE("Krit. Schaden" ),
     STRENGTH( "Stärke" ),
     MULTIPLICATIVE( "" ),
-    ADDITIVE( "" );
+    ADDITIVE( "" ),
+    NONE("");
 
     private final String translation;
 

@@ -2,11 +2,19 @@ package de.mcterranova.infini.rpg.world.functionality.items.components.comps.att
 
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
-import de.mcterranova.infini.rpg.world.functionality.items.components.Component;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 
-public class AttributeComponent extends Component {
+public class AttributeComponent extends CustomComponent {
 
-    protected AttributeComponent(Attribute attribute) {
+    private final Attribute attribute;
+
+    public AttributeComponent(Attribute attribute) {
         super(ComponentType.ATTRIBUTE);
+        this.attribute = attribute;
+    }
+
+    @Override
+    public Attribute getAttribute() {
+        return attribute;
     }
 }
