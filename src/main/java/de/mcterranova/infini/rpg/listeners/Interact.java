@@ -28,7 +28,7 @@ import de.mcterranova.infini.rpg.world.entities.loot.CustomLootTable;
 import de.mcterranova.infini.rpg.world.functionality.crafting.Crafting;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.Primer;
 import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
-import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
+import de.mcterranova.infini.rpg.world.functionality.items.control.OldItemManipulator;
 
 public class Interact implements Listener {
 
@@ -119,7 +119,7 @@ public class Interact implements Listener {
 
         if ( helper.rightClickBlock( e, Material.NETHERITE_BLOCK ) )
         {
-            new ItemManipulator( e.getItem(), e.getPlayer() )
+            new OldItemManipulator( e.getItem(), e.getPlayer() )
                     .addEnchant(EnchantmentLibrary.DAMAGE_CUBOID, 3)
                     .addEnchant(EnchantmentLibrary.DAMAGE_ALL, 7)
                     .addEnchant(EnchantmentLibrary.DAMAGE_UNDEAD, 8)

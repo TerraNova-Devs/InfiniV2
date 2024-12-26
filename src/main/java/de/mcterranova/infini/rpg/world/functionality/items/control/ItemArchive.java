@@ -19,25 +19,20 @@ public class ItemArchive {
 
     public void add( ItemMask mask )
     {
-        cache.put( mask.getUuid(), mask );
+        cache.put( mask.getUUID(), mask );
     }
 
     public void remove( ItemMask mask )
     {
-        cache.remove( mask.getUuid() );
+        cache.remove( mask.getUUID() );
     }
 
-    public void update( ItemMask mask )
-    {
-        UUID uuid = mask.getUuid();
-        if ( cache.get( uuid ) != null )
-            cache.replace( uuid, mask );
+    public void update( ItemMask mask ) {
+        UUID uuid = mask.getUUID();
+        cache.replace( uuid, mask );
     }
 
-    public boolean contains( ItemMask mask )
-    {
-        return ( cache.get( mask.getUuid() ) != null );
-    }
+    public boolean contains( ItemMask mask ) { return ( cache.get( mask.getUUID() ) != null ); }
 
     public ItemMask get( ItemStack itemStack ) { return cache.get( UUID.fromString( nbt.getItemNBTString( itemStack, "UUID" ) ) ); }
 

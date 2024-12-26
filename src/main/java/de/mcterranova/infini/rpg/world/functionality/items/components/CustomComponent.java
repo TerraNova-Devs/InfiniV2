@@ -1,5 +1,6 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components;
 
+import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
@@ -36,7 +37,7 @@ public abstract class CustomComponent {
 
     public String getDisplayName() { return "NULL"; }
 
-    public Object getData() { return null; }
+    public String getDeclaration() { return null; }
 
     public void run( UUID uuid ) {}
 
@@ -58,7 +59,7 @@ public abstract class CustomComponent {
 
     public boolean conflictsWith( CustomComponent customComponent) { return false; }
 
-
+    private static NamespacedKey key(String key ) { return new NamespacedKey( Infini.getInstance(), key ); }
     private static final HashMap<NamespacedKey, CustomComponent> components = new HashMap<>();
 
     public static void registerComponent( NamespacedKey id, CustomComponent customComponent) {
@@ -85,5 +86,10 @@ public abstract class CustomComponent {
 
     public static boolean contains( NamespacedKey id ) {
         return components.get( id ) != null ;
+    }
+
+    public static CustomComponent register(String id, CustomComponent customComponent) {
+        CustomComponent.registerComponent( key( id ), customComponent);
+        return customComponent;
     }
 }
