@@ -30,4 +30,6 @@ public class ItemManipulator {
         if ( archive.contains( itemMask ) )
             archive.update( itemMask );
     }
+
+    //update itemstack
 }
