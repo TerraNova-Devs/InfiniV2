@@ -34,26 +34,26 @@ public class Component {
 
     static {
         // AAAAA = ComponentManager.register("AAAAA", new AAAAA );
-        BASE_DAMAGE = ComponentManager.register("BASE_DAMAGE", new BasicAttributeComponent(Attribute.DAMAGE));
-        BASE_STRENGTH = ComponentManager.register("BASE_STRENGTH", new BasicAttributeComponent(Attribute.STRENGTH));
-        BASE_HEALTH = ComponentManager.register("BASE_HEALTH", new BasicAttributeComponent(Attribute.HEALTH));
-        BASE_DEFENSE = ComponentManager.register("BASE_DEFENSE", new BasicAttributeComponent(Attribute.DEFENSE));
-        BASE_CRITICAL_DAMAGE = ComponentManager.register("BASE_CRITICAL_DAMAGE", new BasicAttributeComponent(Attribute.CRITICAL_DAMAGE));
-        BASE_CRITICAL_CHANCE = ComponentManager.register("BASE_CRITICAL_CHANCE", new BasicAttributeComponent(Attribute.CRITICAL_CHANCE));
-        BASE_INTELLIGENCE = ComponentManager.register("BASE_INTELLIGENCE", new BasicAttributeComponent(Attribute.INTELLIGENCE));
+        BASE_DAMAGE = ComponentHelper.register("BASE_DAMAGE", new BasicAttributeComponent(Attribute.DAMAGE));
+        BASE_STRENGTH = ComponentHelper.register("BASE_STRENGTH", new BasicAttributeComponent(Attribute.STRENGTH));
+        BASE_HEALTH = ComponentHelper.register("BASE_HEALTH", new BasicAttributeComponent(Attribute.HEALTH));
+        BASE_DEFENSE = ComponentHelper.register("BASE_DEFENSE", new BasicAttributeComponent(Attribute.DEFENSE));
+        BASE_CRITICAL_DAMAGE = ComponentHelper.register("BASE_CRITICAL_DAMAGE", new BasicAttributeComponent(Attribute.CRITICAL_DAMAGE));
+        BASE_CRITICAL_CHANCE = ComponentHelper.register("BASE_CRITICAL_CHANCE", new BasicAttributeComponent(Attribute.CRITICAL_CHANCE));
+        BASE_INTELLIGENCE = ComponentHelper.register("BASE_INTELLIGENCE", new BasicAttributeComponent(Attribute.INTELLIGENCE));
 
-        UUID = ComponentManager.register("UUID", new StorageComponent(StorageDeclaration.UUID));
-        RUNE_SLOTS = ComponentManager.register("RUNE_SLOTS", new StorageComponent(StorageDeclaration.RUNE_SLOTS));
-        ITEM_CLASS = ComponentManager.register("ITEM_CLASS", new StorageComponent(StorageDeclaration.ITEM_CLASS));
-        ITEM_TIER = ComponentManager.register("ITEM_TIER", new StorageComponent(StorageDeclaration.ITEM_TIER));
-        ITEM_TYPE = ComponentManager.register("ITEM_TYPE", new StorageComponent(StorageDeclaration.ITEM_TYPE));
-        ITEM_CATEGORY = ComponentManager.register("ITEM_CATEGORY", new StorageComponent(StorageDeclaration.ITEM_CATEGORY));
+        UUID = ComponentHelper.register("UUID", new StorageComponent(StorageDeclaration.UUID));
+        RUNE_SLOTS = ComponentHelper.register("RUNE_SLOTS", new StorageComponent(StorageDeclaration.RUNE_SLOTS));
+        ITEM_CLASS = ComponentHelper.register("ITEM_CLASS", new StorageComponent(StorageDeclaration.ITEM_CLASS));
+        ITEM_TIER = ComponentHelper.register("ITEM_TIER", new StorageComponent(StorageDeclaration.ITEM_TIER));
+        ITEM_TYPE = ComponentHelper.register("ITEM_TYPE", new StorageComponent(StorageDeclaration.ITEM_TYPE));
+        ITEM_CATEGORY = ComponentHelper.register("ITEM_CATEGORY", new StorageComponent(StorageDeclaration.ITEM_CATEGORY));
 
 
-        DAMAGE_ARACHNID = ComponentManager.register("DAMAGE_ARACHNID", new AdvancedDamageComponent(Element.ARACHNID, EnchantmentCategory.WEAPON));
-        DAMAGE_CUBOID = ComponentManager.register("DAMAGE_CUBOID", new AdvancedDamageComponent(Element.CUBOID, EnchantmentCategory.WEAPON) );
-        DAMAGE_ALL = ComponentManager.register("DAMAGE_ALL", new AdvancedDamageComponent(Element.NONE, EnchantmentCategory.WEAPON) );
-        DAMAGE_UNDEAD = ComponentManager.register("DAMAGE_UNDEAD", new AdvancedDamageComponent(Element.UNDEAD, EnchantmentCategory.WEAPON) );
-        ATTRIBUTE_STRENGTH = ComponentManager.register("ATTRIBUTE_STRENGTH", new AdvancedAttributeComponent(Attribute.STRENGTH, EnchantmentCategory.WEAPON));
+        DAMAGE_ARACHNID = ComponentHelper.register("DAMAGE_ARACHNID", new AdvancedDamageComponent(Element.ARACHNID, EnchantmentCategory.WEAPON));
+        DAMAGE_CUBOID = ComponentHelper.register("DAMAGE_CUBOID", new AdvancedDamageComponent(Element.CUBOID, EnchantmentCategory.WEAPON) );
+        DAMAGE_ALL = ComponentHelper.register("DAMAGE_ALL", new AdvancedDamageComponent(Element.NONE, EnchantmentCategory.WEAPON) );
+        DAMAGE_UNDEAD = ComponentHelper.register("DAMAGE_UNDEAD", new AdvancedDamageComponent(Element.UNDEAD, EnchantmentCategory.WEAPON) );
+        ATTRIBUTE_STRENGTH = ComponentHelper.register("ATTRIBUTE_STRENGTH", new AdvancedAttributeComponent(Attribute.STRENGTH, EnchantmentCategory.WEAPON));
     }
 }
