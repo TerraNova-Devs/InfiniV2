@@ -1,7 +1,9 @@
 package de.mcterranova.infini.rpg.world.functionality.items.control;
 
-import de.mcterranova.infini.rpg.world.functionality.items.components.Component;
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
+import de.mcterranova.infini.rpgcore.utils.builder.item.CustomItemBuilder;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Map;
 
@@ -9,27 +11,38 @@ public class ItemManipulator {
 
     private final ItemArchive archive = ItemArchive.get();
     private final ItemMask itemMask;
-    private final Map<CustomComponent, Object> data;
 
     public ItemManipulator(ItemMask mask) {
         this.itemMask = mask;
-        this.data = this.itemMask.data;
     }
 
-    public ItemManipulator addComponent(CustomComponent component, Object data) {
-        this.data.put(component, data);
+    public ItemManipulator configureComponent(CustomComponentClass component, Object data) {
+        this.itemMask.data.replace(component, data);
         return this;
     }
 
-    public ItemManipulator removeComponent(CustomComponent component) {
-        this.data.remove(component);
+    public ItemManipulator addComponent(CustomComponentClass component, Object data) {
+        this.itemMask.data.put(component, data);
+        return this;
+    }
+
+    public ItemManipulator removeComponent(CustomComponentClass component) {
+        this.itemMask.data.remove(component);
+        return this;
+    }
+
+    public ItemManipulator updateItem(Player player, int v) {
+        ItemStack item = new CustomItemBuilder(itemMask).build();
+        if (!player.getItemOnCursor().isEmpty())
+            player.setItemOnCursor(item);
+        player.getInventory().setItem(v, item);
         return this;
     }
 
     public void queue() {
-        if ( archive.contains( itemMask ) )
-            archive.update( itemMask );
+        archive.update( itemMask );
     }
+
 
     //update itemstack
 }

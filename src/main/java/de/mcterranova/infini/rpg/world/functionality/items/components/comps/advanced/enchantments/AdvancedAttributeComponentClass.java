@@ -3,7 +3,7 @@ package de.mcterranova.infini.rpg.world.functionality.items.components.comps.adv
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
@@ -11,12 +11,12 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class AdvancedAttributeComponent extends CustomComponent {
+public class AdvancedAttributeComponentClass extends CustomComponentClass {
 
 
     Attribute attribute;
 
-    public AdvancedAttributeComponent(Attribute attribute, EnchantmentCategory... categories) {
+    public AdvancedAttributeComponentClass(Attribute attribute, EnchantmentCategory... categories) {
         super(ComponentType.ENCHANTMENT, categories);
         this.attribute = attribute;
     }

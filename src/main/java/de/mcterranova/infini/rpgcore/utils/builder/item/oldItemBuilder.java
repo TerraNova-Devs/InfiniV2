@@ -23,7 +23,7 @@ import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnch
 
 import java.util.*;
 
-public class ItemBuilder {
+public class oldItemBuilder {
 
     private final ItemStack item;
     private ItemMeta meta;
@@ -57,14 +57,14 @@ public class ItemBuilder {
         return new NamespacedKey( Infini.getInstance(), key );
     }
 
-    public ItemBuilder( Material material ) {
+    public oldItemBuilder(Material material ) {
         this.item = new ItemStack(material);
         this.meta = item.hasItemMeta() && item.getItemMeta() != null ? item.getItemMeta() : Bukkit.getItemFactory().getItemMeta( item.getType() );
         this.material = material;
         this.displayName = material.name().toLowerCase();
     }
 
-    public ItemBuilder( Material material, int amount) {
+    public oldItemBuilder(Material material, int amount) {
         this.item = new ItemStack(material);
         this.meta = item.hasItemMeta() && item.getItemMeta() != null ? item.getItemMeta() : Bukkit.getItemFactory().getItemMeta(item.getType());
         this.amount = amount;
@@ -72,14 +72,14 @@ public class ItemBuilder {
         this.displayName = material.name().toLowerCase();
     }
 
-    public ItemBuilder( Material material, String displayName) {
+    public oldItemBuilder(Material material, String displayName) {
         this.item = new ItemStack(material);
         this.meta = item.hasItemMeta() && item.getItemMeta() != null ? item.getItemMeta() : Bukkit.getItemFactory().getItemMeta(item.getType());
         this.material = material;
         this.displayName = displayName;
     }
 
-    public ItemBuilder( Material material, int amount, String displayName) {
+    public oldItemBuilder(Material material, int amount, String displayName) {
         this.item = new ItemStack(material, amount);
         this.meta = item.hasItemMeta() && item.getItemMeta() != null ? item.getItemMeta() : Bukkit.getItemFactory().getItemMeta(item.getType());
         this.material = material;
@@ -87,7 +87,7 @@ public class ItemBuilder {
         this.displayName = displayName;
     }
 
-    public ItemBuilder( CustomItemTemplate item ) {
+    public oldItemBuilder(CustomItemTemplate item ) {
         this.itemTier = item.getTier();
         this.id = item.name();
         if ( !item.getItemCategory().equals( ItemCategory.MATERIAL  ) )
@@ -113,7 +113,7 @@ public class ItemBuilder {
         nbt.addNBTTag( key( "ID" ), item.name() );
     }
 
-    public ItemBuilder( ItemMask item ) {
+    public oldItemBuilder(ItemMask item ) {
         this.id = item.getId();
         this.uuid = item.getUuid();
         this.item = new ItemStack( item.getItem().getType() );
@@ -134,90 +134,90 @@ public class ItemBuilder {
         nbt.addNBTTag( key( "UUID" ), uuid.toString() );
     }
 
-    public ItemBuilder addNBTTag( String key, String value )
+    public oldItemBuilder addNBTTag(String key, String value )
     {
         nbt.addNBTTag( key( key ), value );
         return this;
     }
 
-    public ItemBuilder setProtected( boolean value )
+    public oldItemBuilder setProtected(boolean value )
     {
         nbt.addNBTTag( key( "PROTECTED" ), String.valueOf( value ) );
         return this;
     }
 
-    public ItemBuilder setRune(Rune rune)
+    public oldItemBuilder setRune(Rune rune)
     {
         this.runes.add(rune);
         return this;
     }
 
-    public ItemBuilder setRuneSlots(int runeSlots)
+    public oldItemBuilder setRuneSlots(int runeSlots)
     {
         this.runeSlots = runeSlots;
         return this;
     }
 
-    public ItemBuilder tier( ItemTier tier )
+    public oldItemBuilder tier(ItemTier tier )
     {
         this.itemTier = tier;
         return this;
     }
 
-    public ItemBuilder custom( boolean value )
+    public oldItemBuilder custom(boolean value )
     {
         this.custom = value;
         return this;
     }
 
-    public ItemBuilder attribute( Attribute attribute, int value )
+    public oldItemBuilder attribute(Attribute attribute, int value )
     {
         this.attributes.put( attribute, value );
         return this;
     }
 
-    public ItemBuilder amount( int amount ) {
+    public oldItemBuilder amount(int amount ) {
         this.amount = amount;
         return this;
     }
 
-    public ItemBuilder amount( int amount, String displayName ) {
+    public oldItemBuilder amount(int amount, String displayName ) {
         this.amount = amount;
         return this;
     }
 
-    public ItemBuilder material( Material material ) {
+    public oldItemBuilder material(Material material ) {
         this.material = material;
         return this;
     }
 
-    public ItemBuilder customModelData( int customModelData ) {
+    public oldItemBuilder customModelData(int customModelData ) {
         this.customModelData = customModelData;
         return this;
     }
 
-    public ItemBuilder enchant( CustomEnchantment enchantment, int level )
+    public oldItemBuilder enchant(CustomEnchantment enchantment, int level )
     {
         this.enchantments.put( enchantment, level );
         return this;
     }
 
-    public ItemBuilder enchant( Map< CustomEnchantment, Integer > enchantments ) {
+    public oldItemBuilder enchant(Map< CustomEnchantment, Integer > enchantments ) {
         this.enchantments = enchantments;
         return this;
     }
 
-    public ItemBuilder displayname( String displayname ) {
+    public oldItemBuilder displayname(String displayname ) {
         this.displayName = Chat.translate( displayname );
         return this;
     }
 
-    public ItemBuilder setGlowing() {
+    public oldItemBuilder setGlowing() {
         this.isGlowing = true;
         return this;
     }
 
-    public ItemBuilder setGlowing( boolean v) {
+    public oldItemBuilder setGlowing(boolean v) {
         this.isGlowing = v;
         return this;
     }

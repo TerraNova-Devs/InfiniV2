@@ -4,14 +4,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import de.mcterranova.infini.rpgcore.utils.builder.item.ItemBuilder;
+import de.mcterranova.infini.rpgcore.utils.builder.item.oldItemBuilder;
 
 import java.util.ArrayList;
 
 public class InventoryBuilder {
 
     private final Inventory inventory;
-    private final ItemStack filler = new ItemBuilder(Material.LIGHT_GRAY_STAINED_GLASS_PANE, "§0").build();
+    private final ItemStack filler = new oldItemBuilder(Material.LIGHT_GRAY_STAINED_GLASS_PANE, "§0").build();
     private int math(int math) {
         if ((math * 9)> 54) math = 54;
         return math * 9;
@@ -27,9 +27,9 @@ public class InventoryBuilder {
 
     public InventoryBuilder buildBottomRow() {
         for (int i = inventory.getSize()-9; i < inventory.getSize(); i++) {
-            inventory.setItem(i, new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE, "§0").build());
+            inventory.setItem(i, new oldItemBuilder(Material.GRAY_STAINED_GLASS_PANE, "§0").build());
         }
-        inventory.setItem(inventory.getSize()-5, new ItemBuilder(Material.BARRIER, "§cSchließen").addNBTTag( "protected", "true" ).build() );
+        inventory.setItem(inventory.getSize()-5, new oldItemBuilder(Material.BARRIER, "§cSchließen").addNBTTag( "protected", "true" ).build() );
         return this;
     }
 

@@ -19,7 +19,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.utils.InteractHelper;
-import de.mcterranova.infini.rpgcore.utils.builder.item.ItemBuilder;
+import de.mcterranova.infini.rpgcore.utils.builder.item.oldItemBuilder;
 import de.mcterranova.infini.rpgcore.utils.builder.mob.CustomEntityBuilder;
 import de.mcterranova.infini.rpg.utils.worldedit.InfinitumSchematic;
 import de.mcterranova.infini.rpg.utils.worldedit.WorldEditHelper;
@@ -106,7 +106,7 @@ public class Interact implements Listener {
 
         if ( helper.rightClickBlock( e, Material.GOLD_BLOCK ) )
         {
-            player.getInventory().setItemInMainHand( new ItemBuilder( CustomItemTemplate.HYPERION )
+            player.getInventory().setItemInMainHand( new oldItemBuilder( CustomItemTemplate.HYPERION )
                     .setRuneSlots(3)
                     .setRune(Rune.STRENGTH)
                     .setRune(Rune.MAGIC)

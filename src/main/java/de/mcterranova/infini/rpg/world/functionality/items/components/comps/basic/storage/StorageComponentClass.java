@@ -1,15 +1,13 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage;
 
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 
-public class StorageComponent extends CustomComponent {
+public class StorageComponentClass extends CustomComponentClass {
 
     private final String declaration;
 
-    public StorageComponent(String declaration) {
+    public StorageComponentClass(String declaration) {
         super(ComponentType.STORAGE);
         this.declaration = declaration;
     }

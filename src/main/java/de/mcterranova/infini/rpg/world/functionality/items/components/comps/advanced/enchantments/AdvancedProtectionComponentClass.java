@@ -1,16 +1,15 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments;
 
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
-import de.mcterranova.infini.rpg.world.functionality.items.components.Component;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
 
-public class AdvancedProtectionComponent extends CustomComponent {
+public class AdvancedProtectionComponentClass extends CustomComponentClass {
 
     private final Element element;
 
-    public AdvancedProtectionComponent(Element element, EnchantmentCategory... categories) {
+    public AdvancedProtectionComponentClass(Element element, EnchantmentCategory... categories) {
         super(ComponentType.ENCHANTMENT, categories);
         this.element = element;
     }

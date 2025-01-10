@@ -1,13 +1,13 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments;
 
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 
 import java.util.UUID;
 
-public class AdvancedAttackComponent extends CustomComponent {
+public class AdvancedAttackComponentClass extends CustomComponentClass {
 
-    protected AdvancedAttackComponent(EnchantmentCategory... categories) {
+    protected AdvancedAttackComponentClass(EnchantmentCategory... categories) {
         super(ComponentType.ENCHANTMENT, categories);
     }
 

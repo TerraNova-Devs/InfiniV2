@@ -28,6 +28,7 @@ public class ItemArchive {
     }
 
     public void update( ItemMask mask ) {
+        cache.putIfAbsent(mask.getUUID(), mask);
         UUID uuid = mask.getUUID();
         cache.replace( uuid, mask );
     }

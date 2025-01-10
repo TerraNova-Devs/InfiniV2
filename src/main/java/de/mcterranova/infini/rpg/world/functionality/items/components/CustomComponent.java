@@ -1,95 +1,62 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components;
 
-import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.AdvancedAttributeComponentClass;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.AdvancedDamageComponentClass;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.BasicAttributeComponentClass;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.StorageComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
-import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+public class CustomComponent {
+    // public static final CustomComponent AAAAA;
+    public static final CustomComponentClass BASE_DAMAGE;
+    public static final CustomComponentClass BASE_STRENGTH;
+    public static final CustomComponentClass BASE_HEALTH;
+    public static final CustomComponentClass BASE_DEFENSE;
+    public static final CustomComponentClass BASE_CRITICAL_DAMAGE;
+    public static final CustomComponentClass BASE_CRITICAL_CHANCE;
+    public static final CustomComponentClass BASE_INTELLIGENCE;
 
-public abstract class CustomComponent {
-    private final ComponentType type;
+    public static final CustomComponentClass UUID;
+    public static final CustomComponentClass ID;
+    public static final CustomComponentClass DESCRIPTION;
+    public static final CustomComponentClass RUNE_SLOTS;
+    public static final CustomComponentClass ITEM_CLASS;
+    public static final CustomComponentClass ITEM_TIER;
+    public static final CustomComponentClass ITEM_TYPE;
+    public static final CustomComponentClass ITEM_CATEGORY;
 
-    private final ArrayList< EnchantmentCategory > enchantmentCategories = new ArrayList<>();
+    public static final CustomComponentClass DAMAGE_ARACHNID;
+    public static final CustomComponentClass DAMAGE_CUBOID;
+    public static final CustomComponentClass DAMAGE_ALL;
+    public static final CustomComponentClass DAMAGE_UNDEAD;
+    public static final CustomComponentClass ATTRIBUTE_STRENGTH;
 
-    protected CustomComponent(ComponentType type) {
-        this.type = type;
-    }
+    static {
+        // AAAAA = ComponentManager.register("AAAAA", new AAAAA );
+        BASE_DAMAGE = CustomComponentClass.register("BASE_DAMAGE", new BasicAttributeComponentClass(Attribute.DAMAGE));
+        BASE_STRENGTH = CustomComponentClass.register("BASE_STRENGTH", new BasicAttributeComponentClass(Attribute.STRENGTH));
+        BASE_HEALTH = CustomComponentClass.register("BASE_HEALTH", new BasicAttributeComponentClass(Attribute.HEALTH));
+        BASE_DEFENSE = CustomComponentClass.register("BASE_DEFENSE", new BasicAttributeComponentClass(Attribute.DEFENSE));
+        BASE_CRITICAL_DAMAGE = CustomComponentClass.register("BASE_CRITICAL_DAMAGE", new BasicAttributeComponentClass(Attribute.CRITICAL_DAMAGE));
+        BASE_CRITICAL_CHANCE = CustomComponentClass.register("BASE_CRITICAL_CHANCE", new BasicAttributeComponentClass(Attribute.CRITICAL_CHANCE));
+        BASE_INTELLIGENCE = CustomComponentClass.register("BASE_INTELLIGENCE", new BasicAttributeComponentClass(Attribute.INTELLIGENCE));
 
-    protected CustomComponent(ComponentType type, EnchantmentCategory category) {
-        this.enchantmentCategories.add(category);
-        this.type = type;
-    }
+        UUID = CustomComponentClass.register("UUID", new StorageComponentClass("UUID"));
+        ID = CustomComponentClass.register("ID", new StorageComponentClass("ID"));
+        DESCRIPTION = CustomComponentClass.register("DESCRIPTION", new StorageComponentClass("DESCRIPTION"));
+        RUNE_SLOTS = CustomComponentClass.register("RUNE_SLOTS", new StorageComponentClass("RUNE_SLOTS"));
+        ITEM_CLASS = CustomComponentClass.register("ITEM_CLASS", new StorageComponentClass("ITEM_CLASS"));
+        ITEM_TIER = CustomComponentClass.register("ITEM_TIER", new StorageComponentClass("ITEM_TIER"));
+        ITEM_TYPE = CustomComponentClass.register("ITEM_TYPE", new StorageComponentClass("ITEM_TYPE"));
+        ITEM_CATEGORY = CustomComponentClass.register("ITEM_CATEGORY", new StorageComponentClass("ITEM_CATEGORY"));
 
-    protected CustomComponent(ComponentType type, EnchantmentCategory... categories) {
-        this.enchantmentCategories.addAll( List.of( categories ) );
-        this.type = type;
-    }
 
-    public Attribute getAttribute() { return Attribute.NONE; }
-
-    public ComponentType getType() { return this.type; }
-
-    public String getDisplayName() { return "NULL"; }
-
-    public String getDeclaration() { return null; }
-
-    public void run( UUID uuid ) {}
-
-    public int getMinLevel() { return 1; }
-
-    public int getMaxLevel() { return 1; }
-
-    public int getCost( int level ) { return 1 + level * 10; }
-
-    public int getAdditiveBonus( int level, Element targetelement ) { return 0; }
-
-    public int getAttributeBonus( int level, Attribute attribute ) { return 0; }
-
-    public int getAttributeValue( int level, Attribute attribute ) { return 0; }
-
-    public int getMultiplicativeBonus( int level ) { return 0; }
-
-    public boolean canEnchant( ItemStack itemStack ) { return enchantmentCategories.stream().anyMatch(category -> category.canEnchant( itemStack ) ); }
-
-    public boolean conflictsWith( CustomComponent customComponent) { return false; }
-
-    private static NamespacedKey key(String key ) { return new NamespacedKey( Infini.getInstance(), key ); }
-    private static final HashMap<NamespacedKey, CustomComponent> components = new HashMap<>();
-
-    public static void registerComponent( NamespacedKey id, CustomComponent customComponent) {
-        if ( !components.containsKey( id ) )
-        {
-            components.put( id, customComponent);
-        } else {
-            throw new IllegalArgumentException( "Cannot set already-set enchantment" );
-        }
-    }
-
-    public static CustomComponent getByID(NamespacedKey id ) { return components.get( id ); }
-
-    public static NamespacedKey getID( CustomComponent enchantment )
-    {
-        for ( NamespacedKey key : components.keySet() )
-        {
-            CustomComponent enchant = components.get( key );
-            if ( enchant.equals( enchantment ) )
-                return key;
-        }
-        return null;
-    }
-
-    public static boolean contains( NamespacedKey id ) {
-        return components.get( id ) != null ;
-    }
-
-    public static CustomComponent register(String id, CustomComponent customComponent) {
-        CustomComponent.registerComponent( key( id ), customComponent);
-        return customComponent;
+        DAMAGE_ARACHNID = CustomComponentClass.register("DAMAGE_ARACHNID", new AdvancedDamageComponentClass(Element.ARACHNID, EnchantmentCategory.WEAPON));
+        DAMAGE_CUBOID = CustomComponentClass.register("DAMAGE_CUBOID", new AdvancedDamageComponentClass(Element.CUBOID, EnchantmentCategory.WEAPON) );
+        DAMAGE_ALL = CustomComponentClass.register("DAMAGE_ALL", new AdvancedDamageComponentClass(Element.NONE, EnchantmentCategory.WEAPON) );
+        DAMAGE_UNDEAD = CustomComponentClass.register("DAMAGE_UNDEAD", new AdvancedDamageComponentClass(Element.UNDEAD, EnchantmentCategory.WEAPON) );
+        ATTRIBUTE_STRENGTH = CustomComponentClass.register("ATTRIBUTE_STRENGTH", new AdvancedAttributeComponentClass(Attribute.STRENGTH, EnchantmentCategory.WEAPON));
     }
 }

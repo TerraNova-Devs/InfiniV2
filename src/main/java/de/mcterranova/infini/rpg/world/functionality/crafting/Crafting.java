@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.Primer;
 import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
-import de.mcterranova.infini.rpgcore.utils.builder.item.ItemBuilder;
+import de.mcterranova.infini.rpgcore.utils.builder.item.oldItemBuilder;
 import de.mcterranova.infini.rpg.utils.Loc;
 
 import java.util.ArrayList;
@@ -98,7 +98,7 @@ public class Crafting {
 
     public void spawnCraftingResult(CustomItemTemplate result, Location location )
     {
-        ItemStack itemStack = new ItemBuilder( result )
+        ItemStack itemStack = new oldItemBuilder( result )
                 .setGlowing()
                 .build();
 

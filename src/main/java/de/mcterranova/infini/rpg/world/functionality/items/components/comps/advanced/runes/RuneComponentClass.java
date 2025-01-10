@@ -1,11 +1,11 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes;
 
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
 
-public class RuneComponent extends CustomComponent {
+public class RuneComponentClass extends CustomComponentClass {
 
-    protected RuneComponent() {
+    protected RuneComponentClass() {
         super(ComponentType.RUNE);
     }
 }

@@ -2,7 +2,7 @@ package de.mcterranova.infini.rpg.world.functionality.items.control;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import de.mcterranova.infini.rpgcore.utils.builder.item.ItemBuilder;
+import de.mcterranova.infini.rpgcore.utils.builder.item.oldItemBuilder;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.item.ItemTier;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnchantment;
@@ -109,7 +109,7 @@ public class OldItemManipulator {
     {
         if ( !destroy ) {
             player.getServer().broadcastMessage(itemMask.getDescription());
-            player.getInventory().setItemInMainHand( new ItemBuilder( itemMask ).setGlowing( isGlowing ).build() );
+            player.getInventory().setItemInMainHand( new oldItemBuilder( itemMask ).setGlowing( isGlowing ).build() );
         }
 
         for ( ItemMask mask : queue.keySet() )
