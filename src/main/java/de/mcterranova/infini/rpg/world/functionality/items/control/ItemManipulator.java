@@ -1,11 +1,15 @@
 package de.mcterranova.infini.rpg.world.functionality.items.control;
 
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 import de.mcterranova.infini.rpgcore.utils.builder.item.CustomItemBuilder;
+import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Map;
+import java.util.UUID;
 
 public class ItemManipulator {
 
@@ -14,6 +18,10 @@ public class ItemManipulator {
 
     public ItemManipulator(ItemMask mask) {
         this.itemMask = mask;
+    }
+
+    public ItemManipulator(Material material, String id) {
+        this.itemMask = new ItemMask(new ItemStack(material), UUID.randomUUID(), id);
     }
 
     public ItemManipulator configureComponent(CustomComponentClass component, Object data) {
@@ -31,12 +39,17 @@ public class ItemManipulator {
         return this;
     }
 
-    public ItemManipulator updateItem(Player player, int v) {
+    public ItemManipulator updateItem(Player player) {
+        int v = (Integer) this.itemMask.data.get(CustomComponent.LOCATION);
         ItemStack item = new CustomItemBuilder(itemMask).build();
         if (!player.getItemOnCursor().isEmpty())
             player.setItemOnCursor(item);
         player.getInventory().setItem(v, item);
         return this;
+    }
+
+    public ItemMask manifest() {
+        return this.itemMask;
     }
 
     public void queue() {

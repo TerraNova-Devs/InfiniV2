@@ -9,7 +9,7 @@ import de.mcterranova.infini.rpg.world.functionality.items.components.comps.adva
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
 
 public class CustomComponent {
-    // public static final CustomComponent AAAAA;
+    // public static final CustomComponentClass AAAAA;
     public static final CustomComponentClass BASE_DAMAGE;
     public static final CustomComponentClass BASE_STRENGTH;
     public static final CustomComponentClass BASE_HEALTH;
@@ -19,6 +19,7 @@ public class CustomComponent {
     public static final CustomComponentClass BASE_INTELLIGENCE;
 
     public static final CustomComponentClass UUID;
+    public static final CustomComponentClass LOCATION;
     public static final CustomComponentClass ID;
     public static final CustomComponentClass DESCRIPTION;
     public static final CustomComponentClass RUNE_SLOTS;
@@ -34,7 +35,7 @@ public class CustomComponent {
     public static final CustomComponentClass ATTRIBUTE_STRENGTH;
 
     static {
-        // AAAAA = ComponentManager.register("AAAAA", new AAAAA );
+        // AAAAA = CustomComponentClass.register("AAAAA", new AAAAA );
         BASE_DAMAGE = CustomComponentClass.register("BASE_DAMAGE", new BasicAttributeComponentClass(Attribute.DAMAGE));
         BASE_STRENGTH = CustomComponentClass.register("BASE_STRENGTH", new BasicAttributeComponentClass(Attribute.STRENGTH));
         BASE_HEALTH = CustomComponentClass.register("BASE_HEALTH", new BasicAttributeComponentClass(Attribute.HEALTH));
@@ -44,6 +45,7 @@ public class CustomComponent {
         BASE_INTELLIGENCE = CustomComponentClass.register("BASE_INTELLIGENCE", new BasicAttributeComponentClass(Attribute.INTELLIGENCE));
 
         UUID = CustomComponentClass.register("UUID", new StorageComponentClass("UUID"));
+        LOCATION = CustomComponentClass.register("LOCATION", new StorageComponentClass("LOCATION") );
         ID = CustomComponentClass.register("ID", new StorageComponentClass("ID"));
         DESCRIPTION = CustomComponentClass.register("DESCRIPTION", new StorageComponentClass("DESCRIPTION"));
         RUNE_SLOTS = CustomComponentClass.register("RUNE_SLOTS", new StorageComponentClass("RUNE_SLOTS"));

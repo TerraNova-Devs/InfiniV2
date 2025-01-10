@@ -2,6 +2,8 @@ package de.mcterranova.infini.rpg.listeners;
 
 import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.entities.mob.control.CustomType;
+import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
+import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.EnchantmentLibrary;
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
 import net.leonardo_dgs.interactivebooks.IBook;
@@ -29,6 +31,8 @@ import de.mcterranova.infini.rpg.world.functionality.crafting.Crafting;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.Primer;
 import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
 import de.mcterranova.infini.rpg.world.functionality.items.control.OldItemManipulator;
+
+import java.util.UUID;
 
 public class Interact implements Listener {
 
@@ -88,6 +92,12 @@ public class Interact implements Listener {
             // Infinitum.getInstance().getVanillaCoolDowns().addCooldown( Item.byId( 0 ), 60 );
 
 
+        }
+
+        if (helper.rightClickBlock(e, Material.CLAY)) {
+            new ItemManipulator(Material.BAKED_POTATO, "test_item")
+                    .updateItem(e.getPlayer(), 0)
+                    .queue();
         }
 
         if ( helper.rightClickBlock( e, Material.IRON_BLOCK ) )
