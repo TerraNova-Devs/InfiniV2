@@ -112,7 +112,10 @@ public class LoreBuilder {
             }
             this.newLore.add( "§0" );
         }
-         
+
+
+        test
+                
         if (!enchantments.isEmpty())
         {
             if ( compactEnchantments )
