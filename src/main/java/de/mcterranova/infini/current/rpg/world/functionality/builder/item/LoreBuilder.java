@@ -61,7 +61,7 @@ public class LoreBuilder {
         if (enchantmentLength > 6)
             this.compactEnchantments = false;
     }
-    
+
     public List<String> build()
     {
         Component blank = Component.text("§0");
