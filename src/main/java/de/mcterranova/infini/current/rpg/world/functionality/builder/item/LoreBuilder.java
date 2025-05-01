@@ -62,6 +62,9 @@ public class LoreBuilder {
             this.compactEnchantments = false;
     }
 
+
+    MORE TEST
+            
     public List<String> build()
     {
         Component blank = Component.text("§0");
