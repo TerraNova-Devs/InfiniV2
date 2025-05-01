@@ -3,7 +3,7 @@ package de.mcterranova.infini.rpg.utils.math;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
-import de.mcterranova.infini.rpgcore.utils.builder.mob.CustomEntityBuilderUtils;
+import de.mcterranova.infini.current.rpg.world.functionality.builder.mob.CustomEntityBuilderUtils;
 
 import java.util.List;
 

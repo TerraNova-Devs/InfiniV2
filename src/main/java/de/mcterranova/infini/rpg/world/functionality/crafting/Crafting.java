@@ -7,7 +7,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.Primer;
 import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
-import de.mcterranova.infini.rpgcore.utils.builder.item.oldItemBuilder;
 import de.mcterranova.infini.rpg.utils.Loc;
 
 import java.util.ArrayList;

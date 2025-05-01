@@ -2,8 +2,7 @@ package de.mcterranova.infini.rpg.world.functionality.guis;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
-import de.mcterranova.infini.rpgcore.utils.builder.inventory.InventoryBuilder;
-import de.mcterranova.infini.rpgcore.utils.builder.item.oldItemBuilder;
+import de.mcterranova.infini.current.rpg.world.functionality.builder.inventory.InventoryBuilder;
 
 public class GUIs {
 

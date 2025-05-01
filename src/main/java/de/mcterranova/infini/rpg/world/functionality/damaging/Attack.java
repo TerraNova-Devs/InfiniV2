@@ -8,14 +8,14 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
-import de.mcterranova.infini.rpgcore.utils.builder.mob.CustomEntityBuilderUtils;
+import de.mcterranova.infini.current.rpg.world.functionality.builder.mob.CustomEntityBuilderUtils;
 import de.mcterranova.infini.rpg.utils.math.EntityMath;
 import de.mcterranova.infini.rpg.world.entities.mob.control.EntityConnector;
 import de.mcterranova.infini.rpg.world.entities.mob.control.EntityManipulator;
 import de.mcterranova.infini.rpg.world.entities.mob.control.EntityMask;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
-import de.mcterranova.infini.rpg.world.functionality.items.control.ItemArchive;
-import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
+import de.mcterranova.infini.current.rpg.world.functionality.items.control.ItemArchive;
+import de.mcterranova.infini.current.rpg.world.functionality.items.control.ItemMask;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.EnchantmentManager;
 
 import java.util.ArrayList;

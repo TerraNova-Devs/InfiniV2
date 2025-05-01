@@ -3,7 +3,7 @@ package de.mcterranova.infini.rpg.world.functionality.items.enchanting;
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
 import org.bukkit.NamespacedKey;
 import de.mcterranova.infini.Infini;
-import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
+import de.mcterranova.infini.current.rpg.world.functionality.items.control.ItemMask;
 
 import java.util.UUID;
 

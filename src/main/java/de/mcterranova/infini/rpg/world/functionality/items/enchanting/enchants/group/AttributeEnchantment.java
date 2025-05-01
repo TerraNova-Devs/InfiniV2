@@ -3,7 +3,8 @@ package de.mcterranova.infini.rpg.world.functionality.items.enchanting.enchants.
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.world.functionality.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnchantment;
-import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
+import de.mcterranova.infini.current.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
+import org.bukkit.Bukkit;
 
 import java.util.UUID;
 

@@ -1,21 +1,25 @@
 package de.mcterranova.infini;
 
+import de.mcterranova.infini.current.rpg.database.HikariCP;
+import de.mcterranova.infini.current.rpg.test.commands.TestCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import de.mcterranova.infini.rpg.listeners.*;
-import de.mcterranova.infini.rpgcore.utils.builder.mob.CustomEntityBuilderUtils;
+import de.mcterranova.infini.current.rpg.world.functionality.builder.mob.CustomEntityBuilderUtils;
 import de.mcterranova.infini.rpg.world.entities.mob.control.EntityConnector;
 import de.mcterranova.infini.rpg.world.functionality.crafting.Crafting;
 import de.mcterranova.infini.rpg.world.functionality.crafting.RecipeConfig;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.LocationConfig;
-import de.mcterranova.infini.rpg.world.functionality.items.control.ItemArchive;
+import de.mcterranova.infini.current.rpg.world.functionality.items.control.ItemArchive;
 
+import java.sql.SQLException;
 import java.util.Random;
 
 public class Infini extends JavaPlugin {
 
     private static Infini instance;
 
+    public static HikariCP hikari;
     private LocationConfig locationConfig;
     private RecipeConfig recipeConfig;
     private Crafting crafting;
@@ -28,6 +32,7 @@ public class Infini extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
+        initDatabase();
         //register listeners
         Bukkit.getPluginManager().registerEvents( new EntityKill(), this );
         Bukkit.getPluginManager().registerEvents( new Interact(), this );
@@ -43,11 +48,23 @@ public class Infini extends JavaPlugin {
         this.random = new Random();
         this.builderUtils = new CustomEntityBuilderUtils();
         this.itemArchive = new ItemArchive();
+
+        TestCommand testCommand = new TestCommand();
+        this.getCommand("testCommand").setExecutor(testCommand);
+        this.getCommand("testCommand").setTabCompleter(testCommand);
         // this.vanillaCoolDowns = new ItemCooldowns();
 
         // register stuff
 
         instance.getServer().broadcastMessage("§dInfinitum §7wurde §aeingeschaltet!");
+    }
+
+    private void initDatabase() {
+        try {
+            hikari = new HikariCP(this);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void onDisable() {

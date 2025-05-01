@@ -25,12 +25,27 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+    maven {
+        name = "Hikari&Shadow"
+        url = "https://jitpack.io"
+    }
+    maven {
+        name = "GitHubPackages"
+        url = "https://maven.pkg.github.com/TerraNova-Devs/TerranovaLib"
+
+        credentials {
+            username = project.findProperty("gpr.user")
+            password = project.findProperty("gpr.token")
+        }
+    }
 }
 
 dependencies {
     compileOnly "io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT"
     implementation "com.sk89q.worldedit:worldedit-bukkit:7.2.9"
     implementation "net.leonardo_dgs:InteractiveBooks:1.7.2"
+    implementation "de.mcterranova:terranova-lib:0.8.13"
+    implementation "com.zaxxer:HikariCP:6.2.1"
 }
 
 def targetJavaVersion = 21

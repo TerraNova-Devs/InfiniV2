@@ -3,7 +3,6 @@ package de.mcterranova.infini.rpg.world.entities.loot;
 import org.bukkit.Location;
 import org.bukkit.World;
 import de.mcterranova.infini.Infini;
-import de.mcterranova.infini.rpgcore.utils.builder.item.oldItemBuilder;
 import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
 
 import java.util.Map;

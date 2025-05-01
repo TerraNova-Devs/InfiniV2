@@ -1,6 +1,6 @@
 package de.mcterranova.infini.rpg.world.functionality.items.enchanting;
 
-import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
+import de.mcterranova.infini.current.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;

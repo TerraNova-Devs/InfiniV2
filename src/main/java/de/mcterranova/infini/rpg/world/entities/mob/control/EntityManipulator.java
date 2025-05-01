@@ -7,7 +7,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import de.mcterranova.infini.Infini;
-import de.mcterranova.infini.rpgcore.utils.builder.mob.CustomEntityBuilderUtils;
+import de.mcterranova.infini.current.rpg.world.functionality.builder.mob.CustomEntityBuilderUtils;
 import de.mcterranova.infini.rpg.utils.math.MathUtils;
 import de.mcterranova.infini.rpg.world.entities.loot.LootController;
 import de.mcterranova.infini.rpg.world.entities.player.skills.ExperienceType;

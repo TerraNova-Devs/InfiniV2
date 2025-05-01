@@ -2,8 +2,7 @@ package de.mcterranova.infini.rpg.listeners;
 
 import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.entities.mob.control.CustomType;
-import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
-import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
+import de.mcterranova.infini.current.rpg.world.functionality.items.control.ItemManipulator;
 import de.mcterranova.infini.rpg.world.functionality.items.enchanting.EnchantmentLibrary;
 import de.mcterranova.infini.rpg.world.functionality.spells.Element;
 import net.leonardo_dgs.interactivebooks.IBook;
@@ -21,8 +20,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.utils.InteractHelper;
-import de.mcterranova.infini.rpgcore.utils.builder.item.oldItemBuilder;
-import de.mcterranova.infini.rpgcore.utils.builder.mob.CustomEntityBuilder;
+import de.mcterranova.infini.current.rpg.world.functionality.builder.mob.CustomEntityBuilder;
 import de.mcterranova.infini.rpg.utils.worldedit.InfinitumSchematic;
 import de.mcterranova.infini.rpg.utils.worldedit.WorldEditHelper;
 import de.mcterranova.infini.rpg.world.entities.mob.control.EntityManipulator;
@@ -30,9 +28,6 @@ import de.mcterranova.infini.rpg.world.entities.loot.CustomLootTable;
 import de.mcterranova.infini.rpg.world.functionality.crafting.Crafting;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.Primer;
 import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
-import de.mcterranova.infini.rpg.world.functionality.items.control.OldItemManipulator;
-
-import java.util.UUID;
 
 public class Interact implements Listener {
 
@@ -96,7 +91,7 @@ public class Interact implements Listener {
 
         if (helper.rightClickBlock(e, Material.CLAY)) {
             new ItemManipulator(Material.BAKED_POTATO, "test_item")
-                    .updateItem(e.getPlayer(), 0)
+                    .updateItem(e.getPlayer())
                     .queue();
         }
 
