@@ -61,9 +61,6 @@ public class LoreBuilder {
         if (enchantmentLength > 6)
             this.compactEnchantments = false;
     }
-
-
-    asd
     
     public List<String> build()
     {
