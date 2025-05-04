@@ -29,23 +29,21 @@ public class CustomComponent {
     public static final CustomComponentClass ITEM_TYPE;
     public static final CustomComponentClass ITEM_CATEGORY;
 
-    public static final CustomComponentClass DAMAGE_ARACHNID;
-    public static final CustomComponentClass DAMAGE_CUBOID;
-    public static final CustomComponentClass DAMAGE_ALL;
-    public static final CustomComponentClass DAMAGE_UNDEAD;
-    public static final CustomComponentClass ATTRIBUTE_STRENGTH;
-
-    public static final CustomComponentClass RUNE;
+    public static final CustomComponentClass ADVANCED_DAMAGE_ARACHNID;
+    public static final CustomComponentClass ADVANCED_DAMAGE_CUBOID;
+    public static final CustomComponentClass ADVANCED_DAMAGE_ALL;
+    public static final CustomComponentClass ADVANCED_DAMAGE_UNDEAD;
+    public static final CustomComponentClass ADVANCED_ATTRIBUTE_STRENGTH;
 
     static {
         // AAAAA = CustomComponentClass.register("AAAAA", new AAAAA );
-        BASE_DAMAGE = CustomComponentClass.register("BASE_DAMAGE", new BasicAttributeComponentClass(Attribute.DAMAGE));
-        BASE_STRENGTH = CustomComponentClass.register("BASE_STRENGTH", new BasicAttributeComponentClass(Attribute.STRENGTH));
-        BASE_HEALTH = CustomComponentClass.register("BASE_HEALTH", new BasicAttributeComponentClass(Attribute.HEALTH));
-        BASE_DEFENSE = CustomComponentClass.register("BASE_DEFENSE", new BasicAttributeComponentClass(Attribute.DEFENSE));
-        BASE_CRITICAL_DAMAGE = CustomComponentClass.register("BASE_CRITICAL_DAMAGE", new BasicAttributeComponentClass(Attribute.CRITICAL_DAMAGE));
-        BASE_CRITICAL_CHANCE = CustomComponentClass.register("BASE_CRITICAL_CHANCE", new BasicAttributeComponentClass(Attribute.CRITICAL_CHANCE));
-        BASE_INTELLIGENCE = CustomComponentClass.register("BASE_INTELLIGENCE", new BasicAttributeComponentClass(Attribute.INTELLIGENCE));
+        BASE_DAMAGE = CustomComponentClass.register("BASE_DAMAGE", new BasicAttributeComponentClass(Attribute.DAMAGE, "§c"));
+        BASE_STRENGTH = CustomComponentClass.register("BASE_STRENGTH", new BasicAttributeComponentClass(Attribute.STRENGTH, "§c"));
+        BASE_HEALTH = CustomComponentClass.register("BASE_HEALTH", new BasicAttributeComponentClass(Attribute.HEALTH, "§a"));
+        BASE_DEFENSE = CustomComponentClass.register("BASE_DEFENSE", new BasicAttributeComponentClass(Attribute.DEFENSE, "§a"));
+        BASE_CRITICAL_DAMAGE = CustomComponentClass.register("BASE_CRITICAL_DAMAGE", new BasicAttributeComponentClass(Attribute.CRITICAL_DAMAGE, "§c"));
+        BASE_CRITICAL_CHANCE = CustomComponentClass.register("BASE_CRITICAL_CHANCE", new BasicAttributeComponentClass(Attribute.CRITICAL_CHANCE, "§c"));
+        BASE_INTELLIGENCE = CustomComponentClass.register("BASE_INTELLIGENCE", new BasicAttributeComponentClass(Attribute.INTELLIGENCE, "§a"));
 
         UUID = CustomComponentClass.register("UUID", new StorageComponentClass("UUID"));
         LOCATION = CustomComponentClass.register("LOCATION", new StorageComponentClass("LOCATION") );
@@ -57,12 +55,10 @@ public class CustomComponent {
         ITEM_TYPE = CustomComponentClass.register("ITEM_TYPE", new StorageComponentClass("ITEM_TYPE"));
         ITEM_CATEGORY = CustomComponentClass.register("ITEM_CATEGORY", new StorageComponentClass("ITEM_CATEGORY"));
 
-        DAMAGE_ARACHNID = CustomComponentClass.register("DAMAGE_ARACHNID", new AdvancedDamageComponentClass(Element.ARACHNID, EnchantmentCategory.WEAPON));
-        DAMAGE_CUBOID = CustomComponentClass.register("DAMAGE_CUBOID", new AdvancedDamageComponentClass(Element.CUBOID, EnchantmentCategory.WEAPON) );
-        DAMAGE_ALL = CustomComponentClass.register("DAMAGE_ALL", new AdvancedDamageComponentClass(Element.NONE, EnchantmentCategory.WEAPON) );
-        DAMAGE_UNDEAD = CustomComponentClass.register("DAMAGE_UNDEAD", new AdvancedDamageComponentClass(Element.UNDEAD, EnchantmentCategory.WEAPON) );
-        ATTRIBUTE_STRENGTH = CustomComponentClass.register("ATTRIBUTE_STRENGTH", new AdvancedAttributeComponentClass(Attribute.STRENGTH, EnchantmentCategory.WEAPON));
-
-        RUNE = CustomComponentClass.register("RUNE", new RuneComponentClass());
+        ADVANCED_DAMAGE_ARACHNID = CustomComponentClass.register("ADVANCED_DAMAGE_ARACHNID", new AdvancedDamageComponentClass(Element.ARACHNID, EnchantmentCategory.WEAPON));
+        ADVANCED_DAMAGE_CUBOID = CustomComponentClass.register("ADVANCED_DAMAGE_CUBOID", new AdvancedDamageComponentClass(Element.CUBOID, EnchantmentCategory.WEAPON) );
+        ADVANCED_DAMAGE_ALL = CustomComponentClass.register("ADVANCED_DAMAGE_ALL", new AdvancedDamageComponentClass(Element.NONE, EnchantmentCategory.WEAPON) );
+        ADVANCED_DAMAGE_UNDEAD = CustomComponentClass.register("ADVANCED_DAMAGE_UNDEAD", new AdvancedDamageComponentClass(Element.UNDEAD, EnchantmentCategory.WEAPON) );
+        ADVANCED_ATTRIBUTE_STRENGTH = CustomComponentClass.register("ADVANCED_ATTRIBUTE_STRENGTH", new AdvancedAttributeComponentClass(Attribute.STRENGTH, EnchantmentCategory.WEAPON));
     }
 }

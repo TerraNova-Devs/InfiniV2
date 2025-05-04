@@ -15,4 +15,9 @@ public class AdvancedAttackComponentClass extends CustomComponentClass {
     public void run(UUID uuid) {
         //first strike or sth
     }
+
+    @Override
+    public String getColor() {
+        return "§9";
+    }
 }

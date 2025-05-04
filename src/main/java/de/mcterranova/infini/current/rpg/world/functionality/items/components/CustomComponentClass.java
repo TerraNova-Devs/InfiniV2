@@ -31,6 +31,8 @@ public abstract class CustomComponentClass {
         this.type = type;
     }
 
+    public Integer getAssignedRuneSlot() { return 0; }
+
     public Attribute getAttribute() { return Attribute.NONE; }
 
     public String getColor() { return "NULL"; }
@@ -41,7 +43,7 @@ public abstract class CustomComponentClass {
 
     public String getDeclaration() { return null; }
 
-    public void run( UUID uuid ) {}
+    public void run(UUID uuid) {}
 
     public int getMinLevel() { return 1; }
 

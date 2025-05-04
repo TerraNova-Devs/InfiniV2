@@ -43,4 +43,9 @@ public class AdvancedDamageComponentClass extends CustomComponentClass {
         }
         return v;
     }
+
+    @Override
+    public String getColor() {
+        return "§9";
+    }
 }

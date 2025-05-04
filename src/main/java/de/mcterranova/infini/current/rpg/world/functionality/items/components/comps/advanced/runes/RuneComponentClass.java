@@ -5,7 +5,23 @@ import de.mcterranova.infini.current.rpg.world.functionality.items.components.Co
 
 public class RuneComponentClass extends CustomComponentClass {
 
-    protected RuneComponentClass() {
+    private final RuneType type;
+
+    protected RuneComponentClass(RuneType type) {
         super(ComponentType.RUNE);
+        this.type = type;
+    }
+
+    @Override
+    public String getDisplayName()
+    {
+        String v = "NULL";
+        switch (type)
+        {
+            case STRENGTH -> v = "Stärke";
+            case INTELLIGENCE -> v = "Intelligenz";
+            case MIGHT -> v = "Macht";
+        }
+        return v;
     }
 }
