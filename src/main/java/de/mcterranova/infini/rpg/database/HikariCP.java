@@ -58,7 +58,7 @@ public class HikariCP {
         config.setKeepaliveTime(0);
         config.setConnectionTimeout(5000);
         config.setLeakDetectionThreshold(100000);
-        config.setPoolName("ShulkermagicHikariPool");
+        config.setPoolName("InfiniHikariPool");
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");

@@ -1,5 +1,6 @@
  plugins {
     id 'java'
+     id "io.github.goooler.shadow" version "8.1.8"
 }
 
 group = 'de.terranova.infini'
@@ -45,7 +46,7 @@ dependencies {
     implementation "com.sk89q.worldedit:worldedit-bukkit:7.2.9"
     implementation "net.leonardo_dgs:InteractiveBooks:1.7.2"
     implementation "de.mcterranova:terranova-lib:0.8.13"
-    implementation "com.zaxxer:HikariCP:6.2.1"
+    implementation "com.zaxxer:HikariCP:6.3.0"
 }
 
 def targetJavaVersion = 21
@@ -66,9 +67,10 @@ tasks.withType(JavaCompile).configureEach {
     }
 }
 
-jar{
-    destinationDirectory = file("C:\\Users\\papri\\Desktop\\dev 1.21.4\\plugins")
-}
+ shadowJar {
+     destinationDirectory = file("C:\\Users\\papri\\Desktop\\dev 1.21.4\\plugins")
+     archiveClassifier.set('all')
+ }
 
 processResources {
     def props = [version: version]
