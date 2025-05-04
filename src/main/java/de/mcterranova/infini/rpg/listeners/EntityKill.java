@@ -1,11 +1,11 @@
 package de.mcterranova.infini.rpg.listeners;
 
+import de.mcterranova.infini.rpg.utils.NBTUtils;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.entities.player.skills.combat.CombatExperience;
 
 public class EntityKill implements Listener {

@@ -1,5 +1,8 @@
 package de.mcterranova.infini.rpg.listeners;
 
+import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.world.functionality.builder.mob.control.EntityConnector;
+import de.mcterranova.infini.rpg.world.functionality.crafting.Crafting;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -14,9 +17,6 @@ import org.bukkit.event.entity.EntityCombustByEntityEvent;
 import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
-import de.mcterranova.infini.rpg.utils.NBTUtils;
-import de.mcterranova.infini.rpg.world.entities.mob.control.EntityConnector;
-import de.mcterranova.infini.rpg.world.functionality.crafting.Crafting;
 
 public class Combust implements Listener {
 

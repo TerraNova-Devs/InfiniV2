@@ -1,7 +1,7 @@
 package de.mcterranova.infini.rpg.world.entities.player.skills;
 
 import de.mcterranova.infini.Infini;
-import de.mcterranova.infini.rpg.world.entities.mob.control.EntityConnector;
+import de.mcterranova.infini.rpg.world.functionality.builder.mob.control.EntityConnector;
 
 import java.util.UUID;
 

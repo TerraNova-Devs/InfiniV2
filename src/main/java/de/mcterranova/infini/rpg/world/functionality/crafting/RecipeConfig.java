@@ -4,19 +4,21 @@ import de.mcterranova.infini.Infini;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.Primer;
-import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
+import org.bukkit.inventory.Recipe;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeConfig {
-
+    /*
     private record Recipe( List<String> items, Primer primer, CustomItemTemplate result ) { }
+
+
 
     private final String path = "plugins/Infinitum/Crafting/Recipes.yml";
 
-    private ArrayList< Recipe > recipes;
+    private ArrayList<Recipe> recipes;
 
     public RecipeConfig()
     {
@@ -24,6 +26,7 @@ public class RecipeConfig {
         loadRecipes();
     }
 
+    /*
     public CustomItemTemplate craftRecipe(List<String> list, Primer primer )
     {
         for ( Recipe recipe : recipes )
@@ -35,6 +38,8 @@ public class RecipeConfig {
         }
         return null;
     }
+
+
 
     public void deleteRecipe( List< String > items )
     {
@@ -88,4 +93,6 @@ public class RecipeConfig {
     public static RecipeConfig get() {
         return Infini.getInstance().getRecipeConfig();
     }
+    */
+
 }

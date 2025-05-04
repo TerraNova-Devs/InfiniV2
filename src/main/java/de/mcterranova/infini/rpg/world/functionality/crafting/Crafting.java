@@ -6,7 +6,6 @@ import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.Primer;
-import de.mcterranova.infini.rpg.world.functionality.items.componentsold.CustomItemTemplate;
 import de.mcterranova.infini.rpg.utils.Loc;
 
 import java.util.ArrayList;
@@ -61,12 +60,13 @@ public class Crafting {
 
                 queuedItems.addItem( item );
 
-                CustomItemTemplate customItemTemplate = RecipeConfig.get().craftRecipe( queuedItems.items, queuedItems.primer );
-
+                /*
                 Infini.getInstance().getServer().broadcastMessage( "a: " + customItemTemplate);
 
                 Bukkit.getScheduler().scheduleSyncDelayedTask( Infini.getInstance(), () ->
                         spawnCraftingResult( customItemTemplate != null ? customItemTemplate : CustomItemTemplate.NULL, location ), 41 );
+
+                 */
                 }
 
             queuedItems.addItem( item );
@@ -95,6 +95,7 @@ public class Crafting {
         }
     }
 
+    /*
     public void spawnCraftingResult(CustomItemTemplate result, Location location )
     {
         ItemStack itemStack = new oldItemBuilder( result )
@@ -106,6 +107,8 @@ public class Crafting {
         item.setGravity( false );
         item.setGlowing( true );
     }
+
+     */
 
     public static Crafting get() { return Infini.getInstance().getCrafting(); }
 }

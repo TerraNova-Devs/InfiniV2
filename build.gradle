@@ -41,7 +41,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly "io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT"
+    compileOnly "io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT"
     implementation "com.sk89q.worldedit:worldedit-bukkit:7.2.9"
     implementation "net.leonardo_dgs:InteractiveBooks:1.7.2"
     implementation "de.mcterranova:terranova-lib:0.8.13"
@@ -67,7 +67,7 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar{
-    destinationDirectory = file("C:\\Users\\papri\\Desktop\\DEV server 1.21\\plugins")
+    destinationDirectory = file("C:\\Users\\papri\\Desktop\\dev 1.21.4\\plugins")
 }
 
 processResources {

@@ -1,7 +1,7 @@
 name: Infini
 version: 0.0.1
 main: de.mcterranova.infini.Infini
-api-version: '1.21'
+api-version: '1.21.4'
 author: sakubami
 prefix: TerraNova
 description: Cool Plugin lol

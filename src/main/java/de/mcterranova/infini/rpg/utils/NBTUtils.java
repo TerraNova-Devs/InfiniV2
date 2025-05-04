@@ -6,11 +6,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import de.mcterranova.infini.Infini;
-import de.mcterranova.infini.rpg.world.functionality.Attribute;
-import de.mcterranova.infini.current.rpg.world.functionality.items.components.comps.basic.storage.item.ItemCategory;
-import de.mcterranova.infini.current.rpg.world.functionality.items.components.comps.basic.storage.item.ItemTier;
-import de.mcterranova.infini.current.rpg.world.functionality.items.components.comps.basic.storage.item.ItemType;
-import de.mcterranova.infini.rpg.world.functionality.items.enchanting.CustomEnchantment;
+import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
+import de.mcterranova.infini.rpg.world.functionality.items.item.ItemTier;
+import de.mcterranova.infini.rpg.world.functionality.items.item.ItemType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -143,47 +141,6 @@ public class NBTUtils {
         return list;
     }
 
-    public Map< CustomEnchantment, Integer > getItemEnchantments( ItemStack item )
-    {
-        Map< CustomEnchantment, Integer > enchants = new HashMap<>();
-        if ( getItemNBTString( item, "ENCHANTED" ) == null )
-            return null;
-        for ( NamespacedKey key : getItemNBTTags( item ).keySet() )
-        {
-            if ( !CustomEnchantment.contains( key ) )
-                continue;
-            int level = getItemNBTInt( item, key );
-            enchants.put( CustomEnchantment.getByID( key ), level );
-        }
-        return enchants;
-    }
-
-    public Map< Attribute, Integer > getItemAttributes( ItemStack item )
-    {
-        Map< Attribute, Integer > attributes = new HashMap<>();
-        for ( NamespacedKey key : getItemNBTTags( item ).keySet() )
-        {
-            if ( !getItemNBTString( item, key ).contains( "ATTRIBUTE") )
-                return null;
-            int level = getItemNBTInt( item, key );
-            attributes.put( Attribute.valueOf( key.getKey().replace( "ATTRIBUTE_", "" ) ), level );
-        }
-        return attributes;
-    }
-
-    public Map< Attribute, Integer > getEntityAttributes( LivingEntity entity )
-    {
-        Map< Attribute, Integer > attributes = new HashMap<>();
-        for ( NamespacedKey key : getEntityNBTTags( entity ).keySet() )
-        {
-            if ( !getEntityNBTString( entity, key ).contains( "ATTRIBUTE") )
-                return null;
-            int level = getEntityNBTInt( entity, key );
-            attributes.put( Attribute.valueOf( key.getKey().replace( "ATTRIBUTE_", "" ) ), level );
-        }
-        return attributes;
-    }
-
     public boolean checkForEntityNBTData( LivingEntity entity ) { return !entity.getPersistentDataContainer().isEmpty(); }
 
     public boolean checkForItemEnchantments( ItemStack item ) { return getItemNBTString( item, "ENCHANTED") != null; }
@@ -199,8 +156,6 @@ public class NBTUtils {
     public ItemType getItemType ( ItemStack itemStack ) { return ItemType.valueOf( getItemNBTString( itemStack, "TYPE" ) ); }
 
     public ItemTier getItemTier ( ItemStack itemStack ) { return ItemTier.valueOf( getItemNBTString( itemStack, "TIER" ) ); }
-
-    public int getItemEnchantmentValue ( ItemStack itemStack, CustomEnchantment enchantment ) { return getItemNBTInt( itemStack, CustomEnchantment.getID( enchantment ) ); }
 
     public boolean isItemProtected( ItemStack item ) { return Boolean.parseBoolean( getItemNBTString( item, "PROTECTED" ) ); }
 }

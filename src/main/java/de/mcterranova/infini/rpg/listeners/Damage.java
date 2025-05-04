@@ -1,5 +1,8 @@
 package de.mcterranova.infini.rpg.listeners;
 
+import de.mcterranova.infini.rpg.utils.InteractHelper;
+import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.world.functionality.builder.mob.control.EntityConnector;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
@@ -9,11 +12,8 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import de.mcterranova.infini.Infini;
-import de.mcterranova.infini.rpg.utils.InteractHelper;
-import de.mcterranova.infini.rpg.utils.NBTUtils;
-import de.mcterranova.infini.rpg.world.entities.mob.control.EntityConnector;
-import de.mcterranova.infini.rpg.world.entities.mob.control.EntityManipulator;
-import de.mcterranova.infini.rpg.world.functionality.damaging.Attack;
+import de.mcterranova.infini.rpg.world.functionality.builder.mob.control.EntityManipulator;
+import de.mcterranova.infini.rpg.world.entities.damaging.Attack;
 
 public class Damage implements Listener {
 

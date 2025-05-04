@@ -1,16 +1,16 @@
 package de.mcterranova.infini;
 
-import de.mcterranova.infini.current.rpg.database.HikariCP;
-import de.mcterranova.infini.current.rpg.test.commands.TestCommand;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
+import de.mcterranova.infini.rpg.database.HikariCP;
 import de.mcterranova.infini.rpg.listeners.*;
-import de.mcterranova.infini.current.rpg.world.functionality.builder.mob.CustomEntityBuilderUtils;
-import de.mcterranova.infini.rpg.world.entities.mob.control.EntityConnector;
+import de.mcterranova.infini.rpg.test.commands.TestCommand;
+import de.mcterranova.infini.rpg.world.functionality.builder.mob.control.EntityConnector;
 import de.mcterranova.infini.rpg.world.functionality.crafting.Crafting;
 import de.mcterranova.infini.rpg.world.functionality.crafting.RecipeConfig;
 import de.mcterranova.infini.rpg.world.functionality.crafting.stations.LocationConfig;
-import de.mcterranova.infini.current.rpg.world.functionality.items.control.ItemArchive;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+import de.mcterranova.infini.rpg.world.functionality.builder.mob.CustomEntityBuilderUtils;
+import de.mcterranova.infini.rpg.world.functionality.items.control.ItemArchive;
 
 import java.sql.SQLException;
 import java.util.Random;
@@ -20,13 +20,13 @@ public class Infini extends JavaPlugin {
     private static Infini instance;
 
     public static HikariCP hikari;
+    private Random random;
+    private CustomEntityBuilderUtils builderUtils;
+    private ItemArchive itemArchive;
     private LocationConfig locationConfig;
     private RecipeConfig recipeConfig;
     private Crafting crafting;
     private EntityConnector entityConnector;
-    private Random random;
-    private CustomEntityBuilderUtils builderUtils;
-    private ItemArchive itemArchive;
     // private ItemCooldowns vanillaCoolDowns;
 
     public void onEnable() {
@@ -75,12 +75,12 @@ public class Infini extends JavaPlugin {
     }
 
     public static Infini getInstance() { return instance; }
+    public Random getRandomGenerator() { return random; }
+    public CustomEntityBuilderUtils getBuilderUtils() { return builderUtils; }
+    public ItemArchive getItemArchive() { return itemArchive; }
     public LocationConfig getLocationConfig() { return locationConfig; }
     public RecipeConfig getRecipeConfig() { return recipeConfig; }
     public Crafting getCrafting() { return crafting; }
     public EntityConnector getEntityConnector() { return entityConnector; }
-    public Random getRandomGenerator() { return random; }
-    public CustomEntityBuilderUtils getBuilderUtils() { return builderUtils; }
-    public ItemArchive getItemArchive() { return itemArchive; }
     // public ItemCooldowns getVanillaCoolDowns() { return vanillaCoolDowns; }
 }
