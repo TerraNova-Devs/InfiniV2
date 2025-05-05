@@ -1,0 +1,9 @@
+# Project exclude paths
+/.gradle/
+/.idea/
+/build/
+
+
+# Project exlude data types
+*.env
+*.properties

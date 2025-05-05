@@ -1,5 +1,7 @@
 package de.mcterranova.infini.rpg.world.functionality.items.control;
 
+import de.mcterranova.infini.rpg.database.content.templates.TemplateHelper;
+import de.mcterranova.infini.rpg.world.functionality.builder.item.CustomItemBuilder;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -17,53 +19,44 @@ public class ItemManipulator {
         this.itemMask = new ItemMask(new ItemStack(material), id);
     }
 
-    public ItemManipulator configureComponent(CustomComponentClass component, Object data) {
+    public ItemManipulator(String templateID) {
+        this.itemMask = TemplateHelper.get().getTemplate(templateID);
+    }
+
+    public ItemManipulator configureData(CustomComponentClass component, String data) {
         this.itemMask.data.replace(component, data);
         return this;
     }
 
-    public ItemManipulator addComponent(CustomComponentClass component, Object data) {
+    public ItemManipulator addData(CustomComponentClass component, String data) {
         this.itemMask.data.put(component, data);
         return this;
     }
 
-    public ItemManipulator removeComponent(CustomComponentClass component) {
+    public ItemManipulator removeData(CustomComponentClass component) {
         this.itemMask.data.remove(component);
         return this;
     }
 
-    /*
-    public ItemManipulator updateItemExternal(Player player, int v) {
-        ItemStack item = new CustomItemBuilder(itemMask).build();
-        if (type.equals(InventoryType.PLAYER)) {
-            if (!player.getItemOnCursor().isEmpty()) {
-                player.setItemOnCursor(item);
-                return this;
-            }
-            player.getInventory().setItem(v, item);
-        }
+    public ItemManipulator configureAttribute(CustomComponentClass attribute, int v) {
+        this.itemMask.attributes.replace(attribute, v);
         return this;
     }
 
-    public ItemManipulator updateItem(Player player, InventoryType type) {
-        int v = (Integer) this.itemMask.data.get(CustomComponent.LOCATION);
-        ItemStack item = new CustomItemBuilder(itemMask).build();
-        if (type.equals(InventoryType.PLAYER)) {
-            if (!player.getItemOnCursor().isEmpty()) {
-                player.setItemOnCursor(item);
-                return this;
-            }
-            player.getInventory().setItem(v, item);
-        }
+    public ItemManipulator addAttribute(CustomComponentClass attribute, int v) {
+        this.itemMask.attributes.put(attribute, v);
         return this;
     }
 
-     */
-    public ItemMask manifest() {
-        archive.update( itemMask );
+    public ItemManipulator removeAttribute(CustomComponentClass attribute) {
+        this.itemMask.attributes.remove(attribute);
+        return this;
+    }
+
+    public ItemMask manifest(boolean attributes, boolean glow, short amount) {
+        archive.add(itemMask);
+        itemMask.setItemStack(new CustomItemBuilder(itemMask).itemGlow(glow).addAttributes(attributes).setAmount(amount).build());
         return this.itemMask;
-
-        // integrate itembuilder here
     }
 
     public void queue() {

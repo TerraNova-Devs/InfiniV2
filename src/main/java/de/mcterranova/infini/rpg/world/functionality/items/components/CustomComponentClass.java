@@ -30,9 +30,9 @@ public abstract class CustomComponentClass {
         this.type = type;
     }
 
-    public Integer getAssignedRuneSlot() { return 0; }
-
     public Attribute getAttribute() { return Attribute.NONE; }
+
+    public String getSerialized() { return "";}
 
     public String getColor() { return "NULL"; }
 
@@ -70,29 +70,25 @@ public abstract class CustomComponentClass {
         {
             components.put( id, customComponentClass);
         } else {
-            throw new IllegalArgumentException( "Cannot set already-set enchantment" );
+            throw new IllegalArgumentException( "Cannot set already-set component" );
         }
-    }
-
-    public static CustomComponentClass getByID(NamespacedKey id ) { return components.get( id ); }
-
-    public static NamespacedKey getID( CustomComponentClass enchantment )
-    {
-        for ( NamespacedKey key : components.keySet() )
-        {
-            CustomComponentClass enchant = components.get( key );
-            if ( enchant.equals( enchantment ) )
-                return key;
-        }
-        return null;
-    }
-
-    public static boolean contains( NamespacedKey id ) {
-        return components.get( id ) != null ;
     }
 
     public static CustomComponentClass register(String id, CustomComponentClass customComponentClass) {
         CustomComponentClass.registerComponent( key( id ), customComponentClass);
         return customComponentClass;
+    }
+
+    public static CustomComponentClass deSerialize(String id) {
+        CustomComponentClass result = null;
+        for (CustomComponentClass component : components.values()) {
+            if (component.getSerialized().equals(id))
+                result = component;
+        }
+        return result;
+    }
+
+    public static CustomComponentClass fromID(String id) {
+        return components.get(key(id));
     }
 }

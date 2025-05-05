@@ -10,17 +10,17 @@ public class ItemMask {
 
     // declare place where it is later
     private ItemStack itemStack;
-    public final Map<CustomComponentClass, Object> data = new HashMap<>();
+    public final Map<CustomComponentClass, String> data = new HashMap<>();
     public final Map<CustomComponentClass, Integer> attributes = new HashMap<>();
 
     public ItemMask(ItemStack itemStack, String id) {
         this.itemStack = itemStack;
         this.data.put(CustomComponent.ID, id);
-        this.data.put(CustomComponent.UUID, UUID.randomUUID());
+        this.data.put(CustomComponent.UUID, UUID.randomUUID().toString());
     }
 
     public ItemStack getItemStack() { return this.itemStack; }
-    public UUID getUUID() { return (UUID) this.data.get(CustomComponent.UUID); }
+    public UUID getUUID() { return UUID.fromString(this.data.get(CustomComponent.UUID)); }
 
     public void setItemStack(ItemStack itemStack) { this.itemStack = itemStack; }
 }

@@ -35,28 +35,28 @@ public class CustomComponent {
 
     static {
         // AAAAA = CustomComponentClass.register("AAAAA", new AAAAA );
-        BASE_DAMAGE = CustomComponentClass.register("BASE_DAMAGE", new BasicAttributeComponentClass(Attribute.DAMAGE, "§c"));
-        BASE_STRENGTH = CustomComponentClass.register("BASE_STRENGTH", new BasicAttributeComponentClass(Attribute.STRENGTH, "§c"));
-        BASE_HEALTH = CustomComponentClass.register("BASE_HEALTH", new BasicAttributeComponentClass(Attribute.HEALTH, "§a"));
-        BASE_DEFENSE = CustomComponentClass.register("BASE_DEFENSE", new BasicAttributeComponentClass(Attribute.DEFENSE, "§a"));
-        BASE_CRITICAL_DAMAGE = CustomComponentClass.register("BASE_CRITICAL_DAMAGE", new BasicAttributeComponentClass(Attribute.CRITICAL_DAMAGE, "§c"));
-        BASE_CRITICAL_CHANCE = CustomComponentClass.register("BASE_CRITICAL_CHANCE", new BasicAttributeComponentClass(Attribute.CRITICAL_CHANCE, "§c"));
-        BASE_INTELLIGENCE = CustomComponentClass.register("BASE_INTELLIGENCE", new BasicAttributeComponentClass(Attribute.INTELLIGENCE, "§a"));
+        BASE_DAMAGE = CustomComponentClass.register("BASE_DAMAGE", new BasicAttributeComponentClass("AAA", Attribute.DAMAGE, "§c"));
+        BASE_STRENGTH = CustomComponentClass.register("BASE_STRENGTH", new BasicAttributeComponentClass("AAB", Attribute.STRENGTH, "§c"));
+        BASE_HEALTH = CustomComponentClass.register("BASE_HEALTH", new BasicAttributeComponentClass("AAC", Attribute.HEALTH, "§a"));
+        BASE_DEFENSE = CustomComponentClass.register("BASE_DEFENSE", new BasicAttributeComponentClass("AAD", Attribute.DEFENSE, "§a"));
+        BASE_CRITICAL_DAMAGE = CustomComponentClass.register("BASE_CRITICAL_DAMAGE", new BasicAttributeComponentClass("AAE", Attribute.CRITICAL_DAMAGE, "§c"));
+        BASE_CRITICAL_CHANCE = CustomComponentClass.register("BASE_CRITICAL_CHANCE", new BasicAttributeComponentClass("AAF", Attribute.CRITICAL_CHANCE, "§c"));
+        BASE_INTELLIGENCE = CustomComponentClass.register("BASE_INTELLIGENCE", new BasicAttributeComponentClass("AAG", Attribute.INTELLIGENCE, "§a"));
 
-        UUID = CustomComponentClass.register("UUID", new StorageComponentClass("UUID"));
-        LOCATION = CustomComponentClass.register("LOCATION", new StorageComponentClass("LOCATION") );
-        ID = CustomComponentClass.register("ID", new StorageComponentClass("ID"));
-        DESCRIPTION = CustomComponentClass.register("DESCRIPTION", new StorageComponentClass("DESCRIPTION"));
-        RUNE_SLOTS = CustomComponentClass.register("RUNE_SLOTS", new StorageComponentClass("RUNE_SLOTS"));
-        ITEM_CLASS = CustomComponentClass.register("ITEM_CLASS", new StorageComponentClass("ITEM_CLASS"));
-        ITEM_TIER = CustomComponentClass.register("ITEM_TIER", new StorageComponentClass("ITEM_TIER"));
-        ITEM_TYPE = CustomComponentClass.register("ITEM_TYPE", new StorageComponentClass("ITEM_TYPE"));
-        ITEM_CATEGORY = CustomComponentClass.register("ITEM_CATEGORY", new StorageComponentClass("ITEM_CATEGORY"));
+        UUID = CustomComponentClass.register("UUID", new StorageComponentClass("BAA", "UUID"));
+        LOCATION = CustomComponentClass.register("LOCATION", new StorageComponentClass("BAB", "LOCATION") );
+        ID = CustomComponentClass.register("ID", new StorageComponentClass("BAC", "ID"));
+        DESCRIPTION = CustomComponentClass.register("DESCRIPTION", new StorageComponentClass("BAD", "DESCRIPTION"));
+        RUNE_SLOTS = CustomComponentClass.register("RUNE_SLOTS", new StorageComponentClass("BAE", "RUNE_SLOTS"));
+        ITEM_CLASS = CustomComponentClass.register("ITEM_CLASS", new StorageComponentClass("BAF", "ITEM_CLASS"));
+        ITEM_TIER = CustomComponentClass.register("ITEM_TIER", new StorageComponentClass("BAG", "ITEM_TIER"));
+        ITEM_TYPE = CustomComponentClass.register("ITEM_TYPE", new StorageComponentClass("BAH", "ITEM_TYPE"));
+        ITEM_CATEGORY = CustomComponentClass.register("ITEM_CATEGORY", new StorageComponentClass("BAI", "ITEM_CATEGORY"));
 
-        ADVANCED_DAMAGE_ARACHNID = CustomComponentClass.register("ADVANCED_DAMAGE_ARACHNID", new AdvancedDamageComponentClass(Element.ARACHNID, EnchantmentCategory.WEAPON));
-        ADVANCED_DAMAGE_CUBOID = CustomComponentClass.register("ADVANCED_DAMAGE_CUBOID", new AdvancedDamageComponentClass(Element.CUBOID, EnchantmentCategory.WEAPON) );
-        ADVANCED_DAMAGE_ALL = CustomComponentClass.register("ADVANCED_DAMAGE_ALL", new AdvancedDamageComponentClass(Element.NONE, EnchantmentCategory.WEAPON) );
-        ADVANCED_DAMAGE_UNDEAD = CustomComponentClass.register("ADVANCED_DAMAGE_UNDEAD", new AdvancedDamageComponentClass(Element.UNDEAD, EnchantmentCategory.WEAPON) );
-        ADVANCED_ATTRIBUTE_STRENGTH = CustomComponentClass.register("ADVANCED_ATTRIBUTE_STRENGTH", new AdvancedAttributeComponentClass(Attribute.STRENGTH, EnchantmentCategory.WEAPON));
+        ADVANCED_DAMAGE_ARACHNID = CustomComponentClass.register("ADVANCED_DAMAGE_ARACHNID", new AdvancedDamageComponentClass("CAA", Element.ARACHNID, EnchantmentCategory.WEAPON));
+        ADVANCED_DAMAGE_CUBOID = CustomComponentClass.register("ADVANCED_DAMAGE_CUBOID", new AdvancedDamageComponentClass("CAB", Element.CUBOID, EnchantmentCategory.WEAPON) );
+        ADVANCED_DAMAGE_ALL = CustomComponentClass.register("ADVANCED_DAMAGE_ALL", new AdvancedDamageComponentClass("CAC", Element.NONE, EnchantmentCategory.WEAPON) );
+        ADVANCED_DAMAGE_UNDEAD = CustomComponentClass.register("ADVANCED_DAMAGE_UNDEAD", new AdvancedDamageComponentClass("CAD", Element.UNDEAD, EnchantmentCategory.WEAPON) );
+        ADVANCED_ATTRIBUTE_STRENGTH = CustomComponentClass.register("ADVANCED_ATTRIBUTE_STRENGTH", new AdvancedAttributeComponentClass("CAE", Attribute.STRENGTH, EnchantmentCategory.WEAPON));
     }
 }

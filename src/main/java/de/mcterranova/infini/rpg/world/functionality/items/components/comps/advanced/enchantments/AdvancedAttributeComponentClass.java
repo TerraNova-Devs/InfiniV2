@@ -13,12 +13,13 @@ import java.util.UUID;
 
 public class AdvancedAttributeComponentClass extends CustomComponentClass {
 
+    private final String serialized;
+    private final Attribute attribute;
 
-    Attribute attribute;
-
-    public AdvancedAttributeComponentClass(Attribute attribute, EnchantmentCategory... categories) {
+    public AdvancedAttributeComponentClass(String serialized, Attribute attribute, EnchantmentCategory... categories) {
         super(ComponentType.ENCHANTMENT, categories);
         this.attribute = attribute;
+        this.serialized = serialized;
     }
 
     @Override
@@ -52,5 +53,10 @@ public class AdvancedAttributeComponentClass extends CustomComponentClass {
     @Override
     public String getColor() {
         return "§9";
+    }
+
+    @Override
+    public String getSerialized() {
+        return serialized;
     }
 }

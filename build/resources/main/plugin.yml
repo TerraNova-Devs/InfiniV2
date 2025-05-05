@@ -1,7 +1,7 @@
 name: Infini
 version: 0.0.1
 main: de.mcterranova.infini.Infini
-api-version: '1.21.4'
+api-version: '1.21'
 author: sakubami
 prefix: TerraNova
 description: Cool Plugin lol
@@ -10,5 +10,5 @@ softdepend:
   - InteractiveBooks
 
 commands:
-  infinitum:
-    description: gives the player a note with help
+  testCommand:
+    aliases: [t, test]

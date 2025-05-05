@@ -31,11 +31,10 @@ public class Infini extends JavaPlugin {
 
     public void onEnable() {
         instance = this;
-
         initDatabase();
+
         //register listeners
         Bukkit.getPluginManager().registerEvents( new EntityKill(), this );
-        Bukkit.getPluginManager().registerEvents( new Interact(), this );
         Bukkit.getPluginManager().registerEvents( new Combust(), this );
         Bukkit.getPluginManager().registerEvents( new PlayerInteractServer(), this );
         Bukkit.getPluginManager().registerEvents( new Damage(), this );

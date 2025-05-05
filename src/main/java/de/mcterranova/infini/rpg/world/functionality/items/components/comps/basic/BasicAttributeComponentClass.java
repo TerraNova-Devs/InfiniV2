@@ -8,11 +8,13 @@ public class BasicAttributeComponentClass extends CustomComponentClass {
 
     private final Attribute attribute;
     private final String color;
+    private final String serialized;
 
-    public BasicAttributeComponentClass(Attribute attribute, String color) {
+    public BasicAttributeComponentClass(String serialized, Attribute attribute, String color) {
         super(ComponentType.ATTRIBUTE);
         this.attribute = attribute;
         this.color = color;
+        this.serialized = serialized;
     }
 
     @Override
@@ -23,5 +25,10 @@ public class BasicAttributeComponentClass extends CustomComponentClass {
     @Override
     public String getColor() {
         return color;
+    }
+
+    @Override
+    public String getSerialized() {
+        return serialized;
     }
 }

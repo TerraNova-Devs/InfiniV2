@@ -6,10 +6,12 @@ import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentT
 public class RuneComponentClass extends CustomComponentClass {
 
     private final RuneType type;
+    private final String serialized;
 
-    protected RuneComponentClass(RuneType type) {
+    protected RuneComponentClass(String serialized, RuneType type) {
         super(ComponentType.RUNE);
         this.type = type;
+        this.serialized = serialized;
     }
 
     @Override
@@ -23,5 +25,10 @@ public class RuneComponentClass extends CustomComponentClass {
             case MIGHT -> v = "Macht";
         }
         return v;
+    }
+
+    @Override
+    public String getSerialized() {
+        return serialized;
     }
 }

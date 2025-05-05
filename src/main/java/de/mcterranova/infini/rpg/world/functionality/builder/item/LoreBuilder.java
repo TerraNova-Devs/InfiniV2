@@ -1,6 +1,7 @@
 package de.mcterranova.infini.rpg.world.functionality.builder.item;
 
 import de.mcterranova.infini.rpg.utils.TextUtils;
+import de.mcterranova.infini.rpg.world.functionality.items.components.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
@@ -13,7 +14,7 @@ import net.kyori.adventure.text.Component;
 import java.util.*;
 
 public class LoreBuilder {
-    public final Map<CustomComponentClass, Object> data = new HashMap<>();
+    public final Map<CustomComponentClass, String> data = new HashMap<>();
     public final Map<CustomComponentClass, Integer> attributes = new HashMap<>();
 
     private final Map<CustomComponentClass, Integer> runeSlots = new HashMap<>();
@@ -39,11 +40,11 @@ public class LoreBuilder {
         this.data.putAll(item.data);
         this.attributes.putAll(item.attributes);
         this.attributes.keySet().stream().filter(component -> component.getType().equals(ComponentType.ATTRIBUTE)).forEach(component -> this.basicAttributes.put(component, this.attributes.get(component)));
-        this.itemTier = (ItemTier) data.get(CustomComponent.ITEM_TIER);
-        this.itemCategory = (ItemCategory) data.get(CustomComponent.ITEM_CATEGORY);
-        this.itemClass = (ItemClass) data.get(CustomComponent.ITEM_CLASS);
+        this.itemTier = ItemTier.valueOf(data.get(CustomComponent.ITEM_TIER));
+        this.itemCategory = ItemCategory.valueOf(data.get(CustomComponent.ITEM_CATEGORY));
+        this.itemClass = ItemClass.valueOf(data.get(CustomComponent.ITEM_CLASS));
         this.attributes.keySet().stream().filter(component -> component.getType().equals(ComponentType.RUNE)).forEach(component -> this.runes.put(component, this.attributes.get(component)));
-        this.runeSlots.keySet().stream().filter(component -> component.getType().equals(ComponentType.STORAGE)).filter(component -> component.getDeclaration().equals("RUNE_SLOTS")).forEach(component -> this.runeSlots.put(component, (Integer) this.data.get(component)));
+        this.runeSlots.keySet().stream().filter(component -> component.getType().equals(ComponentType.STORAGE)).filter(component -> component.getDeclaration().equals("RUNE_SLOTS")).forEach(component -> this.runeSlots.put(component, Integer.valueOf(this.data.get(component))));
         this.attributes.keySet().stream().filter(component -> component.getType().equals(ComponentType.ENCHANTMENT)).forEach(component -> this.enchantments.put(component, this.attributes.get(component)));
         this.description = (String) this.data.get(CustomComponent.DESCRIPTION);
         this.addAttributes = addAttributes;
@@ -66,7 +67,20 @@ public class LoreBuilder {
             this.addAttributes = false;
 
         if (addAttributes) {
-            this.basicAttributes.keySet().forEach(attribute -> newLore.add(Component.text("§7" + attribute.getAttribute().getTranslation() + ": " + attribute.getColor() + "+"+ this.basicAttributes.get(attribute))));
+            List<CustomComponentClass> attributes = new ArrayList<>();
+            List<Integer> values = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                attributes.add(null);
+                values.add(null);
+            }
+            this.basicAttributes.keySet().forEach(attribute -> attributes.add(attribute.getAttribute().getPosition(), attribute));
+            this.basicAttributes.keySet().forEach(attribute -> values.add(attribute.getAttribute().getPosition(), this.basicAttributes.get(attribute)));
+            for (int i = 0; i < attributes.size(); i++) {
+                CustomComponentClass attribute = attributes.get(i);
+                if (attribute == null)
+                    continue;
+                newLore.add(Component.text("§7" + attribute.getAttribute().getTranslation() + ": " + attribute.getColor() + "+"+ values.get(i)));
+            }
             newLore.add(blank);
         }
         /*
@@ -106,12 +120,13 @@ public class LoreBuilder {
 
         //TODO change color if you can use it
 
-        if ( addAttributes )
+        if (addAttributes && itemClass != null)
             newLore.add(Component.text("§a" + itemClass.getTranslation()));
 
         // show how well it was crafted
 
-        newLore.add(Component.text("§f§lSTUFE " + itemTier.getColor() + "§l" + itemTier.name() + " §f§l" + itemCategory.getTranslation().toUpperCase()));
+        if (itemTier != null && itemCategory != null)
+            newLore.add(Component.text("§f§lSTUFE " + itemTier.getColor() + "§l" + itemTier.name() + " §f§l" + itemCategory.getTranslation().toUpperCase()));
 
         return newLore;
     }

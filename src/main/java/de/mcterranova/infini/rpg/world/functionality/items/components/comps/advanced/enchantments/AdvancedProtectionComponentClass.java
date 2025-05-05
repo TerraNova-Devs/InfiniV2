@@ -8,10 +8,12 @@ import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComp
 public class AdvancedProtectionComponentClass extends CustomComponentClass {
 
     private final Element element;
+    private final String serialized;
 
-    public AdvancedProtectionComponentClass(Element element, EnchantmentCategory... categories) {
+    public AdvancedProtectionComponentClass(String serialized, Element element, EnchantmentCategory... categories) {
         super(ComponentType.ENCHANTMENT, categories);
         this.element = element;
+        this.serialized = serialized;
     }
 
     @Override
@@ -41,5 +43,10 @@ public class AdvancedProtectionComponentClass extends CustomComponentClass {
     @Override
     public String getColor() {
         return "§9";
+    }
+
+    @Override
+    public String getSerialized() {
+        return serialized;
     }
 }

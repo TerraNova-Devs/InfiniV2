@@ -7,8 +7,11 @@ import java.util.UUID;
 
 public class AdvancedAttackComponentClass extends CustomComponentClass {
 
-    protected AdvancedAttackComponentClass(EnchantmentCategory... categories) {
+    private final String serialized;
+
+    protected AdvancedAttackComponentClass(String serialized, EnchantmentCategory... categories) {
         super(ComponentType.ENCHANTMENT, categories);
+        this.serialized = serialized;
     }
 
     @Override
@@ -19,5 +22,10 @@ public class AdvancedAttackComponentClass extends CustomComponentClass {
     @Override
     public String getColor() {
         return "§9";
+    }
+
+    @Override
+    public String getSerialized() {
+        return serialized;
     }
 }
