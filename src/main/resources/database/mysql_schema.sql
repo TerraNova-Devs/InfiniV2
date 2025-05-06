@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `items` (
 CREATE TABLE IF NOT EXISTS `item_templates` (
     `id` varchar(50) NOT NULL,
     `contents` BLOB NOT NULL,
-    PRIMARY KEY (`UUID`)
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8
   COLLATE=utf8_unicode_ci;
 --
@@ -28,6 +28,6 @@ CREATE TABLE IF NOT EXISTS `entities` (
 CREATE TABLE IF NOT EXISTS `mob_templates` (
     `id` varchar(50) NOT NULL,
     `contents` BLOB NOT NULL,
-    PRIMARY KEY (`UUID`)
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8
   COLLATE=utf8_unicode_ci;

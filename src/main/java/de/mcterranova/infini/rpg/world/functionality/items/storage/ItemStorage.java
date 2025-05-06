@@ -13,4 +13,6 @@ public class ItemStorage {
     // change the tags when item is moved
 
     // make sure that item can only exist once
+
+    // REPLACE WITH DUPLICATES SCAN WITH ITEMARCHIVE
 }

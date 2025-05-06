@@ -13,7 +13,7 @@ import de.mcterranova.infini.rpg.world.functionality.items.item.ItemType;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NBTUtils {
+public class  NBTUtils {
 
     private final HashMap<NamespacedKey, String> list = new HashMap<>();
 

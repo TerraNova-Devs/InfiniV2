@@ -46,7 +46,7 @@ public class LoreBuilder {
         this.attributes.keySet().stream().filter(component -> component.getType().equals(ComponentType.RUNE)).forEach(component -> this.runes.put(component, this.attributes.get(component)));
         this.runeSlots.keySet().stream().filter(component -> component.getType().equals(ComponentType.STORAGE)).filter(component -> component.getDeclaration().equals("RUNE_SLOTS")).forEach(component -> this.runeSlots.put(component, Integer.valueOf(this.data.get(component))));
         this.attributes.keySet().stream().filter(component -> component.getType().equals(ComponentType.ENCHANTMENT)).forEach(component -> this.enchantments.put(component, this.attributes.get(component)));
-        this.description = (String) this.data.get(CustomComponent.DESCRIPTION);
+        this.description = this.data.get(CustomComponent.DESCRIPTION);
         this.addAttributes = addAttributes;
         if (description.isBlank())
             this.addDescription = false;

@@ -4,6 +4,7 @@ import de.mcterranova.infini.rpg.database.content.customserialization.Serializer
 import de.mcterranova.infini.rpg.database.content.templates.TemplateHelper;
 import de.mcterranova.infini.rpg.world.functionality.builder.item.CustomItemBuilder;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
+import de.mcterranova.infini.rpg.world.functionality.items.control.ItemArchive;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
@@ -13,6 +14,8 @@ import de.mcterranova.terranovaLib.commands.CommandAnnotation;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+
+import java.io.IOException;
 
 public class ItemCommand {
 
@@ -41,7 +44,7 @@ public class ItemCommand {
                 return true;
             }
             case "save" -> {
-                TemplateHelper.get().saveTemplate(args[2], new ItemMask(p.getEquipment().getItemInMainHand(), args[2]));
+                TemplateHelper.get().saveTemplate(args[2], ItemArchive.get().get(p.getEquipment().getItemInMainHand()));
                 p.sendMessage("abc");
                 return true;
             }

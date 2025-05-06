@@ -1,6 +1,7 @@
 package de.mcterranova.infini.rpg.world.functionality.builder.item;
 
 import de.mcterranova.infini.Infini;
+import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
@@ -11,6 +12,7 @@ import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.checkerframework.checker.units.qual.N;
 
 public class CustomItemBuilder {
 
