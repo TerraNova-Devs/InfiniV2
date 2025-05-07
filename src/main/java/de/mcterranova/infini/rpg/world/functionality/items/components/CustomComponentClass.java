@@ -3,6 +3,7 @@ package de.mcterranova.infini.rpg.world.functionality.items.components;
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.world.entities.Element;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneType;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
@@ -29,6 +30,8 @@ public abstract class CustomComponentClass {
         this.enchantmentCategories.addAll( List.of( categories ) );
         this.type = type;
     }
+
+    public RuneType getRune() { return RuneType.STRENGTH; }
 
     public Attribute getAttribute() { return Attribute.NONE; }
 

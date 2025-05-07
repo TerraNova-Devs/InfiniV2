@@ -3,6 +3,8 @@ package de.mcterranova.infini.rpg.world.functionality.items.components;
 import de.mcterranova.infini.rpg.world.entities.Element;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.AdvancedAttributeComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.AdvancedDamageComponentClass;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneComponentClass;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneType;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.BasicAttributeComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.StorageComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
@@ -33,6 +35,9 @@ public class CustomComponent {
     public static final CustomComponentClass ADVANCED_DAMAGE_ALL;
     public static final CustomComponentClass ADVANCED_DAMAGE_UNDEAD;
     public static final CustomComponentClass ADVANCED_ATTRIBUTE_STRENGTH;
+    public static final CustomComponentClass ADVANCED_RUNE_STRENGTH;
+    public static final CustomComponentClass ADVANCED_RUNE_INTELLIGENCE;
+    public static final CustomComponentClass ADVANCED_RUNE_MIGHT;
 
     static {
         // AAAAA = CustomComponentClass.register("AAAAA", new AAAAA );
@@ -60,5 +65,8 @@ public class CustomComponent {
         ADVANCED_DAMAGE_ALL = CustomComponentClass.register("ADVANCED_DAMAGE_ALL", new AdvancedDamageComponentClass("CAC", Element.NONE, EnchantmentCategory.WEAPON) );
         ADVANCED_DAMAGE_UNDEAD = CustomComponentClass.register("ADVANCED_DAMAGE_UNDEAD", new AdvancedDamageComponentClass("CAD", Element.UNDEAD, EnchantmentCategory.WEAPON) );
         ADVANCED_ATTRIBUTE_STRENGTH = CustomComponentClass.register("ADVANCED_ATTRIBUTE_STRENGTH", new AdvancedAttributeComponentClass("CAE", Attribute.STRENGTH, EnchantmentCategory.WEAPON));
+        ADVANCED_RUNE_STRENGTH = CustomComponentClass.register("ADVANCED_RUNE_STRENGTH", new RuneComponentClass("CAF", RuneType.STRENGTH));
+        ADVANCED_RUNE_INTELLIGENCE = CustomComponentClass.register("ADVANCED_RUNE_INTELLIGENCE", new RuneComponentClass("CAG", RuneType.INTELLIGENCE));
+        ADVANCED_RUNE_MIGHT = CustomComponentClass.register("ADVANCED_RUNE_MIGHT", new RuneComponentClass("CAH", RuneType.MIGHT));
     }
 }

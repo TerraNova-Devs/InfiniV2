@@ -44,7 +44,7 @@ public class LoreBuilder {
         this.itemCategory = ItemCategory.valueOf(data.get(CustomComponent.ITEM_CATEGORY));
         this.itemClass = ItemClass.valueOf(data.get(CustomComponent.ITEM_CLASS));
         this.attributes.keySet().stream().filter(component -> component.getType().equals(ComponentType.RUNE)).forEach(component -> this.runes.put(component, this.attributes.get(component)));
-        this.runeSlots.keySet().stream().filter(component -> component.getType().equals(ComponentType.STORAGE)).filter(component -> component.getDeclaration().equals("RUNE_SLOTS")).forEach(component -> this.runeSlots.put(component, Integer.valueOf(this.data.get(component))));
+        this.data.keySet().stream().filter(component -> component.getType().equals(ComponentType.STORAGE)).filter(component -> component.getDeclaration().equals("RUNE_SLOTS")).forEach(component -> this.runeSlots.put(component, Integer.valueOf(this.data.get(component))));
         this.attributes.keySet().stream().filter(component -> component.getType().equals(ComponentType.ENCHANTMENT)).forEach(component -> this.enchantments.put(component, this.attributes.get(component)));
         this.description = this.data.get(CustomComponent.DESCRIPTION);
         this.addAttributes = addAttributes;
@@ -82,18 +82,31 @@ public class LoreBuilder {
                 newLore.add(Component.text("§7" + attribute.getAttribute().getTranslation() + ": " + attribute.getColor() + "+"+ values.get(i)));
             }
             newLore.add(blank);
+
+            if (!runeSlots.isEmpty()) {
+                ArrayList<CustomComponentClass> temporary = new ArrayList<>();
+                for (int i = 0; i <= runeSlots.get(CustomComponent.RUNE_SLOTS); i++) {
+                    temporary.add(null);
+                }
+                runes.keySet().forEach(rune -> temporary.add(rune.getRune().getPos(), rune));
+                temporary.removeIf(Objects::isNull);
+                for (int i = 0; i <= runeSlots.get(CustomComponent.RUNE_SLOTS) - runes.size(); i++) {
+                    temporary.add(null);
+                }
+                //add them in the order, remove all empty ones, add empty ones back
+                temporary.forEach(component -> {
+                    if (component != null)
+                        newLore.add(Component.text("§7[ "+ component.getColor() + "Rune der " + component.getDisplayName() + " §7]"));
+                    else
+                        newLore.add(Component.text("§7[ - ]"));
+                });
+                newLore.add(blank);
+            }
         }
         /*
            "§8[ §f- §8]" placeholder
            this.newLore.add("§8[ " + rune.getTranslation() + " §8]");
         */
-
-
-        if (!runeSlots.isEmpty()) {
-            ArrayList<CustomComponentClass> temporary = new ArrayList<>();
-            this.runeSlots.keySet().forEach(component -> temporary.add(this.runeSlots.get(component), component));
-            temporary.forEach(component -> newLore.add(Component.text("§8[ "+ component.getColor() + "Rune der " + component.getDisplayName() + " §8]")));
-        }
 
         if (!enchantments.isEmpty()) {
             if (compactEnchantments) {
