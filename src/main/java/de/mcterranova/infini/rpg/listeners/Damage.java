@@ -1,7 +1,7 @@
 package de.mcterranova.infini.rpg.listeners;
 
 import de.mcterranova.infini.rpg.utils.InteractHelper;
-import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.utils.oldNBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.builder.mob.control.EntityConnector;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
@@ -18,7 +18,7 @@ import de.mcterranova.infini.rpg.world.entities.damaging.Attack;
 public class Damage implements Listener {
 
     InteractHelper helper = new InteractHelper();
-    NBTUtils nbt = new NBTUtils();
+    oldNBTUtils nbt = new oldNBTUtils();
 
     @EventHandler
     public void onInteract( PlayerInteractEntityEvent e )

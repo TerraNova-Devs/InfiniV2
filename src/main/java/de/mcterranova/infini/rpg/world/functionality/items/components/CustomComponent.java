@@ -18,7 +18,6 @@ public class CustomComponent {
     public static final CustomComponentClass BASE_INTELLIGENCE;
 
     public static final CustomComponentClass UUID;
-    public static final CustomComponentClass LOCATION;
     public static final CustomComponentClass ID;
     public static final CustomComponentClass DESCRIPTION;
     public static final CustomComponentClass RUNE_SLOTS;
@@ -26,6 +25,8 @@ public class CustomComponent {
     public static final CustomComponentClass ITEM_TIER;
     public static final CustomComponentClass ITEM_TYPE;
     public static final CustomComponentClass ITEM_CATEGORY;
+    public static final CustomComponentClass MATERIAL;
+    public static final CustomComponentClass DISPLAY_NAME;
 
     public static final CustomComponentClass ADVANCED_DAMAGE_ARACHNID;
     public static final CustomComponentClass ADVANCED_DAMAGE_CUBOID;
@@ -44,7 +45,6 @@ public class CustomComponent {
         BASE_INTELLIGENCE = CustomComponentClass.register("BASE_INTELLIGENCE", new BasicAttributeComponentClass("AAG", Attribute.INTELLIGENCE, "§a"));
 
         UUID = CustomComponentClass.register("UUID", new StorageComponentClass("BAA", "UUID"));
-        LOCATION = CustomComponentClass.register("LOCATION", new StorageComponentClass("BAB", "LOCATION") );
         ID = CustomComponentClass.register("ID", new StorageComponentClass("BAC", "ID"));
         DESCRIPTION = CustomComponentClass.register("DESCRIPTION", new StorageComponentClass("BAD", "DESCRIPTION"));
         RUNE_SLOTS = CustomComponentClass.register("RUNE_SLOTS", new StorageComponentClass("BAE", "RUNE_SLOTS"));
@@ -52,6 +52,8 @@ public class CustomComponent {
         ITEM_TIER = CustomComponentClass.register("ITEM_TIER", new StorageComponentClass("BAG", "ITEM_TIER"));
         ITEM_TYPE = CustomComponentClass.register("ITEM_TYPE", new StorageComponentClass("BAH", "ITEM_TYPE"));
         ITEM_CATEGORY = CustomComponentClass.register("ITEM_CATEGORY", new StorageComponentClass("BAI", "ITEM_CATEGORY"));
+        MATERIAL = CustomComponentClass.register("MATERIAL", new StorageComponentClass("BAJ", "MATERIAL"));
+        DISPLAY_NAME = CustomComponentClass.register("DISPLAY_NAME", new StorageComponentClass("BAK", "DISPLAY_NAME"));
 
         ADVANCED_DAMAGE_ARACHNID = CustomComponentClass.register("ADVANCED_DAMAGE_ARACHNID", new AdvancedDamageComponentClass("CAA", Element.ARACHNID, EnchantmentCategory.WEAPON));
         ADVANCED_DAMAGE_CUBOID = CustomComponentClass.register("ADVANCED_DAMAGE_CUBOID", new AdvancedDamageComponentClass("CAB", Element.CUBOID, EnchantmentCategory.WEAPON) );

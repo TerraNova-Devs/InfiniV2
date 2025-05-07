@@ -1,6 +1,6 @@
 package de.mcterranova.infini.rpg.world.functionality.builder.mob;
 
-import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.utils.oldNBTUtils;
 import de.mcterranova.infini.rpg.world.entities.Element;
 import de.mcterranova.infini.rpg.world.entities.loot.CustomLootTable;
 import de.mcterranova.infini.rpg.world.functionality.builder.mob.control.CustomType;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 public class CustomEntityBuilder {
 
     private final EntityConnector connector = EntityConnector.get();
-    private final NBTUtils nbt = new NBTUtils();
+    private final oldNBTUtils nbt = new oldNBTUtils();
     private final HashMap< Attribute, Integer > attributes = new HashMap<>();
     private final Location location;
     private String placeHolderName;
@@ -142,7 +142,6 @@ public class CustomEntityBuilder {
 
     public EntityMask build()
     {
-        nbt.addNBTTag( "CUSTOM", "true" );
         entity = nbt.parseAllEntityNBTTags( entity );
 
         entity.getEquipment().clear();

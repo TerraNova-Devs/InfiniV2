@@ -2,8 +2,11 @@ package de.mcterranova.infini.rpg.world.functionality.builder.item;
 
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
+import de.mcterranova.infini.rpg.world.functionality.items.item.ItemTier;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -12,12 +15,11 @@ import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.checkerframework.checker.units.qual.N;
 
 public class CustomItemBuilder {
 
-    private final ItemStack itemStack;
-    private final Component displayName;
+    private final Material material;
+    private boolean isMaterial = true;
     private short amount;
     private boolean glowing = false;
     private final NamespacedKey attributeKey = new NamespacedKey(Infini.getInstance(), "attributemodifier");
@@ -25,8 +27,7 @@ public class CustomItemBuilder {
     private boolean addAttributes = false;
 
     public CustomItemBuilder(ItemMask itemMask) {
-        this.itemStack = itemMask.getItemStack();
-        this.displayName = this.itemStack.getItemMeta().displayName();
+        this.material = Material.valueOf(itemMask.data.get(CustomComponent.MATERIAL));
         this.mask = itemMask;
     }
 
@@ -47,13 +48,15 @@ public class CustomItemBuilder {
 
     public ItemStack build()
     {
-        ItemStack item = new ItemStack(itemStack.getType());
+        ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
 
-        meta.displayName(displayName);
+        meta.displayName(Component.text(ItemTier.valueOf(mask.data.get(CustomComponent.ITEM_TIER)).getColor() + mask.data.get(CustomComponent.DISPLAY_NAME)));
 
         if (glowing)
             meta.addEnchant(Enchantment.AQUA_AFFINITY, 1, false);
+        if (!mask.data.get(CustomComponent.ITEM_CATEGORY).contains("MATERIAL"))
+            meta = NBTUtils.addNBTTag(meta, "UUID", mask.getUUID().toString());
         meta.addAttributeModifier(Attribute.ATTACK_DAMAGE, new AttributeModifier(attributeKey, 0d, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HAND));
         meta.addAttributeModifier(Attribute.ATTACK_SPEED, new AttributeModifier(attributeKey, 100d, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HAND));
         meta.addItemFlags( ItemFlag.HIDE_ENCHANTS );

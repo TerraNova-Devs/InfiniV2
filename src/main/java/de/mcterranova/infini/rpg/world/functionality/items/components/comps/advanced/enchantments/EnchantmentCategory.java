@@ -1,6 +1,6 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments;
 
-import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.utils.oldNBTUtils;
 import org.bukkit.inventory.ItemStack;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemType;
@@ -34,7 +34,7 @@ public enum EnchantmentCategory {
         public boolean canEnchant( ItemStack itemStack ) { return nbt.getItemType( itemStack ).equals( ItemType.SHIELD ) ; }
     };
 
-final NBTUtils nbt = new NBTUtils();
+final oldNBTUtils nbt = new oldNBTUtils();
 
 EnchantmentCategory() {}
 

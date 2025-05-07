@@ -10,13 +10,15 @@ public class ItemManipulator {
 
     private final ItemArchive archive = ItemArchive.get();
     private final ItemMask itemMask;
+    private Material material;
 
     public ItemManipulator(ItemMask mask) {
         this.itemMask = mask;
     }
 
     public ItemManipulator(Material material, String id) {
-        this.itemMask = new ItemMask(new ItemStack(material), id);
+        this.itemMask = new ItemMask(material, id);
+        this.material = material;
     }
 
     public ItemManipulator(String templateID) {
@@ -53,10 +55,14 @@ public class ItemManipulator {
         return this;
     }
 
-    public ItemMask manifest(boolean attributes, boolean glow, short amount) {
+    public ItemStack manifest(boolean attributes, boolean glow, short amount) {
         archive.add(itemMask);
-        itemMask.setItemStack(new CustomItemBuilder(itemMask).itemGlow(glow).addAttributes(attributes).setAmount(amount).build());
-        return this.itemMask;
+        return new CustomItemBuilder(itemMask).itemGlow(glow).addAttributes(attributes).setAmount(amount).build();
+    }
+
+    public ItemMask getItemMask() {
+        archive.add(itemMask);
+        return itemMask;
     }
 
     public void queue() {

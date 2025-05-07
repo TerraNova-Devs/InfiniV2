@@ -1,6 +1,6 @@
 package de.mcterranova.infini.rpg.listeners;
 
-import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.utils.oldNBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.builder.mob.control.EntityConnector;
 import de.mcterranova.infini.rpg.world.functionality.crafting.Crafting;
 import org.bukkit.Location;
@@ -24,7 +24,7 @@ public class Combust implements Listener {
     public void onCombust( EntityDamageEvent e )
     {
 
-        NBTUtils nbt = new NBTUtils();
+        oldNBTUtils nbt = new oldNBTUtils();
         Location location = e.getEntity().getLocation();
         World world = location.getWorld();
         Entity entity = e.getEntity();

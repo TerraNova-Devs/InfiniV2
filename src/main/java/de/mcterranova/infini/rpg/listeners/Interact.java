@@ -1,7 +1,7 @@
 package de.mcterranova.infini.rpg.listeners;
 
 import de.mcterranova.infini.rpg.utils.InteractHelper;
-import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.utils.oldNBTUtils;
 import de.mcterranova.infini.rpg.world.entities.Element;
 import de.mcterranova.infini.rpg.world.entities.loot.CustomLootTable;
 import de.mcterranova.infini.rpg.world.functionality.crafting.Crafting;
@@ -101,7 +101,7 @@ public class Interact implements Listener {
                     .type(CustomType.MOB)
                     .element(Element.CUBOID)
                     .build();
-            NBTUtils nbt = new NBTUtils();
+            oldNBTUtils nbt = new oldNBTUtils();
             player.getServer().broadcastMessage(""+ nbt.getItemNBTTags(player.getEquipment().getItemInMainHand()));
         }
 

@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class InteractHelper {
 
-    private final NBTUtils nbt = new NBTUtils();
+    private final oldNBTUtils nbt = new oldNBTUtils();
 
     public boolean rightClick( PlayerInteractEvent event )
     {

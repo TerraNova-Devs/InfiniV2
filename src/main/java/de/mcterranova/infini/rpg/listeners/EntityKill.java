@@ -1,6 +1,6 @@
 package de.mcterranova.infini.rpg.listeners;
 
-import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.utils.oldNBTUtils;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,7 +10,7 @@ import de.mcterranova.infini.rpg.world.entities.player.skills.combat.CombatExper
 
 public class EntityKill implements Listener {
 
-    NBTUtils nbt = new NBTUtils();
+    oldNBTUtils nbt = new oldNBTUtils();
 
     @EventHandler
     public void onEntityDeath( EntityDeathEvent e )
