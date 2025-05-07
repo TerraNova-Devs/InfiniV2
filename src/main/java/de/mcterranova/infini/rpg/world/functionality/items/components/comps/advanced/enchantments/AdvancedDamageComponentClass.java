@@ -40,7 +40,7 @@ public class AdvancedDamageComponentClass extends CustomComponentClass {
         {
             case NONE -> v = "Schärfe";
             case UNDEAD -> v = "Bann";
-            case ARACHNID -> v = "Nemesis$der$Spinnen";
+            case ARACHNID -> v = "Nemesis%der%Spinnen";
             case CUBOID -> v = "Cuboid";
         }
         return v;

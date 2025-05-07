@@ -14,8 +14,8 @@ public class TextUtils {
             {
                 String split = input.substring(0, length).strip();
                 String remaining = input.substring(0, split.lastIndexOf(","));
-                temporary.add (Component.text(color + remaining.replace("$", " ")));
-                input = input.substring (split.lastIndexOf(" ")).strip();
+                temporary.add (Component.text(color + remaining.replace("%", " ")));
+                input = input.substring (split.lastIndexOf(",")).strip();
             } else {
                 temporary.add(Component.text(color + input.strip()));
                 break;

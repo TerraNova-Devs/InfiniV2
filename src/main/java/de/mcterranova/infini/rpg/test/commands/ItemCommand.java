@@ -1,12 +1,16 @@
 package de.mcterranova.infini.rpg.test.commands;
 
 import de.mcterranova.infini.rpg.database.content.templates.TemplateHelper;
+import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneWrapper;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemClass;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemTier;
 import de.mcterranova.terranovaLib.commands.CommandAnnotation;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -21,18 +25,23 @@ public class ItemCommand {
     public static boolean a(Player p, String[] args) {
         switch (args[1]) {
             case "spawn" -> {
-                TemplateHelper.get().saveTemplate(args[2], new ItemManipulator(Material.DIAMOND_SWORD, "TEST_FUCKER")
-                        .addAttribute(CustomComponent.BASE_DAMAGE, 100)
-                        .addAttribute(CustomComponent.BASE_CRITICAL_CHANCE, 200)
-                        .addAttribute(CustomComponent.BASE_DEFENSE, 300)
-                        .addAttribute(CustomComponent.BASE_INTELLIGENCE, 400)
-                        .addAttribute(CustomComponent.ADVANCED_RUNE_STRENGTH, 1)
-                        .addAttribute(CustomComponent.ADVANCED_RUNE_INTELLIGENCE, 2)
-                        .addData(CustomComponent.DESCRIPTION, "THIS IS A TEST DESCRIPTION")
-                        .addData(CustomComponent.RUNE_SLOTS, "5")
-                        .addData(CustomComponent.DISPLAY_NAME, "fucker 3000")
+                TemplateHelper.get().saveTemplate(args[2], new ItemManipulator(Material.POTATO, "TEST_POTATO")
+                        .addAttribute(CustomComponent.BASE_DAMAGE, 5555)
+                        .addAttribute(CustomComponent.BASE_CRITICAL_CHANCE, 355533)
+                        .addAttribute(CustomComponent.BASE_DEFENSE, 33553)
+                        .addAttribute(CustomComponent.BASE_INTELLIGENCE, 335553)
+                        .addRune(new RuneWrapper(CustomComponent.ADVANCED_RUNE_INTELLIGENCE, 2))
+                        .addRune(new RuneWrapper(CustomComponent.ADVANCED_RUNE_INTELLIGENCE, 1))
+                        .addAttribute(CustomComponent.ADVANCED_DAMAGE_ALL, 10)
+                        .addAttribute(CustomComponent.ADVANCED_DAMAGE_ARACHNID, 10)
+                        .addAttribute(CustomComponent.ADVANCED_DAMAGE_CUBOID, 10)
+                        .addAttribute(CustomComponent.ADVANCED_ATTRIBUTE_STRENGTH, 10)
+                        .addAttribute(CustomComponent.ADVANCED_DAMAGE_UNDEAD, 10)
+                        .addData(CustomComponent.DESCRIPTION, "dustin ist eine kartoffel")
+                        .addData(CustomComponent.RUNE_SLOTS, "4")
+                        .addData(CustomComponent.DISPLAY_NAME, "der dusterino 3000")
                         .addData(CustomComponent.ITEM_CLASS, ItemClass.GENERIC.name())
-                        .addData(CustomComponent.ITEM_TIER, ItemTier.VI.name())
+                        .addData(CustomComponent.ITEM_TIER, ItemTier.IV.name())
                         .addData(CustomComponent.ITEM_CATEGORY, ItemCategory.WEAPON.name())
                         .getItemMask());
                 p.sendMessage(args[2]);
