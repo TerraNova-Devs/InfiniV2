@@ -1,6 +1,7 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components;
 
 import java.io.PipedOutputStream;
+import java.util.Arrays;
 
 public enum Attribute
 {
@@ -27,4 +28,5 @@ public enum Attribute
 
     public String getTranslation() { return translation; }
     public int getPosition() { return position; }
+    public static Attribute getByPosition(int position) { return Arrays.stream(Attribute.values()).filter(attribute -> attribute.getPosition() == position).findFirst().get();}
 }

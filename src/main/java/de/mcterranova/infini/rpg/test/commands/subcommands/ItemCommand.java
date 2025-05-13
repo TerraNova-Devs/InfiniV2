@@ -1,16 +1,13 @@
-package de.mcterranova.infini.rpg.test.commands;
+package de.mcterranova.infini.rpg.test.commands.subcommands;
 
 import de.mcterranova.infini.rpg.database.content.templates.TemplateHelper;
-import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
-import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneWrapper;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemClass;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemTier;
 import de.mcterranova.terranovaLib.commands.CommandAnnotation;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -26,10 +23,9 @@ public class ItemCommand {
         switch (args[1]) {
             case "spawn" -> {
                 TemplateHelper.get().saveTemplate(args[2], new ItemManipulator(Material.POTATO, "TEST_POTATO")
-                        .addAttribute(CustomComponent.BASE_DAMAGE, 5555)
-                        .addAttribute(CustomComponent.BASE_CRITICAL_CHANCE, 355533)
-                        .addAttribute(CustomComponent.BASE_DEFENSE, 33553)
-                        .addAttribute(CustomComponent.BASE_INTELLIGENCE, 335553)
+                        .addAttribute(CustomComponent.BASE_DAMAGE, 80)
+                        .addAttribute(CustomComponent.BASE_STRENGTH, 60)
+                        .addAttribute(CustomComponent.BASE_INTELLIGENCE, 50)
                         .addRune(new RuneWrapper(CustomComponent.ADVANCED_RUNE_INTELLIGENCE, 2))
                         .addRune(new RuneWrapper(CustomComponent.ADVANCED_RUNE_INTELLIGENCE, 1))
                         .addAttribute(CustomComponent.ADVANCED_DAMAGE_ALL, 10)

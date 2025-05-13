@@ -1,5 +1,6 @@
 package de.mcterranova.infini.rpg.world.functionality.builder.item;
 
+import com.sk89q.worldedit.antlr.ExpressionParser;
 import de.mcterranova.infini.rpg.utils.TextUtils;
 import de.mcterranova.infini.rpg.world.functionality.items.components.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
@@ -53,11 +54,13 @@ public class LoreBuilder {
     public List<Component> build(int paragraphSize) {
         List<Component> newLore = new ArrayList<>();
         Component blank = Component.text("§0");
+        for (int i = 0; i < Attribute.values().length; i++)
+            additionalAttributes.put(Attribute.getByPosition(i), 0);
         if (!enchantments.isEmpty()) {
-            this.enchantments.keySet().stream().filter(enchant -> enchant.getAttribute() != null).forEach(enchant -> additionalAttributes.put(enchant.getAttribute(), this.enchantments.get(enchant)));
+            this.enchantments.keySet().stream().filter(enchant -> enchant.getAttribute() != null).forEach(enchant -> additionalAttributes.put(enchant.getAttribute(), enchant.getAttributeBonus(this.enchantments.get(enchant), enchant.getAttribute()) + additionalAttributes.get(enchant.getAttribute())););
         }
         if (!runes.isEmpty()) {
-            this.runes.forEach(wrapper -> additionalAttributes.put(wrapper.rune().getAttribute(), wrapper.level()));
+            this.runes.forEach(wrapper -> additionalAttributes.put(wrapper.rune().getAttribute(), wrapper.rune().getAttributeBonus(wrapper.level(), wrapper.rune().getAttribute()) + additionalAttributes.get(wrapper.rune().getAttribute())));
         }
 
         if (this.basicAttributes.isEmpty())
@@ -73,13 +76,17 @@ public class LoreBuilder {
             this.basicAttributes.keySet().forEach(attribute -> attributes.add(attribute.getAttribute().getPosition(), attribute));
             this.basicAttributes.keySet().forEach(attribute -> values.add(attribute.getAttribute().getPosition(), this.basicAttributes.get(attribute)));
             String additional = "";
+            String basic = "";
+            attributes.forEach(attribute -> {
+                int index = attributes.indexOf(attribute);
+                if (attribute == null)
+                    attributes.remove(index);
+            });
             int v = 0;
             for (int i = 0; i < attributes.size(); i++) {
                 CustomComponentClass attribute = attributes.get(i);
-                if (attribute == null)
-                    continue;
                 if (additionalAttributes.get(attribute.getAttribute()) != null) {
-                    additional = "§6(" + this.additionalAttributes.get(attribute.getAttribute()) + ")";
+                    additional = " §6(" + this.additionalAttributes.get(attribute.getAttribute()) + ")";
                     v = this.additionalAttributes.get(attribute.getAttribute());
                 }
                 newLore.add(Component.text("§7" + attribute.getAttribute().getTranslation() + ": " + attribute.getColor() + "+"+ (values.get(i) + v) + additional));
@@ -111,7 +118,7 @@ public class LoreBuilder {
             if (enchantments.size() < 6) {
                 this.enchantments.keySet().forEach(enchantment -> {
                     String temp = enchantment.getColor() + enchantment.getDisplayName() + " " + this.enchantments.get(enchantment);
-                    newLore.add(Component.text(temp.replace("$", "")));
+                    newLore.add(Component.text(temp.replace("$", "").replace("%", " ")));
                 });
 
                 //newLore.add( "§9" + single.replace("$", " ") );
