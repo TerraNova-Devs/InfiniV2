@@ -22,7 +22,7 @@ public class ItemCommand {
     public static boolean a(Player p, String[] args) {
         switch (args[1]) {
             case "spawn" -> {
-                TemplateHelper.get().saveTemplate(args[2], new ItemManipulator(Material.POTATO, "TEST_POTATO")
+                TemplateHelper.get().saveTemplate(new ItemManipulator(Material.POTATO, "HEIMVERLIERER")
                         .addAttribute(CustomComponent.BASE_DAMAGE, 100)
                         .addAttribute(CustomComponent.BASE_INTELLIGENCE, 60)
                         .addAttribute(CustomComponent.BASE_HEALTH, 50)
@@ -48,7 +48,7 @@ public class ItemCommand {
                 return true;
             }
             case "load" -> {
-                p.getInventory().addItem(new ItemManipulator(TemplateHelper.get().getTemplate(args[2])).manifest(true, true, (short) 1));
+                p.getInventory().addItem(new ItemManipulator(TemplateHelper.get().getTemplate(args[2])).manifest(true, true, (short) 1, false));
                 p.sendMessage("abc");
                 return true;
             }

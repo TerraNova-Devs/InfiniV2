@@ -19,7 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class CustomItemBuilder {
 
     private final Material material;
-    private boolean isMaterial = true;
+    private boolean newUUID;
     private short amount;
     private boolean glowing = false;
     private final NamespacedKey attributeKey = new NamespacedKey(Infini.getInstance(), "attributemodifier");
@@ -41,6 +41,11 @@ public class CustomItemBuilder {
         return this;
     }
 
+    public CustomItemBuilder newUUID(boolean v) {
+        this.newUUID = v;
+        return this;
+    }
+
     public CustomItemBuilder itemGlow(boolean v) {
         this.glowing = v;
         return this;
@@ -55,7 +60,10 @@ public class CustomItemBuilder {
 
         if (glowing)
             meta.addEnchant(Enchantment.AQUA_AFFINITY, 1, false);
-        if (!mask.data.get(CustomComponent.ITEM_CATEGORY).contains("MATERIAL"))
+        if (newUUID) {
+            mask.newUUID();
+            meta = NBTUtils.addNBTTag(meta, "UUID", mask.getUUID().toString());
+        } else if (!mask.data.get(CustomComponent.ITEM_CATEGORY).contains("MATERIAL"))
             meta = NBTUtils.addNBTTag(meta, "UUID", mask.getUUID().toString());
         meta.addAttributeModifier(Attribute.ATTACK_DAMAGE, new AttributeModifier(attributeKey, 0d, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HAND));
         meta.addAttributeModifier(Attribute.ATTACK_SPEED, new AttributeModifier(attributeKey, 100d, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HAND));

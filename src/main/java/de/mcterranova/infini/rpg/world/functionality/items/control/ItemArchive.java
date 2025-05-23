@@ -3,13 +3,14 @@ package de.mcterranova.infini.rpg.world.functionality.items.control;
 import de.mcterranova.infini.rpg.utils.oldNBTUtils;
 import de.mcterranova.infini.Infini;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class ItemArchive {
 
     private final HashMap<UUID, ItemMask> cache;
-    private final oldNBTUtils nbt = new oldNBTUtils();
 
     public ItemArchive() {
         this.cache = new HashMap<>();

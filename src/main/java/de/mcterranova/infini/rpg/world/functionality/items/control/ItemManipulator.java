@@ -2,8 +2,11 @@ package de.mcterranova.infini.rpg.world.functionality.items.control;
 
 import de.mcterranova.infini.rpg.database.content.templates.TemplateHelper;
 import de.mcterranova.infini.rpg.world.functionality.builder.item.CustomItemBuilder;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneWrapper;
+import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
+import de.mcterranova.infini.rpg.world.functionality.items.item.ItemType;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -71,13 +74,15 @@ public class ItemManipulator {
         return this;
     }
 
-    public ItemStack manifest(boolean attributes, boolean glow, short amount) {
-        archive.add(itemMask);
-        return new CustomItemBuilder(itemMask).itemGlow(glow).addAttributes(attributes).setAmount(amount).build();
+    public ItemStack manifest(boolean attributes, boolean glow, short amount, boolean newUUID) {
+        if (!itemMask.data.get(CustomComponent.ITEM_CATEGORY).equals(ItemCategory.MATERIAL.name()))
+            archive.update(itemMask);
+        return new CustomItemBuilder(itemMask).itemGlow(glow).addAttributes(attributes).setAmount(amount).newUUID(newUUID).build();
     }
 
     public ItemMask getItemMask() {
-        archive.add(itemMask);
+        if (!itemMask.data.get(CustomComponent.ITEM_CATEGORY).equals(ItemCategory.MATERIAL.name()))
+            archive.update(itemMask);
         return itemMask;
     }
 
