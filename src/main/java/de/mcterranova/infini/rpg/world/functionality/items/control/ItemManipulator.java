@@ -14,7 +14,6 @@ public class ItemManipulator {
 
     private final ItemArchive archive = ItemArchive.get();
     private final ItemMask itemMask;
-    private Material material;
 
     public ItemManipulator(ItemMask mask) {
         this.itemMask = mask;
@@ -22,7 +21,6 @@ public class ItemManipulator {
 
     public ItemManipulator(Material material, String id) {
         this.itemMask = new ItemMask(material, id);
-        this.material = material;
     }
 
     public ItemManipulator(String templateID) {
@@ -75,13 +73,11 @@ public class ItemManipulator {
     }
 
     public ItemStack manifest(boolean attributes, boolean glow, short amount, boolean newUUID) {
-        if (!itemMask.data.get(CustomComponent.ITEM_CATEGORY).equals(ItemCategory.MATERIAL.name()))
-            archive.update(itemMask);
         return new CustomItemBuilder(itemMask).itemGlow(glow).addAttributes(attributes).setAmount(amount).newUUID(newUUID).build();
     }
 
     public ItemMask getItemMask() {
-        if (!itemMask.data.get(CustomComponent.ITEM_CATEGORY).equals(ItemCategory.MATERIAL.name()))
+        if (!itemMask.data.get(CustomComponent.ITEM_CATEGORY).equals(ItemCategory.MATERIAL.name()) && itemMask.data.get(CustomComponent.UUID) != null)
             archive.update(itemMask);
         return itemMask;
     }

@@ -3,7 +3,9 @@ package de.mcterranova.infini.rpg.world.functionality.builder.item;
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
+import de.mcterranova.infini.rpg.world.functionality.items.control.ItemArchive;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
+import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemTier;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -25,6 +27,7 @@ public class CustomItemBuilder {
     private final NamespacedKey attributeKey = new NamespacedKey(Infini.getInstance(), "attributemodifier");
     private final ItemMask mask;
     private boolean addAttributes = false;
+    private final ItemArchive archive = ItemArchive.get();
 
     public CustomItemBuilder(ItemMask itemMask) {
         this.material = Material.valueOf(itemMask.data.get(CustomComponent.MATERIAL));
@@ -60,11 +63,12 @@ public class CustomItemBuilder {
 
         if (glowing)
             meta.addEnchant(Enchantment.AQUA_AFFINITY, 1, false);
-        if (newUUID) {
-            mask.newUUID();
+        if (!mask.data.get(CustomComponent.ITEM_CATEGORY).contains("MATERIAL")) {
+            if (newUUID)
+                mask.newUUID();
             meta = NBTUtils.addNBTTag(meta, "UUID", mask.getUUID().toString());
-        } else if (!mask.data.get(CustomComponent.ITEM_CATEGORY).contains("MATERIAL"))
-            meta = NBTUtils.addNBTTag(meta, "UUID", mask.getUUID().toString());
+            archive.update(mask);
+        }
         meta.addAttributeModifier(Attribute.ATTACK_DAMAGE, new AttributeModifier(attributeKey, 0d, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HAND));
         meta.addAttributeModifier(Attribute.ATTACK_SPEED, new AttributeModifier(attributeKey, 100d, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HAND));
         meta.addItemFlags( ItemFlag.HIDE_ENCHANTS );
@@ -72,7 +76,6 @@ public class CustomItemBuilder {
         meta.addItemFlags( ItemFlag.HIDE_ARMOR_TRIM );
         meta.addItemFlags( ItemFlag.HIDE_ADDITIONAL_TOOLTIP );
         meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-
         meta.lore(new LoreBuilder(mask, addAttributes).build(36));
         item.setItemMeta(meta);
         item.setAmount(amount);

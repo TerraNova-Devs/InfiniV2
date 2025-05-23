@@ -48,7 +48,7 @@ public class ItemCommand {
                 return true;
             }
             case "load" -> {
-                p.getInventory().addItem(new ItemManipulator(TemplateHelper.get().getTemplate(args[2])).manifest(true, true, (short) 1, false));
+                p.getInventory().addItem(new ItemManipulator(TemplateHelper.get().getTemplate(args[2])).manifest(true, true, (short) 1, true));
                 p.sendMessage("abc");
                 return true;
             }
