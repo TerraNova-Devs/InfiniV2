@@ -12,6 +12,7 @@ import de.mcterranova.infini.rpg.world.functionality.items.item.ItemClass;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemTier;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 
 import java.util.*;
 
@@ -57,7 +58,7 @@ public class LoreBuilder {
         for (int i = 0; i < Attribute.values().length; i++)
             additionalAttributes.put(Attribute.getByPosition(i), 0);
         if (!enchantments.isEmpty()) {
-            this.enchantments.keySet().stream().filter(enchant -> enchant.getAttribute() != null).forEach(enchant -> additionalAttributes.put(enchant.getAttribute(), enchant.getAttributeBonus(this.enchantments.get(enchant), enchant.getAttribute()) + additionalAttributes.get(enchant.getAttribute())););
+            this.enchantments.keySet().stream().filter(enchant -> enchant.getAttribute() != null).forEach(enchant -> additionalAttributes.put(enchant.getAttribute(), enchant.getAttributeBonus(this.enchantments.get(enchant), enchant.getAttribute()) + additionalAttributes.get(enchant.getAttribute())));
         }
         if (!runes.isEmpty()) {
             this.runes.forEach(wrapper -> additionalAttributes.put(wrapper.rune().getAttribute(), wrapper.rune().getAttributeBonus(wrapper.level(), wrapper.rune().getAttribute()) + additionalAttributes.get(wrapper.rune().getAttribute())));
@@ -67,30 +68,30 @@ public class LoreBuilder {
             this.addAttributes = false;
 
         if (addAttributes) {
-            List<CustomComponentClass> attributes = new ArrayList<>();
-            List<Integer> values = new ArrayList<>();
-            for (int i = 0; i < 10; i++) {
-                attributes.add(null);
-                values.add(null);
-            }
-            this.basicAttributes.keySet().forEach(attribute -> attributes.add(attribute.getAttribute().getPosition(), attribute));
-            this.basicAttributes.keySet().forEach(attribute -> values.add(attribute.getAttribute().getPosition(), this.basicAttributes.get(attribute)));
-            String additional = "";
+            List<Attribute> attributes = new ArrayList<>(Collections.nCopies(15, null));
+            List<Integer> values = new ArrayList<>(Collections.nCopies(15, null));
+
+            this.basicAttributes.keySet().forEach(attribute -> {
+                attributes.set(attribute.getAttribute().getPosition(), attribute.getAttribute());
+                values.set(attribute.getAttribute().getPosition(), this.basicAttributes.get(attribute));
+            });
+            additionalAttributes.keySet().forEach(attribute -> {
+                if (!attributes.contains(attribute) && additionalAttributes.get(attribute) != 0) {
+                    attributes.set(attribute.getPosition(), attribute);
+                    values.set(attributes.indexOf(attribute), 0);
+                }
+            });
             String basic = "";
             attributes.forEach(attribute -> {
-                int index = attributes.indexOf(attribute);
-                if (attribute == null)
-                    attributes.remove(index);
-            });
-            int v = 0;
-            for (int i = 0; i < attributes.size(); i++) {
-                CustomComponentClass attribute = attributes.get(i);
-                if (additionalAttributes.get(attribute.getAttribute()) != null) {
-                    additional = " §6(" + this.additionalAttributes.get(attribute.getAttribute()) + ")";
-                    v = this.additionalAttributes.get(attribute.getAttribute());
+                String additional = "";
+                int v;
+                if (attribute != null) {
+                    v = this.additionalAttributes.get(attribute);
+                    if (v != 0)
+                        additional = " §6(" + this.additionalAttributes.get(attribute) + ")";
+                    newLore.add(Component.text("§7" + attribute.getTranslation() + ": " + attribute.getColor() + "+"+ (values.get(attributes.indexOf(attribute)) + v) + additional));
                 }
-                newLore.add(Component.text("§7" + attribute.getAttribute().getTranslation() + ": " + attribute.getColor() + "+"+ (values.get(i) + v) + additional));
-            }
+            });
             newLore.add(blank);
 
             if (!runeSlots.isEmpty()) {
