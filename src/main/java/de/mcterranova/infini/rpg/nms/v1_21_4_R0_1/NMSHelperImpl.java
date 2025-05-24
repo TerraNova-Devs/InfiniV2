@@ -3,7 +3,7 @@ package de.mcterranova.infini.rpg.nms.v1_21_4_R0_1;
 import de.mcterranova.infini.rpg.nms.NMSHelper;
 import org.bukkit.inventory.ItemStack;
 
-public class NMSHelperImplementation implements NMSHelper {
+public class NMSHelperImpl implements NMSHelper {
 
     @Override
     public ItemStack removeDisplayTag(ItemStack bukkitItem) {
