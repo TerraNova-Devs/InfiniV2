@@ -17,7 +17,6 @@ public class BasicAttributeComponentClass extends CustomComponentClass {
         this.serialized = serialized;
     }
 
-
     @Override
     public Attribute getAttribute() {
         return attribute;

@@ -31,7 +31,7 @@ public abstract class CustomComponentClass {
         this.type = type;
     }
 
-    public RuneType getRune() { return RuneType.STRENGTH; }
+    public RuneType getRuneType() { return RuneType.NULL; }
 
     public Attribute getAttribute() { return Attribute.NONE; }
 

@@ -16,5 +16,9 @@ public class TemplateHelper {
         return Serializer.deserialize(TableHandler.selectValue(TableID.ITEM_TEMPLATES, id));
     }
 
+    public ItemMask getBlank(String id) {
+        return Serializer.deserializeBlank(TableHandler.selectValue(TableID.ITEM_TEMPLATES, id));
+    }
+
     public static TemplateHelper get() { return new TemplateHelper(); }
 }

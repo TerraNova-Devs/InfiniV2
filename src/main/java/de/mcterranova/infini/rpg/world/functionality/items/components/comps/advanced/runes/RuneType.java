@@ -4,5 +4,6 @@ public enum RuneType {
     STRENGTH,
     INTELLIGENCE,
     MIGHT,
-    PRECISION
+    PRECISION,
+    NULL
 }

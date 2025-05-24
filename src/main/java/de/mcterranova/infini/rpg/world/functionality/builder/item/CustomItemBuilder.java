@@ -7,6 +7,7 @@ import de.mcterranova.infini.rpg.world.functionality.items.control.ItemArchive;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemTier;
+import de.tr7zw.changeme.nbtapi.NBTItem;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -52,6 +53,23 @@ public class CustomItemBuilder {
     public CustomItemBuilder itemGlow(boolean v) {
         this.glowing = v;
         return this;
+    }
+
+    public ItemStack buildBlank() {
+        ItemStack oldItem = new ItemStack(material);
+        NBTItem nbtItem = new NBTItem(oldItem);
+        nbtItem.removeKey("display");
+        ItemStack item = nbtItem.getItem();
+        item.addItemFlags(
+                ItemFlag.HIDE_ATTRIBUTES,
+                ItemFlag.HIDE_ENCHANTS,
+                ItemFlag.HIDE_UNBREAKABLE,
+                ItemFlag.HIDE_DESTROYS,
+                ItemFlag.HIDE_PLACED_ON,
+                ItemFlag.HIDE_ADDITIONAL_TOOLTIP,
+                ItemFlag.HIDE_STORED_ENCHANTS
+        );
+        return nbtItem.getItem();
     }
 
     public ItemStack build()

@@ -24,6 +24,16 @@ public class Serializer {
         return builder.toString();
     }
 
+    public static ItemMask deserializeBlank(String serialized) {
+        Map<CustomComponentClass, String> data = new HashMap<>();
+        String[] array = serialized.split("%");
+        Arrays.stream(array[1].split("\\$")).forEach(string -> {
+            String[] substring = string.split(",");
+            data.put(CustomComponentClass.deSerialize(substring[0]), substring[1]);
+        });
+        return new ItemMask(Material.valueOf(data.get(CustomComponent.MATERIAL)), data.get(CustomComponent.ID));
+    }
+
     public static ItemMask deserialize(String serialized) {
         Map<CustomComponentClass, Integer> attributes = new HashMap<>();
         Map<CustomComponentClass, String> data = new HashMap<>();

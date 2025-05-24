@@ -72,6 +72,10 @@ public class ItemManipulator {
         return this;
     }
 
+    public ItemStack getBlank() {
+        return new CustomItemBuilder(itemMask).buildBlank();
+    }
+
     public ItemStack manifest(boolean attributes, boolean glow, short amount, boolean newUUID) {
         return new CustomItemBuilder(itemMask).itemGlow(glow).addAttributes(attributes).setAmount(amount).newUUID(newUUID).build();
     }

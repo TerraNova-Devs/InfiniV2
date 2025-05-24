@@ -7,3 +7,14 @@
 # Project exlude data types
 *.env
 *.properties
+.gradle/8.8/fileHashes/resourceHashesCache.bin
+/.gradle/8.8/fileHashes
+/.gradle/8.8
+/.gradle
+build/classes/java/main/de/mcterranova/infini/rpg/world/functionality/builder/item/CustomItemBuilder.class
+/build/classes/java/main/de/mcterranova/infini/rpg/world/functionality/builder/item
+/build/classes/java/main/de/mcterranova/infini/rpg/world/functionality/builder
+/build/classes/java/main/de/mcterranova/infini/rpg/world/functionality
+/build/classes/java/main/de/mcterranova/infini/rpg
+/build
+/build/classes

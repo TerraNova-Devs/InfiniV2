@@ -1,14 +1,14 @@
- plugins {
-     id 'java'
-     id "io.github.goooler.shadow" version "8.1.8"
+plugins {
+    id 'java'
+    id "io.github.goooler.shadow" version "8.1.8"
 }
 
 group = 'de.terranova.infini'
 version = '0.0.1'
 
 repositories {
+    gradlePluginPortal()
     mavenCentral()
-
     maven {
         name = "enginehub-maven"
         url = "https://maven.enginehub.org/repo/"
@@ -39,6 +39,10 @@ repositories {
             password = project.findProperty("gpr.token")
         }
     }
+    maven {
+        name = "NBTapi"
+        url = 'https://repo.codemc.io/repository/maven-public/'
+    }
 }
 
 dependencies {
@@ -47,6 +51,7 @@ dependencies {
     implementation "net.leonardo_dgs:InteractiveBooks:1.7.10"
     implementation "de.mcterranova:terranova-lib:0.8.13"
     implementation "com.zaxxer:HikariCP:6.2.1"
+    implementation 'de.tr7zw:item-nbt-api:2.11.3'
 }
 
 def targetJavaVersion = 21
@@ -70,6 +75,7 @@ tasks.withType(JavaCompile).configureEach {
  shadowJar {
      destinationDirectory = file("C:\\Users\\papri\\Desktop\\dev 1.21.4\\plugins")
      archiveClassifier.set('all')
+     relocate 'de.tr7zw.changeme.nbtapi', 'de.mcterranova.infini.shaded.nbtapi'
  }
 
 processResources {

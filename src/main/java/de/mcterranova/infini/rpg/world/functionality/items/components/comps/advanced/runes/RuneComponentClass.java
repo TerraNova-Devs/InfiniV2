@@ -48,7 +48,7 @@ public class RuneComponentClass extends CustomComponentClass {
     }
 
     @Override
-    public RuneType getRune() {
+    public RuneType getRuneType() {
         return type;
     }
 

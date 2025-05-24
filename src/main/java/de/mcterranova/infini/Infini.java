@@ -33,6 +33,7 @@ public class Infini extends JavaPlugin {
         instance = this;
         initDatabase();
 
+        System.setProperty("de.tr7zw.nbtapi.fallback", "true");
         //register listeners
         Bukkit.getPluginManager().registerEvents( new EntityKill(), this );
         Bukkit.getPluginManager().registerEvents( new Combust(), this );
