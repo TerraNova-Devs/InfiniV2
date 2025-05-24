@@ -1,6 +1,7 @@
 package de.mcterranova.infini.rpg.world.functionality.builder.item;
 
 import de.mcterranova.infini.Infini;
+import de.mcterranova.infini.rpg.nms.NMSFactory;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemArchive;
@@ -56,10 +57,7 @@ public class CustomItemBuilder {
     }
 
     public ItemStack buildBlank() {
-        ItemStack oldItem = new ItemStack(material);
-        NBTItem nbtItem = new NBTItem(oldItem);
-        nbtItem.removeKey("display");
-        ItemStack item = nbtItem.getItem();
+        ItemStack item = NMSFactory.getHelper().removeDisplayTag(new ItemStack(material));
         item.addItemFlags(
                 ItemFlag.HIDE_ATTRIBUTES,
                 ItemFlag.HIDE_ENCHANTS,
@@ -69,7 +67,7 @@ public class CustomItemBuilder {
                 ItemFlag.HIDE_ADDITIONAL_TOOLTIP,
                 ItemFlag.HIDE_STORED_ENCHANTS
         );
-        return nbtItem.getItem();
+        return item;
     }
 
     public ItemStack build()

@@ -20,4 +20,8 @@ public class NMSFactory {
         return packageName.substring(packageName.lastIndexOf('.') + 1);
     }
 
+    public static NMSHelper getHelper() {
+        return helper;
+    }
+
 }
