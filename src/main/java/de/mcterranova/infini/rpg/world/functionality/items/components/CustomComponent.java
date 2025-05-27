@@ -15,6 +15,7 @@ public class CustomComponent {
     public static final CustomComponentClass BASE_STRENGTH;
     public static final CustomComponentClass BASE_HEALTH;
     public static final CustomComponentClass BASE_DEFENSE;
+    public static final CustomComponentClass BASE_ATTACK_SPEED;
     public static final CustomComponentClass BASE_CRITICAL_DAMAGE;
     public static final CustomComponentClass BASE_CRITICAL_CHANCE;
     public static final CustomComponentClass BASE_INTELLIGENCE;
@@ -25,7 +26,6 @@ public class CustomComponent {
     public static final CustomComponentClass RUNE_SLOTS;
     public static final CustomComponentClass ITEM_CLASS;
     public static final CustomComponentClass ITEM_TIER;
-    public static final CustomComponentClass ITEM_TYPE;
     public static final CustomComponentClass ITEM_CATEGORY;
     public static final CustomComponentClass MATERIAL;
     public static final CustomComponentClass DISPLAY_NAME;
@@ -35,9 +35,9 @@ public class CustomComponent {
     public static final CustomComponentClass ADVANCED_DAMAGE_ALL;
     public static final CustomComponentClass ADVANCED_DAMAGE_UNDEAD;
     public static final CustomComponentClass ADVANCED_ATTRIBUTE_STRENGTH;
-    public static final CustomComponentClass ADVANCED_RUNE_STRENGTH;
-    public static final CustomComponentClass ADVANCED_RUNE_INTELLIGENCE;
-    public static final CustomComponentClass ADVANCED_RUNE_MIGHT;
+    public static final CustomComponentClass RUNE_STRENGTH;
+    public static final CustomComponentClass RUNE_INTELLIGENCE;
+    public static final CustomComponentClass RUNE_MIGHT;
 
     static {
         // AAAAA = CustomComponentClass.register("AAAAA", new AAAAA );
@@ -48,6 +48,7 @@ public class CustomComponent {
         BASE_CRITICAL_DAMAGE = CustomComponentClass.register("BASE_CRITICAL_DAMAGE", new BasicAttributeComponentClass("AAE", Attribute.CRITICAL_DAMAGE, "§c"));
         BASE_CRITICAL_CHANCE = CustomComponentClass.register("BASE_CRITICAL_CHANCE", new BasicAttributeComponentClass("AAF", Attribute.CRITICAL_CHANCE, "§c"));
         BASE_INTELLIGENCE = CustomComponentClass.register("BASE_INTELLIGENCE", new BasicAttributeComponentClass("AAG", Attribute.INTELLIGENCE, "§a"));
+        BASE_ATTACK_SPEED = CustomComponentClass.register("ATTACK_SPEED", new BasicAttributeComponentClass("AAH", Attribute.ATTACK_SPEED, "§a") );
 
         UUID = CustomComponentClass.register("UUID", new StorageComponentClass("BAA", "UUID"));
         ID = CustomComponentClass.register("ID", new StorageComponentClass("BAC", "ID"));
@@ -55,7 +56,6 @@ public class CustomComponent {
         RUNE_SLOTS = CustomComponentClass.register("RUNE_SLOTS", new StorageComponentClass("BAE", "RUNE_SLOTS"));
         ITEM_CLASS = CustomComponentClass.register("ITEM_CLASS", new StorageComponentClass("BAF", "ITEM_CLASS"));
         ITEM_TIER = CustomComponentClass.register("ITEM_TIER", new StorageComponentClass("BAG", "ITEM_TIER"));
-        ITEM_TYPE = CustomComponentClass.register("ITEM_TYPE", new StorageComponentClass("BAH", "ITEM_TYPE"));
         ITEM_CATEGORY = CustomComponentClass.register("ITEM_CATEGORY", new StorageComponentClass("BAI", "ITEM_CATEGORY"));
         MATERIAL = CustomComponentClass.register("MATERIAL", new StorageComponentClass("BAJ", "MATERIAL"));
         DISPLAY_NAME = CustomComponentClass.register("DISPLAY_NAME", new StorageComponentClass("BAK", "DISPLAY_NAME"));
@@ -65,8 +65,9 @@ public class CustomComponent {
         ADVANCED_DAMAGE_ALL = CustomComponentClass.register("ADVANCED_DAMAGE_ALL", new AdvancedDamageComponentClass("CAC", Element.NONE, EnchantmentCategory.WEAPON) );
         ADVANCED_DAMAGE_UNDEAD = CustomComponentClass.register("ADVANCED_DAMAGE_UNDEAD", new AdvancedDamageComponentClass("CAD", Element.UNDEAD, EnchantmentCategory.WEAPON) );
         ADVANCED_ATTRIBUTE_STRENGTH = CustomComponentClass.register("ADVANCED_ATTRIBUTE_STRENGTH", new AdvancedAttributeComponentClass("CAE", Attribute.STRENGTH, EnchantmentCategory.WEAPON));
-        ADVANCED_RUNE_STRENGTH = CustomComponentClass.register("ADVANCED_RUNE_STRENGTH", new RuneComponentClass("CAF", RuneType.STRENGTH));
-        ADVANCED_RUNE_INTELLIGENCE = CustomComponentClass.register("ADVANCED_RUNE_INTELLIGENCE", new RuneComponentClass("CAG", RuneType.INTELLIGENCE));
-        ADVANCED_RUNE_MIGHT = CustomComponentClass.register("ADVANCED_RUNE_MIGHT", new RuneComponentClass("CAH", RuneType.MIGHT));
+
+        RUNE_STRENGTH = CustomComponentClass.register("ADVANCED_RUNE_STRENGTH", new RuneComponentClass("DAA", RuneType.STRENGTH));
+        RUNE_INTELLIGENCE = CustomComponentClass.register("ADVANCED_RUNE_INTELLIGENCE", new RuneComponentClass("DAB", RuneType.INTELLIGENCE));
+        RUNE_MIGHT = CustomComponentClass.register("ADVANCED_RUNE_MIGHT", new RuneComponentClass("DAC", RuneType.MIGHT));
     }
 }

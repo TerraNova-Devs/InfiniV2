@@ -18,13 +18,13 @@ import java.util.*;
 
 public class LoreBuilder {
     public final Map<CustomComponentClass, String> data = new HashMap<>();
-    public final Map<CustomComponentClass, Integer> attributes = new HashMap<>();
+    public final Map<CustomComponentClass, Double> attributes = new HashMap<>();
     public List<RuneWrapper> runes;
     private final Map<Attribute, Integer> additionalAttributes = new HashMap<>();
 
     private final Map<CustomComponentClass, Integer> runeSlots = new HashMap<>();
-    private final Map<CustomComponentClass, Integer> enchantments = new HashMap<>();
-    private final Map<CustomComponentClass, Integer> basicAttributes = new HashMap<>();
+    private final Map<CustomComponentClass, Double> enchantments = new HashMap<>();
+    private final Map<CustomComponentClass, Double> basicAttributes = new HashMap<>();
 
     private final ItemCategory itemCategory;
     private final ItemClass itemClass;
@@ -63,9 +63,9 @@ public class LoreBuilder {
         for (int i = 0; i < Attribute.values().length; i++)
             additionalAttributes.put(Attribute.getByPosition(i), 0);
         if (!enchantments.isEmpty()) {
-            this.enchantments.keySet().stream().filter(enchant -> enchant.getAttribute() != null).forEach(enchant -> additionalAttributes.put(enchant.getAttribute(), enchant.getAttributeBonus(this.enchantments.get(enchant), enchant.getAttribute()) + additionalAttributes.get(enchant.getAttribute())));
+            this.enchantments.keySet().stream().filter(enchant -> enchant.getAttribute() != null).forEach(enchant -> additionalAttributes.put(enchant.getAttribute(), enchant.getAttributeBonus((int) Math.round(this.enchantments.get(enchant)), enchant.getAttribute()) + additionalAttributes.get(enchant.getAttribute())));
         }
-        if (!runes.isEmpty()) {
+        if (!runes.isEmpty()) { 
             this.runes.forEach(wrapper -> additionalAttributes.put(wrapper.rune().getAttribute(), wrapper.rune().getAttributeBonus(wrapper.level(), wrapper.rune().getAttribute()) + additionalAttributes.get(wrapper.rune().getAttribute())));
         }
 
@@ -74,7 +74,7 @@ public class LoreBuilder {
 
         if (addAttributes) {
             List<Attribute> attributes = new ArrayList<>(Collections.nCopies(15, null));
-            List<Integer> values = new ArrayList<>(Collections.nCopies(15, null));
+            List<Double> values = new ArrayList<>(Collections.nCopies(15, null));
 
             this.basicAttributes.keySet().forEach(attribute -> {
                 attributes.set(attribute.getAttribute().getPosition(), attribute.getAttribute());
@@ -83,18 +83,22 @@ public class LoreBuilder {
             additionalAttributes.keySet().forEach(attribute -> {
                 if (!attributes.contains(attribute) && additionalAttributes.get(attribute) != 0) {
                     attributes.set(attribute.getPosition(), attribute);
-                    values.set(attributes.indexOf(attribute), 0);
+                    values.set(attributes.indexOf(attribute), 0d);
                 }
             });
-            String basic = "";
             attributes.forEach(attribute -> {
                 String additional = "";
                 int v;
+                String v2;
                 if (attribute != null) {
                     v = this.additionalAttributes.get(attribute);
+                    v2 = String.valueOf(values.get(attributes.indexOf(attribute)) + v);
+                    if (!attribute.equals(Attribute.ATTACK_SPEED)) {
+                        v2 = v2.substring(0, v2.length() - 2);
+                    }
                     if (v != 0)
-                        additional = " §6(" + this.additionalAttributes.get(attribute) + ")";
-                    newLore.add(Component.text("§7" + attribute.getTranslation() + ": " + attribute.getColor() + "+"+ (values.get(attributes.indexOf(attribute)) + v) + additional));
+                        additional = " §9(" + this.additionalAttributes.get(attribute) + ")";
+                    newLore.add(Component.text("§7" + attribute.getTranslation() + ": " + attribute.getColor() + "+"+ v2 + additional));
                 }
             });
             newLore.add(blank);
@@ -123,7 +127,8 @@ public class LoreBuilder {
         if (!enchantments.isEmpty()) {
             if (enchantments.size() < 6) {
                 this.enchantments.keySet().forEach(enchantment -> {
-                    String temp = enchantment.getColor() + enchantment.getDisplayName() + " " + this.enchantments.get(enchantment);
+                    String v = this.enchantments.get(enchantment).toString().substring(0, this.enchantments.get(enchantment).toString().length() - 2);
+                    String temp = enchantment.getColor() + enchantment.getDisplayName() + " " + v;
                     newLore.add(Component.text(temp.replace("$", "").replace("%", " ")));
                 });
 

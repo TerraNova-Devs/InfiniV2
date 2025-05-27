@@ -6,14 +6,14 @@ SET FOREIGN_KEY_CHECKS = 1;
 --
 CREATE TABLE IF NOT EXISTS `items` (
     `UUID` varchar(36) NOT NULL,
-    `contents` BLOB NOT NULL,
+    `contents` varchar(512) NOT NULL,
     PRIMARY KEY (`UUID`)
 ) DEFAULT CHARSET=utf8
   COLLATE=utf8_unicode_ci;
 --
 CREATE TABLE IF NOT EXISTS `item_templates` (
     `id` varchar(50) NOT NULL,
-    `contents` BLOB NOT NULL,
+    `contents` TINYTEXT NOT NULL,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8
   COLLATE=utf8_unicode_ci;
@@ -31,3 +31,11 @@ CREATE TABLE IF NOT EXISTS `mob_templates` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8
   COLLATE=utf8_unicode_ci;
+  --
+  CREATE TABLE IF NOT EXISTS `inventory_templates` (
+      `id` varchar(50) NOT NULL,
+      `contents` varchar(1024) NOT NULL,
+      PRIMARY KEY (`id`)
+  ) DEFAULT CHARSET=utf8
+    COLLATE=utf8_unicode_ci;
+

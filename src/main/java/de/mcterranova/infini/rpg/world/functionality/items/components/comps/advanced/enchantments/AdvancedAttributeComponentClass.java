@@ -23,9 +23,15 @@ public class AdvancedAttributeComponentClass extends CustomComponentClass {
     }
 
     @Override
-    public int getAttributeBonus( int value, Attribute attribute )
+    public int getAttributeBonus(int value, Attribute attribute )
     {
         return value * 15;
+    }
+
+    @Override
+    public Attribute getAttribute()
+    {
+        return this.attribute;
     }
 
     @Override

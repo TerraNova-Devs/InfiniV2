@@ -2,4 +2,4 @@ package de.mcterranova.infini.rpg.world.functionality.items.components.comps.adv
 
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 
-public record RuneWrapper(CustomComponentClass rune, int level) {}
+public record RuneWrapper(CustomComponentClass rune, Integer level) {}

@@ -9,7 +9,7 @@ public enum Attribute
     STRENGTH( "Stärke",1, "§c"),
     CRITICAL_CHANCE("Krit. Chance", 2, "§c"),
     CRITICAL_DAMAGE("Krit. Schaden", 3, "§c"),
-    ATTACK_SPEED("Bonus Angriffstempo", 4, "§c"),
+    ATTACK_SPEED("Angriffstempo", 4, "§c"),
     INTELLIGENCE("Intelligenz", 5, "§a"),
     HEALTH("Vitalität", 6, "§a"),
     DEFENSE("Rüstung", 7, "§a"),

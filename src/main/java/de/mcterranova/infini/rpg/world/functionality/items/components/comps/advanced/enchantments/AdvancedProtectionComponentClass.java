@@ -17,17 +17,6 @@ public class AdvancedProtectionComponentClass extends CustomComponentClass {
     }
 
     @Override
-    public int getAttributeBonus( int level, Attribute attribute ) {
-        int value = 0;
-        switch ( element )
-        {
-            case NONE -> value = level * 15;
-            case UNDEAD, ARACHNID -> value = level * 20;
-        }
-        return value;
-    }
-
-    @Override
     public String getDisplayName()
     {
         String v = "NULL";

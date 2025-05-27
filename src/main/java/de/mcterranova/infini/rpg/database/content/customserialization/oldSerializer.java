@@ -5,14 +5,13 @@ import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComp
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneWrapper;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import org.bukkit.Material;
-import org.checkerframework.common.value.qual.ArrayLen;
 
 import java.util.*;
 
-public class Serializer {
+public class oldSerializer {
 
     public static String serializeItemMask(ItemMask mask) {
-        Map<CustomComponentClass, Integer> attributes = mask.attributes;
+        Map<CustomComponentClass, Double> attributes = mask.attributes;
         Map<CustomComponentClass, String> data = mask.data;
         List<RuneWrapper> runes = mask.runes;
         StringBuilder builder = new StringBuilder();
@@ -35,13 +34,13 @@ public class Serializer {
     }
 
     public static ItemMask deserialize(String serialized) {
-        Map<CustomComponentClass, Integer> attributes = new HashMap<>();
+        Map<CustomComponentClass, Double> attributes = new HashMap<>();
         Map<CustomComponentClass, String> data = new HashMap<>();
         List<RuneWrapper> runes = new ArrayList<>();
         String[] array = serialized.split("%");
         Arrays.stream(array[0].split("\\$")).forEach(string -> {
             String[] substring = string.split(",");
-            attributes.put(CustomComponentClass.deSerialize(substring[0]), Integer.valueOf(substring[1]));
+            attributes.put(CustomComponentClass.deSerialize(substring[0]), Double.valueOf(substring[1]));
         });
         Arrays.stream(array[1].split("\\$")).forEach(string -> {
             String[] substring = string.split(",");

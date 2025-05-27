@@ -1,6 +1,7 @@
 package de.mcterranova.infini.rpg.world.functionality.items.item;
 
-public enum ItemClass
+public enum
+ItemClass
 {
     GENERIC( "Alle Klassen"),
     MAGE("Magier"),

@@ -6,7 +6,6 @@ import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComp
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneWrapper;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
-import de.mcterranova.infini.rpg.world.functionality.items.item.ItemType;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -24,7 +23,7 @@ public class ItemManipulator {
     }
 
     public ItemManipulator(String templateID) {
-        this.itemMask = TemplateHelper.get().getTemplate(templateID);
+        this.itemMask = TemplateHelper.get().getItemTemplate(templateID);
     }
 
     public ItemManipulator configureData(CustomComponentClass component, String data) {
@@ -42,12 +41,12 @@ public class ItemManipulator {
         return this;
     }
 
-    public ItemManipulator configureAttribute(CustomComponentClass attribute, int v) {
+    public ItemManipulator configureAttribute(CustomComponentClass attribute, double v) {
         this.itemMask.attributes.replace(attribute, v);
         return this;
     }
 
-    public ItemManipulator addAttribute(CustomComponentClass attribute, int v) {
+    public ItemManipulator addAttribute(CustomComponentClass attribute, double v) {
         this.itemMask.attributes.put(attribute, v);
         return this;
     }

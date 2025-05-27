@@ -1,10 +1,12 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components;
 
+import com.sk89q.worldedit.util.formatting.text.Component;
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.world.entities.Element;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneType;
 import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -14,7 +16,6 @@ import java.util.UUID;
 
 public abstract class CustomComponentClass {
     private final ComponentType type;
-
     private final ArrayList< EnchantmentCategory > enchantmentCategories = new ArrayList<>();
 
     protected CustomComponentClass(ComponentType type) {
@@ -55,7 +56,7 @@ public abstract class CustomComponentClass {
 
     public int getAdditiveBonus( int level, Element targetelement ) { return 0; }
 
-    public int getAttributeBonus( int level, Attribute attribute ) { return 0; }
+    public int getAttributeBonus(int level, Attribute attribute ) { return 0; }
 
     public int getAttributeValue( int level, Attribute attribute ) { return 0; }
 

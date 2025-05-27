@@ -3,10 +3,6 @@ package de.mcterranova.infini.rpg.world.functionality.items.components.comps.adv
 import de.mcterranova.infini.rpg.world.functionality.items.components.Attribute;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
-import org.checkerframework.checker.units.qual.A;
-import org.w3c.dom.Attr;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class RuneComponentClass extends CustomComponentClass {
 

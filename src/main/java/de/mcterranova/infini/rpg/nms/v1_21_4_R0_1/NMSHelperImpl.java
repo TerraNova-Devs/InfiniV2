@@ -5,8 +5,10 @@ import org.bukkit.inventory.ItemStack;
 
 public class NMSHelperImpl implements NMSHelper {
 
+
     @Override
     public ItemStack removeDisplayTag(ItemStack bukkitItem) {
+        /*
         NMSItemStack nmsItem = CraftItemStack.asNMSCopy(bukkitItem);
         NBTTagCompound tag = nmsItem.getTag();
         if (tag != null && tag.hasKey("display")) {
@@ -14,5 +16,9 @@ public class NMSHelperImpl implements NMSHelper {
             nmsItem.setTag(tag);
         }
         return CraftItemStack.asBukkitCopy(nmsItem);
+        */
+        return null;
     }
+
+
 }
