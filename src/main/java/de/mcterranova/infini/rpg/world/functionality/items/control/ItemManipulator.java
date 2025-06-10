@@ -23,7 +23,7 @@ public class ItemManipulator {
     }
 
     public ItemManipulator(String templateID) {
-        this.itemMask = TemplateHelper.get().getItemTemplate(templateID);
+        this.itemMask = TemplateHelper.getItemTemplate(templateID);
     }
 
     public ItemManipulator configureData(CustomComponentClass component, String data) {
@@ -69,10 +69,6 @@ public class ItemManipulator {
     public ItemManipulator removeRune(RuneWrapper rune) {
         this.itemMask.runes.remove(rune);
         return this;
-    }
-
-    public ItemStack getBlank() {
-        return new CustomItemBuilder(itemMask).buildBlank();
     }
 
     public ItemStack manifest(boolean attributes, boolean glow, short amount, boolean newUUID) {

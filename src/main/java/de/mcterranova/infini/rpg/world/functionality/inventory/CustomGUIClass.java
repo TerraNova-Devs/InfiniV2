@@ -1,7 +1,11 @@
 package de.mcterranova.infini.rpg.world.functionality.inventory;
 
 import de.mcterranova.infini.Infini;
+import de.mcterranova.infini.rpg.database.TableHandler;
+import de.mcterranova.infini.rpg.database.TableID;
 import de.mcterranova.infini.rpg.database.content.customserialization.CustomSerializable;
+import de.mcterranova.infini.rpg.database.content.templates.TemplateHelper;
+import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -10,16 +14,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
+import org.bukkit.inventory.ItemStack;
 
+import javax.swing.text.StyledEditorKit;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class CustomGUIClass implements CustomSerializable {
+public abstract class CustomGUIClass implements CustomSerializable{
 
     private final Map<Player, String> opened = new HashMap<>();
-    private Inventory inventory;
     private final int size;
     private final String id;
 
@@ -28,9 +34,20 @@ public abstract class CustomGUIClass implements CustomSerializable {
         this.size = rows;
     }
 
-    @Override
-    public String serialize() {
-        return "NULL";
+    public String getID() {
+        return this.id;
+    }
+
+    protected String secretSerialize(InventoryWrapper wrapper) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(wrapper.contents().size()).append("%").append(wrapper.id()).append("%");
+        wrapper.contents().keySet().forEach(pos -> {
+            builder.append(pos).append(",").append(wrapper.contents().get(pos)).append("$");
+        });
+        return builder.toString();
+    }
+
+    public void saveToDatabase(Inventory inventory, String id) {
     }
 
     public static Inventory deserialize(String v) {
@@ -38,9 +55,16 @@ public abstract class CustomGUIClass implements CustomSerializable {
         Inventory temp = Bukkit.createInventory(null, Integer.parseInt(split[0]), Component.text(split[1]));
         List<ItemMask> contents;
         Arrays.stream(split[2].split("\\$")).forEach(string -> {
-
         });
         return null;
+    }
+
+    public String serialize() {
+        return "NULL";
+    }
+
+    public String serializeContents() {
+        return "NULL";
     }
 
     public void open(Player player) {
@@ -48,8 +72,7 @@ public abstract class CustomGUIClass implements CustomSerializable {
             Bukkit.getPluginManager().callEvent(new InventoryCloseEvent(player.getOpenInventory()));
             this.opened.remove(player);
         }
-        this.inventory = Bukkit.createInventory(null, size, Component.text("NO CLASS"));
-        player.openInventory(inventory);
+        player.openInventory(Bukkit.createInventory(null, size, Component.text("NO CLASS")));
     }
 
     public void close(Player player) {
@@ -57,6 +80,12 @@ public abstract class CustomGUIClass implements CustomSerializable {
             Bukkit.getPluginManager().callEvent(new InventoryCloseEvent(player.getOpenInventory()));
             this.opened.remove(player);
         }
+    }
+
+    protected Inventory copyInventory(Inventory inventory) {
+        Inventory inv = Bukkit.createInventory(null, inventory.getSize());
+        inv.setContents(inventory.getContents());
+        return inv;
     }
 
     public void processClick(InventoryClickEvent event) {}

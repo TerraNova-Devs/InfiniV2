@@ -7,7 +7,7 @@ import java.util.List;
 
 public class TestCommand extends AbstractCommand {
     public TestCommand() {
-        addPlaceholder("$A", () -> List.of("spawn", "save", "load"));
+        addPlaceholder("$A", () -> List.of("spawn", "load", "loadb", "saveinv", "loadinv", "convert"));
         addPlaceholder("$B", () -> List.of("[name]"));
         registerSubCommand(ItemCommand.class, "item");
         setupHelpCommand();

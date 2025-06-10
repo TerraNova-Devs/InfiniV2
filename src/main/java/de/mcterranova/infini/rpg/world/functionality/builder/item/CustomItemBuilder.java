@@ -1,14 +1,12 @@
 package de.mcterranova.infini.rpg.world.functionality.builder.item;
 
 import de.mcterranova.infini.Infini;
-import de.mcterranova.infini.rpg.nms.NMSFactory;
+import de.mcterranova.infini.rpg.nms.NMSHelper;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemArchive;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
-import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemTier;
-import de.tr7zw.changeme.nbtapi.NBTItem;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -54,20 +52,6 @@ public class CustomItemBuilder {
     public CustomItemBuilder itemGlow(boolean v) {
         this.glowing = v;
         return this;
-    }
-
-    public ItemStack buildBlank() {
-        ItemStack item = NMSFactory.getHelper().removeDisplayTag(new ItemStack(material));
-        item.addItemFlags(
-                ItemFlag.HIDE_ATTRIBUTES,
-                ItemFlag.HIDE_ENCHANTS,
-                ItemFlag.HIDE_UNBREAKABLE,
-                ItemFlag.HIDE_DESTROYS,
-                ItemFlag.HIDE_PLACED_ON,
-                ItemFlag.HIDE_ADDITIONAL_TOOLTIP,
-                ItemFlag.HIDE_STORED_ENCHANTS
-        );
-        return item;
     }
 
     public ItemStack build()

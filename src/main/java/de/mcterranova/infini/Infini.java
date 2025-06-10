@@ -31,6 +31,7 @@ public class Infini extends JavaPlugin {
 
     public void onEnable() {
         instance = this;
+
         initDatabase();
 
         System.setProperty("de.tr7zw.nbtapi.fallback", "true");

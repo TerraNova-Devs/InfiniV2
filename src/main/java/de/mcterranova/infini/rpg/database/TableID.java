@@ -4,5 +4,6 @@ public enum TableID {
     ITEMS,
     ITEM_TEMPLATES,
     ENTITIES,
-    MOB_TEMPLATES
+    MOB_TEMPLATES,
+    INVENTORY_TEMPLATES
 }

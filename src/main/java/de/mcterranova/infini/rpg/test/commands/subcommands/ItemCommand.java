@@ -1,7 +1,10 @@
 package de.mcterranova.infini.rpg.test.commands.subcommands;
 
+import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.database.content.templates.TemplateHelper;
+import de.mcterranova.infini.rpg.nms.NMSHelper;
 import de.mcterranova.infini.rpg.world.functionality.inventory.CustomGUI;
+import de.mcterranova.infini.rpg.world.functionality.inventory.CustomGUIClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneWrapper;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
@@ -9,6 +12,7 @@ import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemClass;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemTier;
 import de.mcterranova.terranovaLib.commands.CommandAnnotation;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -23,7 +27,7 @@ public class ItemCommand {
     public static boolean a(Player p, String[] args) {
         switch (args[1]) {
             case "spawn" -> {
-                TemplateHelper.get().saveItemTemplate(new ItemManipulator(Material.NETHERITE_SWORD, "ORPHAN_SLAYER")
+                TemplateHelper.saveItemTemplate(new ItemManipulator(Material.NETHERITE_SWORD, "ORPHAN_SLAYER")
                                 .addAttribute(CustomComponent.BASE_DAMAGE, 800)
                                 .addAttribute(CustomComponent.BASE_STRENGTH, 375)
                                 .addAttribute(CustomComponent.BASE_ATTACK_SPEED, 4)
@@ -50,18 +54,31 @@ public class ItemCommand {
                 return true;
             }
             case "loadb" -> {
-                p.getInventory().addItem(new ItemManipulator(TemplateHelper.get().getBlank(args[2])).getBlank());
+                p.getInventory().addItem(NMSHelper.getEmptyItem(Material.GRAY_STAINED_GLASS_PANE));
                 p.sendMessage("abc");
                 return true;
             }
             case "load" -> {
-                p.getInventory().addItem(new ItemManipulator(TemplateHelper.get().getItemTemplate(args[2])).manifest(true, false, (short) 1, true));
+                p.getInventory().addItem(new ItemManipulator(TemplateHelper.getItemTemplate(args[2])).manifest(true, false, (short) 1, true));
                 p.sendMessage("abc");
                 return true;
             }
-            case "inv" -> {
-                CustomGUI.PLAYER_INFO.open(p);
-                p.sendMessage("abc");
+            case "saveinv" -> {
+                Bukkit.getScheduler().runTaskLater(Infini.getInstance(), test -> {
+                    CustomGUI.PLAYER_MAIN.saveToDatabase(p.getOpenInventory().getTopInventory(), "PLAYER_MAIN");
+                    p.sendMessage("DONE");
+                }, 5L);
+                p.sendMessage(args[2]);
+                return true;
+            }
+            case "loadinv" -> {
+                CustomGUI.PLAYER_MAIN.open(p);
+                p.sendMessage(args[2]);
+                return true;
+            }
+            case "convert" -> {
+                CustomGUI.PLAYER_MAIN.open(p);
+                p.sendMessage(args[2]);
                 return true;
             }
         }

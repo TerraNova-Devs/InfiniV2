@@ -6,7 +6,8 @@ public enum ItemCategory {
     TOOL("Werkzeug"),
     WEAPON( "Waffe"),
     ARMOR("Rüstung"),
-    QUEST_ITEM( "Quest Item" );
+    QUEST_ITEM( "Quest Item" ),
+    MENU_ITEM("Menü Item");
 
     private final String translation;
 
