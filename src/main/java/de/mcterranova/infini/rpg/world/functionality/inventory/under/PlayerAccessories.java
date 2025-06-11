@@ -62,6 +62,6 @@ public class PlayerAccessories extends CustomGUIClass implements CustomSerializa
             this.unListPlayer(player.getUniqueId());
         }
         this.listPlayer(player.getUniqueId(), id);
-        player.openInventory();
+        player.openInventory(TemplateHelper.getInventoryTemplate());
     }
 }
