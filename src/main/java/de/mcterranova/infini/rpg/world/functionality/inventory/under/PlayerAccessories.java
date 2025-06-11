@@ -57,11 +57,11 @@ public class PlayerAccessories extends CustomGUIClass implements CustomSerializa
 
     @Override
     public void open(Player player) {
-        if (this.hasOpened(player)) {
+        if (this.hasOpened(player.getUniqueId())) {
             Bukkit.getPluginManager().callEvent(new InventoryCloseEvent(player.getOpenInventory()));
-            this.unListPlayer(player);
+            this.unListPlayer(player.getUniqueId());
         }
-        this.listPlayer(player, id);
-        player.openInventory(inventory);
+        this.listPlayer(player.getUniqueId(), id);
+        player.openInventory();
     }
 }

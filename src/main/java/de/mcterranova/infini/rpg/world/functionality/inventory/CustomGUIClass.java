@@ -18,14 +18,11 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 import javax.swing.text.StyledEditorKit;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class CustomGUIClass implements CustomSerializable{
 
-    private final Map<Player, String> opened = new HashMap<>();
+    private final Map<UUID, String> opened = new HashMap<>();
     private final int size;
     private final String id;
 
@@ -68,17 +65,17 @@ public abstract class CustomGUIClass implements CustomSerializable{
     }
 
     public void open(Player player) {
-        if (this.opened.containsKey(player)) {
+        if (this.opened.containsKey(player.getUniqueId())) {
             Bukkit.getPluginManager().callEvent(new InventoryCloseEvent(player.getOpenInventory()));
-            this.opened.remove(player);
+            this.opened.remove(player.getUniqueId());
         }
         player.openInventory(Bukkit.createInventory(null, size, Component.text("NO CLASS")));
     }
 
     public void close(Player player) {
-        if (this.opened.containsKey(player)) {
+        if (this.opened.containsKey(player.getUniqueId())) {
             Bukkit.getPluginManager().callEvent(new InventoryCloseEvent(player.getOpenInventory()));
-            this.opened.remove(player);
+            this.opened.remove(player.getUniqueId());
         }
     }
 
@@ -90,17 +87,17 @@ public abstract class CustomGUIClass implements CustomSerializable{
 
     public void processClick(InventoryClickEvent event) {}
 
-    protected void listPlayer(Player player, String id) {
-        this.opened.put(player, id);
+    protected void listPlayer(UUID uuid, String id) {
+        this.opened.put(uuid, id);
     }
 
-    protected void unListPlayer(Player player) {
-        this.opened.remove(player);
+    protected void unListPlayer(UUID uuid) { this.opened.remove(uuid); }
+
+    public boolean hasOpened(UUID uuid) {
+        return this.opened.containsKey(uuid);
     }
 
-    protected boolean hasOpened(Player player) {
-        return this.opened.containsKey(player);
-    }
+    public String getOpened(UUID uuid) { return this.opened.get(uuid); }
 
     private static NamespacedKey key(String key ) { return new NamespacedKey( Infini.getInstance(), key ); }
     private static final HashMap<NamespacedKey, CustomGUIClass> inventories = new HashMap<>();

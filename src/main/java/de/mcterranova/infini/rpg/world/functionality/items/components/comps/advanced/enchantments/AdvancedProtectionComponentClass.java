@@ -22,9 +22,9 @@ public class AdvancedProtectionComponentClass extends CustomComponentClass {
         String v = "NULL";
         switch ( element )
         {
-            case NONE -> v = "Schutz";
-            case UNDEAD -> v = "Schutz$der$Untoten";
-            case ARACHNID -> v = "Schutz$der$Spinnen";
+            case NONE : v = "Schutz";
+            case UNDEAD : v = "Schutz$der$Untoten";
+            case ARACHNID : v = "Schutz$der$Spinnen";
         }
         return v;
     }

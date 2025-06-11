@@ -1,11 +1,13 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components;
 
 import de.mcterranova.infini.rpg.world.entities.Element;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.RunAction;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.AdvancedAttributeComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.AdvancedDamageComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneType;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.BasicAttributeComponentClass;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.inventory.InventoryClickReaction;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.basic.storage.StorageComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
 
@@ -29,6 +31,8 @@ public class CustomComponent {
     public static final CustomComponentClass ITEM_CATEGORY;
     public static final CustomComponentClass MATERIAL;
     public static final CustomComponentClass DISPLAY_NAME;
+    public static final CustomComponentClass INVENTORY_LINK;
+    public static final CustomComponentClass INVENTORY_CLOSE;
 
     public static final CustomComponentClass ADVANCED_DAMAGE_ARACHNID;
     public static final CustomComponentClass ADVANCED_DAMAGE_CUBOID;
@@ -59,6 +63,8 @@ public class CustomComponent {
         ITEM_CATEGORY = CustomComponentClass.register("ITEM_CATEGORY", new StorageComponentClass("BAI", "ITEM_CATEGORY"));
         MATERIAL = CustomComponentClass.register("MATERIAL", new StorageComponentClass("BAJ", "MATERIAL"));
         DISPLAY_NAME = CustomComponentClass.register("DISPLAY_NAME", new StorageComponentClass("BAK", "DISPLAY_NAME"));
+        INVENTORY_LINK = CustomComponentClass.register("INVENTORY_LINK", new InventoryClickReaction("BAL", RunAction.INVENTORY_LINK));
+        INVENTORY_CLOSE = CustomComponentClass.register("INVENTORY_CLOSE", new InventoryClickReaction("BAM", RunAction.INVENTORY_CLOSE));
 
         ADVANCED_DAMAGE_ARACHNID = CustomComponentClass.register("ADVANCED_DAMAGE_ARACHNID", new AdvancedDamageComponentClass("CAA", Element.ARACHNID, EnchantmentCategory.WEAPON));
         ADVANCED_DAMAGE_CUBOID = CustomComponentClass.register("ADVANCED_DAMAGE_CUBOID", new AdvancedDamageComponentClass("CAB", Element.CUBOID, EnchantmentCategory.WEAPON) );

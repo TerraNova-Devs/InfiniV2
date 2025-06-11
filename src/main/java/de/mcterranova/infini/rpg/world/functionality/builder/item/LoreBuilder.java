@@ -52,11 +52,6 @@ public class LoreBuilder {
         this.addAttributes = addAttributes;
     }
 
-    public List<Component> buildBlank() {
-        List<Component> newLore = new ArrayList<>();
-        return newLore;
-    }
-
     public List<Component> build(int paragraphSize) {
         List<Component> newLore = new ArrayList<>();
         Component blank = Component.text("§0");

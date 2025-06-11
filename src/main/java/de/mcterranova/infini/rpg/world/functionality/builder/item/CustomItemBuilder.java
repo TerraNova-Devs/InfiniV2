@@ -56,6 +56,9 @@ public class CustomItemBuilder {
 
     public ItemStack build()
     {
+        if (mask.data.get(CustomComponent.ITEM_CATEGORY).contains("MENU_ITEM"))
+            return NMSHelper.getEmptyItem(this.material);
+
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
 

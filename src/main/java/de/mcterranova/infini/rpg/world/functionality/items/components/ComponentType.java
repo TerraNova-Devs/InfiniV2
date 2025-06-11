@@ -4,5 +4,6 @@ public enum ComponentType {
     ATTRIBUTE,
     ENCHANTMENT,
     RUNE,
-    STORAGE
+    STORAGE,
+    INVENTORY
 }

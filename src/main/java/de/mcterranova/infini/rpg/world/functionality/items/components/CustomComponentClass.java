@@ -1,18 +1,16 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components;
 
-import com.sk89q.worldedit.util.formatting.text.Component;
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.world.entities.Element;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.RunAction;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneType;
 import org.bukkit.NamespacedKey;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 public abstract class CustomComponentClass {
     private final ComponentType type;
@@ -32,11 +30,11 @@ public abstract class CustomComponentClass {
         this.type = type;
     }
 
-    public RuneType getRuneType() { return RuneType.NULL; }
+    public RuneType getRuneType() { return RuneType.NONE; }
 
     public Attribute getAttribute() { return Attribute.NONE; }
 
-    public String getSerialized() { return "";}
+    public String getSerialized() { return "NULL";}
 
     public String getColor() { return "NULL"; }
 
@@ -44,9 +42,11 @@ public abstract class CustomComponentClass {
 
     public String getDisplayName() { return "NULL"; }
 
-    public String getDeclaration() { return null; }
+    public String getDeclaration() { return "NULL"; }
 
-    public void run(UUID uuid) {}
+    public void run() {}
+
+    public RunAction getAction() { return RunAction.NONE; }
 
     public int getMinLevel() { return 1; }
 
@@ -64,7 +64,7 @@ public abstract class CustomComponentClass {
 
     public boolean canEnchant( ItemStack itemStack ) { return enchantmentCategories.stream().anyMatch(category -> category.canEnchant( itemStack ) ); }
 
-    public boolean conflictsWith( CustomComponentClass customComponentClass) { return false; }
+    public boolean conflictsWith(CustomComponentClass customComponentClass) { return false; }
 
     private static NamespacedKey key(String key ) { return new NamespacedKey( Infini.getInstance(), key ); }
     private static final HashMap<NamespacedKey, CustomComponentClass> components = new HashMap<>();

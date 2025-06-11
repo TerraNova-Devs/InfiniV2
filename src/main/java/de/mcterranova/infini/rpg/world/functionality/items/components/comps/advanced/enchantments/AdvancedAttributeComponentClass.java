@@ -35,9 +35,9 @@ public class AdvancedAttributeComponentClass extends CustomComponentClass {
     }
 
     @Override
-    public void run( UUID uuid )
+    public void run()
     {
-        Player p = Infini.getInstance().getServer().getPlayer(uuid);
+        Player p = Infini.getInstance().getServer().getPlayer("sakubami");
         World world = p.getWorld();
         Location location = p.getLocation();
         world.spawnEntity(location, EntityType.LIGHTNING_BOLT);
