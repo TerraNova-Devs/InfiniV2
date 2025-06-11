@@ -1,6 +1,6 @@
 package de.mcterranova.infini.rpg.world.functionality.items.control;
 
-import de.mcterranova.infini.rpg.database.content.templates.DatabaseHelper;
+import de.mcterranova.infini.rpg.database.content.DatabaseHelper;
 import de.mcterranova.infini.rpg.world.functionality.builder.item.CustomItemBuilder;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;

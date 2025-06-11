@@ -9,7 +9,7 @@ public class CustomGUI {
     public static final CustomGUIClass PLAYER_ACCESSORIES;
 
     static {
-        PLAYER_MAIN = CustomGUIClass.register("PLAYER_MAIN", new PlayerMain(6, "PLAYER_MAIN"));
-        PLAYER_ACCESSORIES = CustomGUIClass.register("PLAYER_ACCESSORIES", new PlayerAccessories(6, "PLAYER_ACCESSORIES"));
+        PLAYER_MAIN = CustomGUIClass.register(GUITitle.PLAYER_MAIN, new PlayerMain(6, GUITitle.PLAYER_MAIN));
+        PLAYER_ACCESSORIES = CustomGUIClass.register(GUITitle.PLAYER_ACCESSORIES, new PlayerAccessories(6, GUITitle.PLAYER_ACCESSORIES));
     }
 }

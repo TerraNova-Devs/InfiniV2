@@ -1,19 +1,18 @@
 package de.mcterranova.infini.rpg.world.functionality.inventory.under;
 
 import de.mcterranova.infini.rpg.database.content.customserialization.CustomSerializable;
-import de.mcterranova.infini.rpg.database.content.templates.DatabaseHelper;
+import de.mcterranova.infini.rpg.database.content.DatabaseHelper;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.inventory.CustomGUIClass;
+import de.mcterranova.infini.rpg.world.functionality.inventory.GUITitle;
 import de.mcterranova.infini.rpg.world.functionality.inventory.InventoryWrapper;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemArchive;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,15 +21,15 @@ import java.util.*;
 public class PlayerAccessories extends CustomGUIClass implements CustomSerializable {
 
     private final Inventory inventory;
-    private final String id;
+    private final GUITitle title;
     private final int size;
 
-    public PlayerAccessories(int rows, String id) {
-        super(rows, id);
+    public PlayerAccessories(int rows, GUITitle title) {
+        super(rows, title);
         this.size = Math.min((rows * 9), 54);
-        this.inventory = Bukkit.createInventory(null, size, Component.text(id));
-        this.id = id;
-        this.inventory.setContents(DatabaseHelper.getInventoryTemplate(id).getContents());
+        this.inventory = Bukkit.createInventory(null, size, Component.text(title.display));
+        this.title = title;
+        this.inventory.setContents(DatabaseHelper.getInventoryTemplate(title).getContents());
     }
 
     @Override
@@ -52,7 +51,7 @@ public class PlayerAccessories extends CustomGUIClass implements CustomSerializa
                 contents.put(slot, mask);
             }
         });
-        return this.secretSerialize(new InventoryWrapper(this.id, contents));
+        return this.secretSerialize(new InventoryWrapper(this.title, contents));
     }
 
     @Override
@@ -61,7 +60,7 @@ public class PlayerAccessories extends CustomGUIClass implements CustomSerializa
             Bukkit.getPluginManager().callEvent(new InventoryCloseEvent(player.getOpenInventory()));
             this.unListPlayer(player.getUniqueId());
         }
-        this.listPlayer(player.getUniqueId(), id);
-        player.openInventory(DatabaseHelper));
+        this.listPlayer(player.getUniqueId(), title);
+        player.openInventory(DatabaseHelper.getPlayerInventory(player.getUniqueId()));
     }
 }

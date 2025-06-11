@@ -1,8 +1,8 @@
-package de.mcterranova.infini.rpg.database;
+package de.mcterranova.infini.rpg.database.content;
 
 import de.mcterranova.infini.Infini;
+import de.mcterranova.infini.rpg.database.TableID;
 
-import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

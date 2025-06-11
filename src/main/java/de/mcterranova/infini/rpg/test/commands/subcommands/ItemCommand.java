@@ -1,8 +1,9 @@
 package de.mcterranova.infini.rpg.test.commands.subcommands;
 
 import de.mcterranova.infini.Infini;
-import de.mcterranova.infini.rpg.database.content.templates.DatabaseHelper;
+import de.mcterranova.infini.rpg.database.content.DatabaseHelper;
 import de.mcterranova.infini.rpg.world.functionality.inventory.CustomGUI;
+import de.mcterranova.infini.rpg.world.functionality.inventory.GUITitle;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
@@ -24,7 +25,7 @@ public class ItemCommand {
     public static boolean a(Player p, String[] args) {
         switch (args[1]) {
             case "spawn" -> {
-                DatabaseHelper.saveItemTemplate(new ItemManipulator(Material.GRAY_STAINED_GLASS_PANE, "BLANK_1")
+                DatabaseHelper.saveItemTemplate(new ItemManipulator(Material.BLACK_STAINED_GLASS_PANE, "BLANK_2")
                                 .addData(CustomComponent.DISPLAY_NAME, "NULL")
                                 .addData(CustomComponent.ITEM_TIER, ItemTier.O.name())
                                 .addData(CustomComponent.ITEM_CLASS, ItemClass.GENERIC.name())
@@ -41,7 +42,7 @@ public class ItemCommand {
             }
             case "saveinv" -> {
                 Bukkit.getScheduler().runTaskLater(Infini.getInstance(), test -> {
-                    CustomGUI.PLAYER_MAIN.saveToDatabase(p.getOpenInventory().getTopInventory(), "PLAYER_MAIN");
+                    CustomGUI.PLAYER_MAIN.saveToDatabase(p.getOpenInventory().getTopInventory(), GUITitle.PLAYER_MAIN);
                     p.sendMessage("DONE");
                 }, 40L);
                 p.sendMessage(args[2]);

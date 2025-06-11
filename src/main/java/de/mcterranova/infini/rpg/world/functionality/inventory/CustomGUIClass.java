@@ -1,10 +1,10 @@
 package de.mcterranova.infini.rpg.world.functionality.inventory;
 
 import de.mcterranova.infini.Infini;
-import de.mcterranova.infini.rpg.database.TableHandler;
+import de.mcterranova.infini.rpg.database.content.TableHandler;
 import de.mcterranova.infini.rpg.database.TableID;
 import de.mcterranova.infini.rpg.database.content.customserialization.CustomSerializable;
-import de.mcterranova.infini.rpg.database.content.templates.DatabaseHelper;
+import de.mcterranova.infini.rpg.database.content.DatabaseHelper;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
@@ -22,17 +22,17 @@ import java.util.*;
 
 public abstract class CustomGUIClass implements CustomSerializable{
 
-    private final Map<UUID, String> opened = new HashMap<>();
+    private final Map<UUID, GUITitle> opened = new HashMap<>();
     private final int size;
-    private final String id;
+    private final GUITitle title;
 
-    protected CustomGUIClass(int rows, String id) {
-        this.id = id;
+    protected CustomGUIClass(int rows, GUITitle title) {
+        this.title = title;
         this.size = rows;
     }
 
-    public String getID() {
-        return this.id;
+    public GUITitle getTitle() {
+        return this.title;
     }
 
     protected String secretSerialize(InventoryWrapper wrapper) {
@@ -42,7 +42,7 @@ public abstract class CustomGUIClass implements CustomSerializable{
         return builder.toString();
     }
 
-    public void saveToDatabase(Inventory inventory, String id) {
+    public void saveToDatabase(Inventory inventory, GUITitle title) {
         Map<Integer, ItemMask> contents = new HashMap<>();
         for (int i = 0; i < size; i++) {
             Bukkit.getServer().broadcast(Component.text("CYCLE" + i));
@@ -53,7 +53,7 @@ public abstract class CustomGUIClass implements CustomSerializable{
             }
             contents.put(i, DatabaseHelper.getItemTemplate(NBTUtils.getNBTTag(item, "ID")));
         }
-        TableHandler.insertValue(TableID.INVENTORY_TEMPLATES, id, this.secretSerialize(new InventoryWrapper(id, contents)));
+        TableHandler.insertValue(TableID.INVENTORY_TEMPLATES, title.name(), this.secretSerialize(new InventoryWrapper(title, contents)));
     }
 
     public static Inventory deserialize(String v) {
@@ -107,7 +107,7 @@ public abstract class CustomGUIClass implements CustomSerializable{
 
     public void processClick(InventoryClickEvent event) {}
 
-    protected void listPlayer(UUID uuid, String id) {
+    protected void listPlayer(UUID uuid, GUITitle id) {
         this.opened.put(uuid, id);
     }
 
@@ -117,26 +117,25 @@ public abstract class CustomGUIClass implements CustomSerializable{
         return this.opened.containsKey(uuid);
     }
 
-    public String getOpened(UUID uuid) { return this.opened.get(uuid); }
+    public GUITitle getOpened(UUID uuid) { return this.opened.get(uuid); }
 
-    private static NamespacedKey key(String key ) { return new NamespacedKey( Infini.getInstance(), key ); }
-    private static final HashMap<NamespacedKey, CustomGUIClass> inventories = new HashMap<>();
+    private static final HashMap<GUITitle, CustomGUIClass> inventories = new HashMap<>();
 
-    public static void registerComponent( NamespacedKey id, CustomGUIClass customComponentClass) {
-        if ( !inventories.containsKey( id ) )
+    public static void registerComponent( GUITitle title, CustomGUIClass customComponentClass) {
+        if ( !inventories.containsKey( title ) )
         {
-            inventories.put( id, customComponentClass);
+            inventories.put( title, customComponentClass);
         } else {
             throw new IllegalArgumentException( "Cannot set already-set inventory" );
         }
     }
 
-    public static CustomGUIClass register(String id, CustomGUIClass inventory) {
-        CustomGUIClass.registerComponent( key( id ), inventory);
+    public static CustomGUIClass register(GUITitle title, CustomGUIClass inventory) {
+        CustomGUIClass.registerComponent(title, inventory);
         return inventory;
     }
 
-    public static CustomGUIClass fromID(String id) {
-        return inventories.get(key(id));
+    public static CustomGUIClass fromTitle(GUITitle title) {
+        return inventories.get(title);
     }
 }

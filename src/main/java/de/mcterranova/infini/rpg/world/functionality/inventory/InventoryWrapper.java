@@ -6,4 +6,4 @@ import org.bukkit.inventory.Inventory;
 
 import java.util.Map;
 
-public record InventoryWrapper(String id, Map<Integer, ItemMask> contents) {}
+public record InventoryWrapper(GUITitle id, Map<Integer, ItemMask> contents) {}
