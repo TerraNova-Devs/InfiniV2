@@ -2,11 +2,10 @@ package de.mcterranova.infini.rpg.world.functionality.inventory.under;
 
 import de.mcterranova.infini.rpg.database.TableHandler;
 import de.mcterranova.infini.rpg.database.TableID;
-import de.mcterranova.infini.rpg.database.content.templates.TemplateHelper;
+import de.mcterranova.infini.rpg.database.content.templates.DatabaseHelper;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.inventory.CustomGUIClass;
 import de.mcterranova.infini.rpg.world.functionality.inventory.InventoryWrapper;
-import de.mcterranova.infini.rpg.world.functionality.items.control.ItemArchive;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -29,11 +28,7 @@ public class PlayerMain extends CustomGUIClass implements Listener {
         this.size = Math.min((rows * 9), 54);
         this.inventory = Bukkit.createInventory(null, size, Component.text(id));
         this.id = id;
-        //this.inventory.setContents(prepInventory().getContents());
-    }
-
-    private Inventory prepInventory() {
-        return TemplateHelper.getInventoryTemplate(id);
+        this.inventory.setContents(DatabaseHelper.getInventoryTemplate(id).getContents());
     }
 
     /*
@@ -46,20 +41,6 @@ public class PlayerMain extends CustomGUIClass implements Listener {
      */
 
     @Override
-    public void saveToDatabase(Inventory inventory, String id) {
-        Map<Integer, ItemMask> contents = new HashMap<>();
-        for (int i = 0; i <= size; i++) {
-            ItemStack item = inventory.getItem(i);
-            if (item == null) {
-                contents.put(i, null);
-                continue;
-            }
-            contents.put(i, TemplateHelper.getItemTemplate(NBTUtils.getNBTTag(item, "ID")));
-        }
-        TableHandler.insertValue(TableID.INVENTORY_TEMPLATES, id, this.secretSerialize(new InventoryWrapper(id, contents)));
-    }
-
-    @Override
     public String serialize() {
         Map<Integer, ItemMask> contents = new HashMap<>();
         for (int i = 0; i <= size; i++) {
@@ -68,18 +49,22 @@ public class PlayerMain extends CustomGUIClass implements Listener {
                 contents.put(i, null);
                 continue;
             }
-            contents.put(i, TemplateHelper.getItemTemplate(NBTUtils.getNBTTag(item, "ID")));
+            contents.put(i, DatabaseHelper.getItemTemplate(NBTUtils.getNBTTag(item, "ID")));
         }
         return this.secretSerialize(new InventoryWrapper(this.id, contents));
     }
 
     @Override
     public void open(Player player) {
-        if (this.hasOpened(player)) {
+        UUID uuid = player.getUniqueId();
+        if (this.hasOpened(uuid)) {
             Bukkit.getPluginManager().callEvent(new InventoryCloseEvent(player.getOpenInventory()));
-            this.unListPlayer(player);
+            this.unListPlayer(uuid);
         }
-        this.listPlayer(player, id);
-        player.openInventory(this.copyInventory(this.inventory));
+        this.listPlayer(uuid, id);
+        if (DatabaseHelper.getPlayerInventory(uuid) == null)
+            player.openInventory(this.copyInventory(this.inventory));
+        else
+            player.openInventory(DatabaseHelper.getPlayerInventory(uuid));
     }
 }

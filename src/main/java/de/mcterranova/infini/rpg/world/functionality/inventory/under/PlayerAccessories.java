@@ -1,7 +1,7 @@
 package de.mcterranova.infini.rpg.world.functionality.inventory.under;
 
 import de.mcterranova.infini.rpg.database.content.customserialization.CustomSerializable;
-import de.mcterranova.infini.rpg.database.content.templates.TemplateHelper;
+import de.mcterranova.infini.rpg.database.content.templates.DatabaseHelper;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.inventory.CustomGUIClass;
 import de.mcterranova.infini.rpg.world.functionality.inventory.InventoryWrapper;
@@ -10,7 +10,10 @@ import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -27,16 +30,13 @@ public class PlayerAccessories extends CustomGUIClass implements CustomSerializa
         this.size = Math.min((rows * 9), 54);
         this.inventory = Bukkit.createInventory(null, size, Component.text(id));
         this.id = id;
-        //this.inventory.setContents(TemplateHelper.getInventoryTemplate(id).getContents());
+        this.inventory.setContents(DatabaseHelper.getInventoryTemplate(id).getContents());
     }
 
-    /*
     @Override
     public void processClick(InventoryClickEvent event) {
-        Inventory inventory1 = event.getClickedInventory();
-        NBTUtils.getNBTTag(inventory1.getItem(event.getRawSlot()), );
+
     }
-    */
 
     @Override
     public String serializeContents() {
@@ -48,7 +48,7 @@ public class PlayerAccessories extends CustomGUIClass implements CustomSerializa
                 contents.put(slot, null);
             } else {
                 String uuid = NBTUtils.getNBTTag(item, "UUID");
-                ItemMask mask = uuid != null ? ItemArchive.get().get(UUID.fromString(uuid)) : TemplateHelper.getItemTemplate(NBTUtils.getNBTTag(item, "ID"));
+                ItemMask mask = uuid != null ? ItemArchive.get().get(UUID.fromString(uuid)) : DatabaseHelper.getItemTemplate(NBTUtils.getNBTTag(item, "ID"));
                 contents.put(slot, mask);
             }
         });
@@ -62,6 +62,6 @@ public class PlayerAccessories extends CustomGUIClass implements CustomSerializa
             this.unListPlayer(player.getUniqueId());
         }
         this.listPlayer(player.getUniqueId(), id);
-        player.openInventory(TemplateHelper.getInventoryTemplate());
+        player.openInventory(DatabaseHelper));
     }
 }

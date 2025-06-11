@@ -1,6 +1,6 @@
 package de.mcterranova.infini.rpg.world.functionality.items.control;
 
-import de.mcterranova.infini.rpg.database.content.templates.TemplateHelper;
+import de.mcterranova.infini.rpg.database.content.templates.DatabaseHelper;
 import de.mcterranova.infini.rpg.world.functionality.builder.item.CustomItemBuilder;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
@@ -23,7 +23,7 @@ public class ItemManipulator {
     }
 
     public ItemManipulator(String templateID) {
-        this.itemMask = TemplateHelper.getItemTemplate(templateID);
+        this.itemMask = DatabaseHelper.getItemTemplate(templateID);
     }
 
     public ItemManipulator configureData(CustomComponentClass component, String data) {

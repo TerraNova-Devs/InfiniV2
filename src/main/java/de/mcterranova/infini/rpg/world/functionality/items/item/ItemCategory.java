@@ -7,7 +7,8 @@ public enum ItemCategory {
     WEAPON( "Waffe"),
     ARMOR("Rüstung"),
     QUEST_ITEM( "Quest Item" ),
-    MENU_ITEM("Menü Item");
+    MENU_ITEM("Menü Item"),
+    MENU_ITEM_EMPTY("NULL");
 
     private final String translation;
 

@@ -56,8 +56,9 @@ public class CustomItemBuilder {
 
     public ItemStack build()
     {
-        if (mask.data.get(CustomComponent.ITEM_CATEGORY).contains("MENU_ITEM"))
-            return NMSHelper.getEmptyItem(this.material);
+        if (mask.data.get(CustomComponent.ITEM_CATEGORY).equals("MENU_ITEM_EMPTY")) {
+            return NMSHelper.getEmptyItem(this.material, mask.data.get(CustomComponent.ID));
+        }
 
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
@@ -72,6 +73,7 @@ public class CustomItemBuilder {
             meta = NBTUtils.addNBTTag(meta, "UUID", mask.getUUID().toString());
             archive.update(mask);
         }
+        meta = NBTUtils.addNBTTag(meta, "ID", mask.data.get(CustomComponent.ID));
         meta.addAttributeModifier(Attribute.ATTACK_DAMAGE, new AttributeModifier(attributeKey, 0d, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HAND));
         meta.addAttributeModifier(Attribute.ATTACK_SPEED, new AttributeModifier(attributeKey, 100d, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HAND));
         meta.addItemFlags( ItemFlag.HIDE_ENCHANTS );

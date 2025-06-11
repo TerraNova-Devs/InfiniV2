@@ -4,20 +4,20 @@ import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.database.TableHandler;
 import de.mcterranova.infini.rpg.database.TableID;
 import de.mcterranova.infini.rpg.database.content.customserialization.CustomSerializable;
-import de.mcterranova.infini.rpg.database.content.templates.TemplateHelper;
+import de.mcterranova.infini.rpg.database.content.templates.DatabaseHelper;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
-import javax.swing.text.StyledEditorKit;
 import java.util.*;
 
 public abstract class CustomGUIClass implements CustomSerializable{
@@ -37,23 +37,43 @@ public abstract class CustomGUIClass implements CustomSerializable{
 
     protected String secretSerialize(InventoryWrapper wrapper) {
         StringBuilder builder = new StringBuilder();
-        builder.append(wrapper.contents().size()).append("%").append(wrapper.id()).append("%");
-        wrapper.contents().keySet().forEach(pos -> {
-            builder.append(pos).append(",").append(wrapper.contents().get(pos)).append("$");
-        });
+        builder.append(wrapper.contents().size()).append("@").append(wrapper.id()).append("@");
+        wrapper.contents().keySet().forEach(pos -> builder.append(pos).append(",").append(wrapper.contents().get(pos).serialize()).append("&"));
         return builder.toString();
     }
 
     public void saveToDatabase(Inventory inventory, String id) {
+        Map<Integer, ItemMask> contents = new HashMap<>();
+        for (int i = 0; i < size; i++) {
+            Bukkit.getServer().broadcast(Component.text("CYCLE" + i));
+            ItemStack item = inventory.getItem(i);
+            if (item == null) {
+                contents.put(i, null);
+                continue;
+            }
+            contents.put(i, DatabaseHelper.getItemTemplate(NBTUtils.getNBTTag(item, "ID")));
+        }
+        TableHandler.insertValue(TableID.INVENTORY_TEMPLATES, id, this.secretSerialize(new InventoryWrapper(id, contents)));
     }
 
     public static Inventory deserialize(String v) {
-        String[] split = v.split("%");
+        if (v.equals("NULL"))
+            return null;
+        String[] split = v.split("@");
         Inventory temp = Bukkit.createInventory(null, Integer.parseInt(split[0]), Component.text(split[1]));
-        List<ItemMask> contents;
-        Arrays.stream(split[2].split("\\$")).forEach(string -> {
+        Map<Integer, ItemMask> contents = new HashMap<>();
+        Arrays.stream(split[2].split("&")).forEach(string -> {
+            String[] split1 = string.split(",");
+            contents.put(Integer.parseInt(split1[0]), ItemMask.deserialize(split1[1]));
         });
-        return null;
+        contents.keySet().forEach(key -> {
+            if (contents.get(key) == null) {
+                temp.setItem(key, new ItemStack(Material.AIR));
+            } else {
+                temp.setItem(key, new ItemManipulator(contents.get(key)).manifest(true, false, (short)1, false));
+            }
+        });
+        return temp;
     }
 
     public String serialize() {

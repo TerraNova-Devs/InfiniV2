@@ -12,7 +12,9 @@ public class NBTUtils {
     private static NamespacedKey key(String key) { return new NamespacedKey(Infini.getInstance(), key); }
 
     public static ItemStack addNBTTag(ItemStack itemStack, String key, String value) {
-        itemStack.getItemMeta().getPersistentDataContainer().set(key(key), PersistentDataType.STRING, value);
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.getPersistentDataContainer().set(key(key), PersistentDataType.STRING, value);
+        itemStack.setItemMeta(meta);
         return itemStack;
     }
 
@@ -20,7 +22,6 @@ public class NBTUtils {
         itemMeta.getPersistentDataContainer().set(key(key), PersistentDataType.STRING, value);
         return itemMeta;
     }
-
 
     public static String getNBTTag(ItemStack item, String key) {
         return item.getItemMeta().getPersistentDataContainer().get(key(key), PersistentDataType.STRING);

@@ -2,6 +2,7 @@ package de.mcterranova.infini.rpg.world.functionality.items.components.comps.adv
 
 import de.mcterranova.infini.rpg.world.functionality.items.components.ComponentType;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
+import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
@@ -15,7 +16,7 @@ public class AdvancedAttackComponentClass extends CustomComponentClass {
     }
 
     @Override
-    public void run(UUID uuid) {
+    public void run() {
         //first strike or sth
     }
 

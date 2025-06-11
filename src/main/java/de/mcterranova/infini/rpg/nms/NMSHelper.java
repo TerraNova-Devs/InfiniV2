@@ -1,5 +1,7 @@
 package de.mcterranova.infini.rpg.nms;
 
+import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import io.papermc.paper.util.ItemComponentSanitizer;
 import net.minecraft.core.component.DataComponentHolder;
 import net.minecraft.core.component.DataComponents;
@@ -10,14 +12,15 @@ import org.bukkit.inventory.ItemStack;
 
 public class NMSHelper {
 
-    public static ItemStack getEmptyItem(Material material) {
+    public static ItemStack getEmptyItem(Material material, String id) {
         // Convert to NMS
         var nmsItem = CraftItemStack.asNMSCopy(new ItemStack(material));
         nmsItem.set(DataComponents.HIDE_ADDITIONAL_TOOLTIP, Unit.INSTANCE);
         nmsItem.set(DataComponents.HIDE_TOOLTIP, Unit.INSTANCE);
         nmsItem.remove(DataComponents.ITEM_NAME);
         nmsItem.remove(DataComponents.CUSTOM_NAME);
-        // Convert back to Bukkit
-        return CraftItemStack.asBukkitCopy(nmsItem);
+        ItemStack itemStack = CraftItemStack.asBukkitCopy(nmsItem);
+        itemStack = NBTUtils.addNBTTag(itemStack, "ID", id);
+        return itemStack;
     }
 }
