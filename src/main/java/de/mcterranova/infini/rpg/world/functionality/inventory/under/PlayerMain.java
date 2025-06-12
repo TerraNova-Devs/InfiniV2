@@ -2,6 +2,7 @@ package de.mcterranova.infini.rpg.world.functionality.inventory.under;
 
 import de.mcterranova.infini.rpg.database.content.DatabaseHelper;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.world.functionality.builder.item.CustomItemBuilder;
 import de.mcterranova.infini.rpg.world.functionality.inventory.CustomGUIClass;
 import de.mcterranova.infini.rpg.world.functionality.inventory.GUITitle;
 import de.mcterranova.infini.rpg.world.functionality.inventory.InventoryWrapper;
@@ -30,15 +31,6 @@ public class PlayerMain extends CustomGUIClass implements Listener {
         this.inventory.setContents(DatabaseHelper.getInventoryTemplate(title).getContents());
     }
 
-    /*
-    @Override
-    public void processClick(InventoryClickEvent event) {
-        Inventory inventory1 = event.getClickedInventory();
-        NBTUtils.getNBTTag(inventory1.getItem(event.getRawSlot()), );
-    }
-
-     */
-
     @Override
     public String serialize() {
         Map<Integer, ItemMask> contents = new HashMap<>();
@@ -53,17 +45,28 @@ public class PlayerMain extends CustomGUIClass implements Listener {
         return this.secretSerialize(new InventoryWrapper(this.title, contents));
     }
 
+    private Inventory prepareInventory(Player player) {
+        Inventory inventory1 = DatabaseHelper.getInventoryTemplate(title);
+        inventory1.setItem(13, CustomItemBuilder.getPlayerHead(player));
+        return inventory1;
+    }
+
     @Override
     public void open(Player player) {
+        UUID uuid = player.getUniqueId();
+        if (this.hasOpened(uuid)) {
+            close(player);
+        }
+        this.listPlayer(uuid, title);
+        player.openInventory(prepareInventory(player));
+    }
+
+    @Override
+    public void close(Player player) {
         UUID uuid = player.getUniqueId();
         if (this.hasOpened(uuid)) {
             Bukkit.getPluginManager().callEvent(new InventoryCloseEvent(player.getOpenInventory()));
             this.unListPlayer(uuid);
         }
-        this.listPlayer(uuid, title);
-        if (DatabaseHelper.getPlayerInventory(uuid) == null)
-            player.openInventory(this.copyInventory(this.inventory));
-        else
-            player.openInventory(DatabaseHelper.getPlayerInventory(uuid));
     }
 }

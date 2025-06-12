@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `inventory_templates` (
   COLLATE=utf8_unicode_ci;
 --
 CREATE TABLE IF NOT EXISTS `player_inventories` (
-    `UUID` varchar(36) NOT NULL,
+    `UUID` varchar(64) NOT NULL,
     `contents` BLOB NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`UUID`)
 ) DEFAULT CHARSET=utf8
   COLLATE=utf8_unicode_ci;
 

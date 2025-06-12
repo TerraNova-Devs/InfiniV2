@@ -2,7 +2,7 @@ package de.mcterranova.infini.rpg.world.functionality.items.components;
 
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.world.entities.Element;
-import de.mcterranova.infini.rpg.world.functionality.items.components.comps.RunAction;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.ClickAction;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.EnchantmentCategory;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneType;
 import org.bukkit.NamespacedKey;
@@ -46,7 +46,7 @@ public abstract class CustomComponentClass {
 
     public void run() {}
 
-    public RunAction getAction() { return RunAction.NONE; }
+    public ClickAction getAction() { return ClickAction.NONE; }
 
     public int getMinLevel() { return 1; }
 

@@ -34,6 +34,13 @@ public class Infini extends JavaPlugin {
 
         initDatabase();
 
+        try {
+            Class.forName("de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent");
+        } catch (ClassNotFoundException e) {
+            getLogger().severe("Failed to initiate the Component Library");
+            e.printStackTrace();
+        }
+
         System.setProperty("de.tr7zw.nbtapi.fallback", "true");
         //register listeners
         Bukkit.getPluginManager().registerEvents( new EntityKill(), this );

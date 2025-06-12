@@ -1,11 +1,13 @@
 package de.mcterranova.infini.rpg.database.content;
 
 import de.mcterranova.infini.rpg.database.TableID;
+import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.inventory.CustomGUIClass;
 import de.mcterranova.infini.rpg.world.functionality.inventory.GUITitle;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
@@ -27,7 +29,19 @@ public class DatabaseHelper {
         return CustomGUIClass.deserialize(TableHandler.selectValue(TableID.ITEM_TEMPLATES, title.name()));
     }
 
-    public static Inventory getPlayerInventory(UUID uuid) {
-        return CustomGUIClass.deserialize(TableHandler.selectValue(TableID.PLAYER_INVENTORIES, uuid));
+    public static Inventory getPlayerInventory(GUITitle title, UUID uuid) {
+        return CustomGUIClass.deserialize(TableHandler.selectValue(TableID.PLAYER_INVENTORIES, title.name() + uuid.toString()));
+    }
+
+    public static void savePlayerInventory(CustomGUIClass inventory, UUID uuid) {
+        TableHandler.insertValue(TableID.PLAYER_INVENTORIES, inventory.getTitle().name() + uuid.toString(), inventory.serialize());
+    }
+
+    public static ItemMask getSavedItemOrTemplate(ItemStack itemStack) {
+        String tag = NBTUtils.getNBTTag(itemStack, "UUID");
+        if (tag != null) {
+            return ItemMask.deserialize(TableHandler.selectValue(TableID.ITEMS, tag));
+        }
+        return ItemMask.deserialize(TableHandler.selectValue(TableID.ITEM_TEMPLATES, NBTUtils.getNBTTag(itemStack, "ID")));
     }
 }

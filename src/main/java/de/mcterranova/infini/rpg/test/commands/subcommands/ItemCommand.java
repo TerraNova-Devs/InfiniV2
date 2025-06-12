@@ -2,6 +2,7 @@ package de.mcterranova.infini.rpg.test.commands.subcommands;
 
 import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.database.content.DatabaseHelper;
+import de.mcterranova.infini.rpg.nms.NMSHelper;
 import de.mcterranova.infini.rpg.world.functionality.inventory.CustomGUI;
 import de.mcterranova.infini.rpg.world.functionality.inventory.GUITitle;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
@@ -54,7 +55,6 @@ public class ItemCommand {
                 return true;
             }
             case "convert" -> {
-                CustomGUI.PLAYER_MAIN.open(p);
                 p.sendMessage(args[2]);
                 return true;
             }

@@ -6,10 +6,13 @@ import de.mcterranova.infini.rpg.utils.NBTUtils;
 import de.mcterranova.infini.rpg.world.functionality.inventory.CustomGUIClass;
 import de.mcterranova.infini.rpg.world.functionality.inventory.GUITitle;
 import de.mcterranova.infini.rpg.world.functionality.inventory.InventoryWrapper;
+import de.mcterranova.infini.rpg.utils.LoadingStage;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.ClickAction;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemArchive;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -29,12 +32,39 @@ public class PlayerAccessories extends CustomGUIClass implements CustomSerializa
         this.size = Math.min((rows * 9), 54);
         this.inventory = Bukkit.createInventory(null, size, Component.text(title.display));
         this.title = title;
-        this.inventory.setContents(DatabaseHelper.getInventoryTemplate(title).getContents());
     }
 
     @Override
     public void processClick(InventoryClickEvent event) {
+        event.setCancelled(true);
+        Inventory inv = event.getClickedInventory();
+        if (inv == null)
+            return;
+        Player player = (Player) event.getWhoClicked();
+        ItemStack item = event.getCurrentItem();
+        ItemMask mask = DatabaseHelper.getSavedItemOrTemplate(item);
+        switch (this.getAction(mask)) {
+            case ClickAction.NONE -> {}
+            case ClickAction.INVENTORY_CLOSE -> close(player);
+            case ClickAction.INVENTORY_REPLACE_ITSELF -> {
+                int slot = event.getRawSlot();
+                Inventory inv1 = prepareInventory(player, LoadingStage.I);
+                ItemStack itemStack = inv1.getItem(slot);
+                inv.setItem(slot, itemStack);
+            }
+            case ClickAction.INVENTORY_LINK -> {}
+        }
+    }
 
+    private Inventory prepareInventory(Player player, LoadingStage stage) {
+        Inventory inv = DatabaseHelper.getInventoryTemplate(title);
+        if (stage.equals(LoadingStage.O))
+            return inv;
+        inv.setItem(13, new ItemStack(Material.POTATO));
+        if (stage.equals(LoadingStage.I))
+            return inv;
+        inv.setItem(15, new ItemStack(Material.IRON_AXE));
+        return inv;
     }
 
     @Override
@@ -56,11 +86,18 @@ public class PlayerAccessories extends CustomGUIClass implements CustomSerializa
 
     @Override
     public void open(Player player) {
-        if (this.hasOpened(player.getUniqueId())) {
-            Bukkit.getPluginManager().callEvent(new InventoryCloseEvent(player.getOpenInventory()));
-            this.unListPlayer(player.getUniqueId());
+        UUID uuid = player.getUniqueId();
+        if (this.hasOpened(uuid)) {
+            close(player);
         }
-        this.listPlayer(player.getUniqueId(), title);
-        player.openInventory(DatabaseHelper.getPlayerInventory(player.getUniqueId()));
+        this.listPlayer(uuid, title);
+        player.openInventory(prepareInventory(player, LoadingStage.FINAL));
+    }
+
+    @Override
+    public void close(Player player) {
+        UUID uuid = player.getUniqueId();
+        this.unListPlayer(uuid);
+        Bukkit.getPluginManager().callEvent(new InventoryCloseEvent(player.getOpenInventory()));
     }
 }

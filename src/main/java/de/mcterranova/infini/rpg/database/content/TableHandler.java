@@ -132,7 +132,6 @@ public class TableHandler {
         try (Connection conn = Infini.hikari.dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, uuid.toString());  // Set the UUID for the WHERE clause
-
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     contents = rs.getString("contents");  // Get the contents from the result set

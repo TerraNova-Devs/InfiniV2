@@ -1,7 +1,7 @@
 package de.mcterranova.infini.rpg.world.functionality.items.components;
 
 import de.mcterranova.infini.rpg.world.entities.Element;
-import de.mcterranova.infini.rpg.world.functionality.items.components.comps.RunAction;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.ClickAction;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.AdvancedAttributeComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.enchantments.AdvancedDamageComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneComponentClass;
@@ -33,6 +33,9 @@ public class CustomComponent {
     public static final CustomComponentClass DISPLAY_NAME;
     public static final CustomComponentClass INVENTORY_LINK;
     public static final CustomComponentClass INVENTORY_CLOSE;
+    public static final CustomComponentClass INVENTORY_REPLACE_ITSELF;
+    public static final CustomComponentClass STATIC;
+    public static final CustomComponentClass INVENTORY_REVERT_TO_DEFAULT;
 
     public static final CustomComponentClass ADVANCED_DAMAGE_ARACHNID;
     public static final CustomComponentClass ADVANCED_DAMAGE_CUBOID;
@@ -63,8 +66,11 @@ public class CustomComponent {
         ITEM_CATEGORY = CustomComponentClass.register("ITEM_CATEGORY", new StorageComponentClass("BAI", "ITEM_CATEGORY"));
         MATERIAL = CustomComponentClass.register("MATERIAL", new StorageComponentClass("BAJ", "MATERIAL"));
         DISPLAY_NAME = CustomComponentClass.register("DISPLAY_NAME", new StorageComponentClass("BAK", "DISPLAY_NAME"));
-        INVENTORY_LINK = CustomComponentClass.register("INVENTORY_LINK", new InventoryClickReaction("BAL", RunAction.INVENTORY_LINK));
-        INVENTORY_CLOSE = CustomComponentClass.register("INVENTORY_CLOSE", new InventoryClickReaction("BAM", RunAction.INVENTORY_CLOSE));
+        INVENTORY_LINK = CustomComponentClass.register("INVENTORY_LINK", new InventoryClickReaction("BAL", ClickAction.INVENTORY_LINK));
+        INVENTORY_CLOSE = CustomComponentClass.register("INVENTORY_CLOSE", new InventoryClickReaction("BAM", ClickAction.INVENTORY_CLOSE));
+        INVENTORY_REPLACE_ITSELF = CustomComponentClass.register("INVENTORY_REPLACE_ITSELF", new InventoryClickReaction("BAN", ClickAction.INVENTORY_REPLACE_ITSELF));
+        STATIC = CustomComponentClass.register("STATIC", new StorageComponentClass("BAO", "true"));
+        INVENTORY_REVERT_TO_DEFAULT = CustomComponentClass.register("INVENTORY_REVERT_TO_DEFAULT", new InventoryClickReaction("BAP", ClickAction.INVENTORY_REVERT_TO_DEFAULT));
 
         ADVANCED_DAMAGE_ARACHNID = CustomComponentClass.register("ADVANCED_DAMAGE_ARACHNID", new AdvancedDamageComponentClass("CAA", Element.ARACHNID, EnchantmentCategory.WEAPON));
         ADVANCED_DAMAGE_CUBOID = CustomComponentClass.register("ADVANCED_DAMAGE_CUBOID", new AdvancedDamageComponentClass("CAB", Element.CUBOID, EnchantmentCategory.WEAPON) );

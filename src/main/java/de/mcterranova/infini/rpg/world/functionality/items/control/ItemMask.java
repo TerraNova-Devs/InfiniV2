@@ -48,6 +48,7 @@ public class ItemMask implements CustomSerializable {
                     break;
                 case "B":
                     String[] split3 = v2.split(",");
+                    System.out.println("[DESERIALIZE DEBUG] Key raw: " + split3[0] + " => Parsed: " + CustomComponentClass.deSerialize(split3[0]));
                     b.put(CustomComponentClass.deSerialize(split3[0]), split3[1]);
                     break;
                 case "D":

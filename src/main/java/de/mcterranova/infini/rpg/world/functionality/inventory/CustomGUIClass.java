@@ -1,17 +1,18 @@
 package de.mcterranova.infini.rpg.world.functionality.inventory;
 
-import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.database.content.TableHandler;
 import de.mcterranova.infini.rpg.database.TableID;
 import de.mcterranova.infini.rpg.database.content.customserialization.CustomSerializable;
 import de.mcterranova.infini.rpg.database.content.DatabaseHelper;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
+import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
+import de.mcterranova.infini.rpg.world.functionality.items.components.comps.ClickAction;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulator;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -33,6 +34,16 @@ public abstract class CustomGUIClass implements CustomSerializable{
 
     public GUITitle getTitle() {
         return this.title;
+    }
+
+    protected boolean isStatic(ItemMask mask) {
+        return mask.data.get(CustomComponent.STATIC) != null;
+    }
+
+    protected ClickAction getAction(ItemMask mask) {
+        if (mask.data.keySet().stream().anyMatch(comp -> comp.getAction() != null))
+            return mask.data.keySet().stream().filter(comp -> comp.getAction() != null).findFirst().get().getAction();
+        return ClickAction.NONE;
     }
 
     protected String secretSerialize(InventoryWrapper wrapper) {
@@ -93,9 +104,10 @@ public abstract class CustomGUIClass implements CustomSerializable{
     }
 
     public void close(Player player) {
-        if (this.opened.containsKey(player.getUniqueId())) {
+        UUID uuid = player.getUniqueId();
+        if (this.opened.containsKey(uuid)) {
             Bukkit.getPluginManager().callEvent(new InventoryCloseEvent(player.getOpenInventory()));
-            this.opened.remove(player.getUniqueId());
+            this.opened.remove(uuid);
         }
     }
 
