@@ -41,9 +41,7 @@ public abstract class CustomGUIClass implements CustomSerializable{
     }
 
     protected ClickAction getAction(ItemMask mask) {
-        if (mask.data.keySet().stream().anyMatch(comp -> comp.getAction() != null))
-            return mask.data.keySet().stream().filter(comp -> comp.getAction() != null).findFirst().get().getAction();
-        return ClickAction.NONE;
+        return mask.data.keySet().stream().filter(comp -> comp.getAction() != ClickAction.NONE).findFirst().get().getAction();
     }
 
     protected String secretSerialize(InventoryWrapper wrapper) {
@@ -56,7 +54,6 @@ public abstract class CustomGUIClass implements CustomSerializable{
     public void saveToDatabase(Inventory inventory, GUITitle title) {
         Map<Integer, ItemMask> contents = new HashMap<>();
         for (int i = 0; i < size; i++) {
-            Bukkit.getServer().broadcast(Component.text("CYCLE" + i));
             ItemStack item = inventory.getItem(i);
             if (item == null) {
                 contents.put(i, null);
@@ -69,7 +66,7 @@ public abstract class CustomGUIClass implements CustomSerializable{
 
     public static Inventory deserialize(String v) {
         if (v.equals("NULL"))
-            return null;
+            return Bukkit.createInventory(null, 54, Component.text("NO INV FOUND"));
         String[] split = v.split("@");
         Inventory temp = Bukkit.createInventory(null, Integer.parseInt(split[0]), Component.text(split[1]));
         Map<Integer, ItemMask> contents = new HashMap<>();
@@ -81,7 +78,7 @@ public abstract class CustomGUIClass implements CustomSerializable{
             if (contents.get(key) == null) {
                 temp.setItem(key, new ItemStack(Material.AIR));
             } else {
-                temp.setItem(key, new ItemManipulator(contents.get(key)).manifest(true, false, (short)1, false));
+                temp.setItem(key, new ItemManipulator(contents.get(key)).manifest(true, false, 1, false));
             }
         });
         return temp;

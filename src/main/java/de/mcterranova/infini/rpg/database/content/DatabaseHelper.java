@@ -21,6 +21,14 @@ public class DatabaseHelper {
         return ItemMask.deserialize(TableHandler.selectValue(TableID.ITEM_TEMPLATES, id));
     }
 
+    public static void saveInventoryItemTemplate(ItemMask itemMask) {
+        TableHandler.insertValue(TableID.INVENTORY_ITEM_TEMPLATES, itemMask.data.get(CustomComponent.ID), itemMask.serialize());
+    }
+
+    public static ItemMask getInventoryItemTemplate(String id) {
+        return ItemMask.deserialize(TableHandler.selectValue(TableID.INVENTORY_ITEM_TEMPLATES, id));
+    }
+
     public static void saveInventoryTemplate(CustomGUIClass inventory) {
         TableHandler.insertValue(TableID.INVENTORY_TEMPLATES, inventory.getTitle().display, inventory.serialize());
     }

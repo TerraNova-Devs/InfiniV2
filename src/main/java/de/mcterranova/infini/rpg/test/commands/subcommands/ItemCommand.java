@@ -10,6 +10,7 @@ import de.mcterranova.infini.rpg.world.functionality.items.control.ItemManipulat
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemCategory;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemClass;
 import de.mcterranova.infini.rpg.world.functionality.items.item.ItemTier;
+import de.mcterranova.infini.rpg.world.functionality.items.item.ItemType;
 import de.mcterranova.terranovaLib.commands.CommandAnnotation;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -26,18 +27,22 @@ public class ItemCommand {
     public static boolean a(Player p, String[] args) {
         switch (args[1]) {
             case "spawn" -> {
-                DatabaseHelper.saveItemTemplate(new ItemManipulator(Material.BLACK_STAINED_GLASS_PANE, "BLANK_2")
-                                .addData(CustomComponent.DISPLAY_NAME, "NULL")
-                                .addData(CustomComponent.ITEM_TIER, ItemTier.O.name())
-                                .addData(CustomComponent.ITEM_CLASS, ItemClass.GENERIC.name())
-                                .addData(CustomComponent.ITEM_CATEGORY, ItemCategory.MENU_ITEM_EMPTY.name())
-                                .addData(CustomComponent.INVENTORY_LINK, "PLAYER_ACCESSORIES")
+                DatabaseHelper.saveInventoryItemTemplate(new ItemManipulator(Material.ARROW, "BACK_ARROW")
+                        .addData(CustomComponent.ITEM_CATEGORY, ItemCategory.MENU_ITEM.name())
+                        .getItemMask());
+                DatabaseHelper.saveInventoryItemTemplate(new ItemManipulator(Material.BARRIER, "CLOSE")
+                        .addData(CustomComponent.ITEM_CATEGORY, ItemCategory.MENU_ITEM.name())
+                        .addData(CustomComponent.INVENTORY_CLOSE, "null")
+                        .getItemMask());
+                DatabaseHelper.saveInventoryItemTemplate(new ItemManipulator(Material.BARRIER, "CLOSE")
+                        .addData(CustomComponent.ITEM_CATEGORY, ItemCategory.MENU_ITEM.name())
+                        .addData(CustomComponent.INVENTORY_CLOSE, "null")
                         .getItemMask());
                 p.sendMessage(args[2]);
                 return true;
             }
             case "load" -> {
-                p.getInventory().addItem(new ItemManipulator(DatabaseHelper.getItemTemplate(args[2])).manifest(true, false, (short) 1, true));
+                p.getInventory().addItem(new ItemManipulator(DatabaseHelper.getItemTemplate(args[2])).manifest(true, false, 1, true));
                 p.sendMessage("abc");
                 return true;
             }

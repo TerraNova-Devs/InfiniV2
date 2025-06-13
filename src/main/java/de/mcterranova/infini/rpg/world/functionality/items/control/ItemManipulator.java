@@ -1,7 +1,6 @@
 package de.mcterranova.infini.rpg.world.functionality.items.control;
 
 import de.mcterranova.infini.rpg.database.content.DatabaseHelper;
-import de.mcterranova.infini.rpg.world.functionality.builder.item.CustomItemBuilder;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneWrapper;
@@ -71,8 +70,8 @@ public class ItemManipulator {
         return this;
     }
 
-    public ItemStack manifest(boolean attributes, boolean glow, short amount, boolean newUUID) {
-        return new CustomItemBuilder(itemMask).itemGlow(glow).addAttributes(attributes).setAmount(amount).newUUID(newUUID).build();
+    public ItemStack manifest(boolean attributes, boolean glow, int amount, boolean newUUID) {
+        return itemMask.build(attributes, glow, (short)amount, newUUID);
     }
 
     public ItemMask getItemMask() {

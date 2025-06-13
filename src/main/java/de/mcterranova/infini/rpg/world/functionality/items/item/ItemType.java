@@ -16,7 +16,12 @@ public enum ItemType
     SHIELD("Schild" ),
     WAR_AXE("Streitaxt" ),
     MACE("Streitkolben" ),
-    QUEST_ITEM( "Quest Item" );
+    QUEST_ITEM( "Quest Item" ),
+    NECKLACE( "Halskette" ),
+    BELT( "Gürtel" ),
+    RING( "Ring" ),
+    BRACELET( "Armreif" ),
+    THIGH_CHAIN("Beinschmuck");
 
     private final String translation;
 

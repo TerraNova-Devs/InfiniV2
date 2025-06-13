@@ -1,12 +1,27 @@
 package de.mcterranova.infini.rpg.world.functionality.items.control;
 
+import de.mcterranova.infini.Infini;
 import de.mcterranova.infini.rpg.database.content.customserialization.CustomSerializable;
+import de.mcterranova.infini.rpg.nms.NMSHelper;
+import de.mcterranova.infini.rpg.utils.NBTUtils;
+import de.mcterranova.infini.rpg.world.functionality.builder.item.LoreBuilder;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponent;
 import de.mcterranova.infini.rpg.world.functionality.items.components.CustomComponentClass;
 import de.mcterranova.infini.rpg.world.functionality.items.components.comps.advanced.runes.RuneWrapper;
+import de.mcterranova.infini.rpg.world.functionality.items.item.ItemTier;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlotGroup;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
-import javax.management.monitor.StringMonitor;
 import java.util.*;
 
 public class ItemMask implements CustomSerializable {
@@ -48,7 +63,6 @@ public class ItemMask implements CustomSerializable {
                     break;
                 case "B":
                     String[] split3 = v2.split(",");
-                    System.out.println("[DESERIALIZE DEBUG] Key raw: " + split3[0] + " => Parsed: " + CustomComponentClass.deSerialize(split3[0]));
                     b.put(CustomComponentClass.deSerialize(split3[0]), split3[1]);
                     break;
                 case "D":
@@ -62,4 +76,87 @@ public class ItemMask implements CustomSerializable {
         result.runes.addAll(c);
         return result;
     }
+
+    public ItemStack build(boolean attributes, boolean glow, int amount, boolean newUUID) {
+        return new MaskBuilder(this).itemGlow(glow).addAttributes(attributes).setAmount((short)amount).newUUID(newUUID).build();
+    }
+
+    public static ItemStack getPlayerHead(Player player) {
+        ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+        SkullMeta meta = (SkullMeta) head.getItemMeta();
+        meta.setOwningPlayer(player);
+        head.setItemMeta(meta);
+        return head;
+    }
+
+    private class MaskBuilder {
+        private final Material material;
+        private boolean newUUID;
+        private short amount;
+        private boolean glowing = false;
+        private final NamespacedKey attributeKey = new NamespacedKey(Infini.getInstance(), "attributemodifier");
+        private final ItemMask mask;
+        private boolean addAttributes = false;
+        private final ItemArchive archive = ItemArchive.get();
+
+        public MaskBuilder(ItemMask itemMask) {
+            this.material = Material.valueOf(itemMask.data.get(CustomComponent.MATERIAL));
+            this.mask = itemMask;
+        }
+
+        public MaskBuilder addAttributes(boolean v) {
+            this.addAttributes = v;
+            return this;
+        }
+
+        public MaskBuilder setAmount(short amount) {
+            this.amount = amount;
+            return this;
+        }
+
+        public MaskBuilder newUUID(boolean v) {
+            this.newUUID = v;
+            return this;
+        }
+
+        public MaskBuilder itemGlow(boolean v) {
+            this.glowing = v;
+            return this;
+        }
+
+        public ItemStack build()
+        {
+            if (mask.data.get(CustomComponent.ITEM_CATEGORY).equals("MENU_ITEM_EMPTY")) {
+                return NMSHelper.getEmptyItem(this.material, mask.data.get(CustomComponent.ID));
+            }
+
+
+            ItemStack item = new ItemStack(material);
+            ItemMeta meta = item.getItemMeta();
+
+            meta.displayName(Component.text(ItemTier.valueOf(mask.data.get(CustomComponent.ITEM_TIER)).getColor() + mask.data.get(CustomComponent.DISPLAY_NAME)));
+
+            if (glowing)
+                meta.addEnchant(Enchantment.AQUA_AFFINITY, 1, false);
+            if (!mask.data.get(CustomComponent.ITEM_CATEGORY).contains("MATERIAL")) {
+                if (newUUID)
+                    mask.newUUID();
+                meta = NBTUtils.addNBTTag(meta, "UUID", mask.getUUID().toString());
+                archive.update(mask);
+            }
+            meta = NBTUtils.addNBTTag(meta, "ID", mask.data.get(CustomComponent.ID));
+            meta.addAttributeModifier(Attribute.ATTACK_DAMAGE, new AttributeModifier(attributeKey, 0d, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HAND));
+            meta.addAttributeModifier(Attribute.ATTACK_SPEED, new AttributeModifier(attributeKey, 100d, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HAND));
+            meta.addItemFlags( ItemFlag.HIDE_ENCHANTS );
+            meta.addItemFlags( ItemFlag.HIDE_ATTRIBUTES );
+            meta.addItemFlags( ItemFlag.HIDE_ARMOR_TRIM );
+            meta.addItemFlags( ItemFlag.HIDE_ADDITIONAL_TOOLTIP );
+            meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+            meta.lore(new LoreBuilder(mask, addAttributes).build(36));
+            item.setItemMeta(meta);
+            item.setAmount(amount);
+            return item;
+        }
+    }
+
 }

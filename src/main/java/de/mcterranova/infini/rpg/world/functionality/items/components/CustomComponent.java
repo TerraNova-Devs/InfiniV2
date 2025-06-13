@@ -28,6 +28,7 @@ public class CustomComponent {
     public static final CustomComponentClass RUNE_SLOTS;
     public static final CustomComponentClass ITEM_CLASS;
     public static final CustomComponentClass ITEM_TIER;
+    public static final CustomComponentClass ITEM_TYPE;
     public static final CustomComponentClass ITEM_CATEGORY;
     public static final CustomComponentClass MATERIAL;
     public static final CustomComponentClass DISPLAY_NAME;
@@ -36,6 +37,7 @@ public class CustomComponent {
     public static final CustomComponentClass INVENTORY_REPLACE_ITSELF;
     public static final CustomComponentClass STATIC;
     public static final CustomComponentClass INVENTORY_REVERT_TO_DEFAULT;
+    public static final CustomComponentClass INVENTORY_REPLACEABLE_BY;
 
     public static final CustomComponentClass ADVANCED_DAMAGE_ARACHNID;
     public static final CustomComponentClass ADVANCED_DAMAGE_CUBOID;
@@ -63,6 +65,7 @@ public class CustomComponent {
         RUNE_SLOTS = CustomComponentClass.register("RUNE_SLOTS", new StorageComponentClass("BAE", "RUNE_SLOTS"));
         ITEM_CLASS = CustomComponentClass.register("ITEM_CLASS", new StorageComponentClass("BAF", "ITEM_CLASS"));
         ITEM_TIER = CustomComponentClass.register("ITEM_TIER", new StorageComponentClass("BAG", "ITEM_TIER"));
+        ITEM_TYPE = CustomComponentClass.register("ITEM_TYPE", new StorageComponentClass("BAH", "ITEM_TYPE"));
         ITEM_CATEGORY = CustomComponentClass.register("ITEM_CATEGORY", new StorageComponentClass("BAI", "ITEM_CATEGORY"));
         MATERIAL = CustomComponentClass.register("MATERIAL", new StorageComponentClass("BAJ", "MATERIAL"));
         DISPLAY_NAME = CustomComponentClass.register("DISPLAY_NAME", new StorageComponentClass("BAK", "DISPLAY_NAME"));
@@ -71,6 +74,7 @@ public class CustomComponent {
         INVENTORY_REPLACE_ITSELF = CustomComponentClass.register("INVENTORY_REPLACE_ITSELF", new InventoryClickReaction("BAN", ClickAction.INVENTORY_REPLACE_ITSELF));
         STATIC = CustomComponentClass.register("STATIC", new StorageComponentClass("BAO", "true"));
         INVENTORY_REVERT_TO_DEFAULT = CustomComponentClass.register("INVENTORY_REVERT_TO_DEFAULT", new InventoryClickReaction("BAP", ClickAction.INVENTORY_REVERT_TO_DEFAULT));
+        INVENTORY_REPLACEABLE_BY = CustomComponentClass.register("INVENTORY_REPLACEABLE_BY", new StorageComponentClass("BAB", "INVENTORY_REPLACEABLE_BY"));
 
         ADVANCED_DAMAGE_ARACHNID = CustomComponentClass.register("ADVANCED_DAMAGE_ARACHNID", new AdvancedDamageComponentClass("CAA", Element.ARACHNID, EnchantmentCategory.WEAPON));
         ADVANCED_DAMAGE_CUBOID = CustomComponentClass.register("ADVANCED_DAMAGE_CUBOID", new AdvancedDamageComponentClass("CAB", Element.CUBOID, EnchantmentCategory.WEAPON) );

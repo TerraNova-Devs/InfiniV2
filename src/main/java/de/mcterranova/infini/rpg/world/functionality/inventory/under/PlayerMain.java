@@ -2,13 +2,13 @@ package de.mcterranova.infini.rpg.world.functionality.inventory.under;
 
 import de.mcterranova.infini.rpg.database.content.DatabaseHelper;
 import de.mcterranova.infini.rpg.utils.NBTUtils;
-import de.mcterranova.infini.rpg.world.functionality.builder.item.CustomItemBuilder;
 import de.mcterranova.infini.rpg.world.functionality.inventory.CustomGUIClass;
 import de.mcterranova.infini.rpg.world.functionality.inventory.GUITitle;
 import de.mcterranova.infini.rpg.world.functionality.inventory.InventoryWrapper;
 import de.mcterranova.infini.rpg.world.functionality.items.control.ItemMask;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -47,7 +47,7 @@ public class PlayerMain extends CustomGUIClass implements Listener {
 
     private Inventory prepareInventory(Player player) {
         Inventory inventory1 = DatabaseHelper.getInventoryTemplate(title);
-        inventory1.setItem(13, CustomItemBuilder.getPlayerHead(player));
+        inventory1.setItem(13, ItemMask.getPlayerHead(player));
         return inventory1;
     }
 
